@@ -1,5 +1,16 @@
 package RestServices;
 
-public class ViewDevice {
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
 
+@Path("/ViewDevice/{deviceID}")
+public class ViewDevice {
+	  @GET
+	  @Produces(MediaType.TEXT_PLAIN)
+	public void ViewDevice()
+	{
+		
+	}
 }
