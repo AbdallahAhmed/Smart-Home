@@ -1,9 +1,14 @@
 package DataAccess;
 
 import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
+
+import Controller.User;
 
 public class UserDBAccess {
 	static Connection currentCon;
+	static ResultSet rs = null;
 	
 	public void SignUp()
 	{
@@ -15,6 +20,56 @@ public class UserDBAccess {
 	}
 	public void EditUser()
 	{
+		
+	}
+	
+	public boolean checkUser(String username, String password) {
+		Statement stmt = null;
+		String Query = "select * from Users where UserName= \"" + username + "\" and UserPassword = \"" + password + "\"";
+
+		try {
+			currentCon = ConnectionManager.getConnection();
+			stmt = currentCon.createStatement();
+			rs = stmt.executeQuery(Query);
+			boolean more = rs.next();
+
+			if (!more) {
+				return false;
+			}
+
+			else if (more) {
+				return true;
+			}
+		}
+
+		catch (Exception ex) {
+			System.out.println("Checking failed: An Exception has occurred! " + ex);
+		}
+
+		// some exception handling
+		try {
+			if (rs != null) {
+				rs.close();
+				rs = null;
+			}
+			if (stmt != null) {
+				stmt.close();
+				stmt = null;
+			}
+			if (currentCon != null) {
+				currentCon.close();
+				currentCon = null;
+			}
+		} catch (Exception e) {
+
+		}
+		return false;
+
+	}
+	
+	public User getUser(String username, String password){
+		User user = new User(username, password);
+		return user;
 		
 	}
 

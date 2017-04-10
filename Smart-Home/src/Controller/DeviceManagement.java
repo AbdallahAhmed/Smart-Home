@@ -3,35 +3,36 @@ package Controller;
 public class DeviceManagement {
 	public Device device;
 	
-	public void RegisterDevice()
+	public Boolean RegisterDevice(Device dev)
 	{
-		
+		return true;
 	}
-	public void RemoveDevice()
+	public Boolean RemoveDevice(Device dev)
 	{
-		
+		return true;
 	}
-	public void EditDevice()
+	public Boolean EditDevice(Device dev)
 	{
-		
+		return true;
 	}
-	public void ViewDevice()
+	public Device ViewDevice(Device dev)
 	{
-		
+		return dev;
 	}
-	public void AddDevice()
+	public Boolean AddDevice()
 	{
-		
+		return true;
 	}
-	public void SetStatus()
+	public Boolean SetStatus(int ID )
 	{
-		
+		return true;
 	}
-	public void ViewDevices()
+	public Device[] ViewDevices()
 	{
-		
+		Device[] dev = null;
+		return dev;
 	}
-	public void ExecuteCommand()
+	public void ExecuteCommand(String s)
 	{
 		
 	}

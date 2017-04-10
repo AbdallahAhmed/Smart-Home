@@ -4,13 +4,14 @@ public class BoardManagement {
 	public Board board;
 	
 	
-	public void AddBoard()
+	public Board AddBoard(Board board)
 	{
-		
+		this.board = board;
+		return board;
 	}
-	public void RemoveBoard()
+	public Boolean RemoveBoard(Board b)
 	{
-		
+		return true;
 	}
 
 }

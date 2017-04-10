@@ -1,26 +1,34 @@
 package Controller;
 
+import DataAccess.UserDBAccess;
+
 public class UserManagement {
 	public User user;
 	
-	public void SignUp()
+	public Boolean SignUp(User u)
 	{
-		
+		return true;
 	}
-	public void SignIn()
+	public Boolean SignIn(User u)
 	{
-		
+		return true;
 	}
-	public void SignOut()
+	
+	public boolean SignOut()
 	{
-		
+		return true;
 	}
-	public void EditUser()
+	public User getUser(String username, String password)
 	{
-		
+		UserDBAccess UDB = new UserDBAccess();
+		return UDB.getUser(username, password);
 	}
-	public void RemoveUser()
+	public Boolean EditUser(User u)
 	{
-		
+		return true;
+	}
+	public Boolean RemoveUser(User u)
+	{
+		return true;
 	}
 }

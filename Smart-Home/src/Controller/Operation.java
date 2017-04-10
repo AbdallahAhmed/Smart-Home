@@ -10,9 +10,10 @@ public class Operation {
 	{
 		
 	}
-	public void GetUI()
+	public UILoader GetUI()
 	{
-		
+		UILoader u = null;
+		return u;
 	}
 
 }
