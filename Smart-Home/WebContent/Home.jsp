@@ -6,7 +6,38 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
 </head>
+<%@ page import="java.net.URI, 
+javax.ws.rs.client.Client , 
+javax.ws.rs.client.ClientBuilder , 
+javax.ws.rs.client.WebTarget , 
+javax.ws.rs.core.MediaType , 
+javax.ws.rs.core.Response ,
+javax.ws.rs.core.UriBuilder , 
+org.glassfish.jersey.client.ClientConfig ,org.json.simple.parser.*,org.json.simple.*" %>
+
 <body>
+<%	String username = request.getParameter("username");
+  	String password = request.getParameter("pass");
+	ClientConfig config1 = new ClientConfig();
+	Client client = ClientBuilder.newClient(config1);
+			WebTarget target = client.target(UriBuilder.fromUri(
+				"http://localhost:8080/Smart-Home").build());
+						JSONParser parser = new JSONParser();
+		Object obj = parser.parse(target.path("rest")
+				.path("SignIn").path(username)
+				.path(password).request()
+
+				.accept(MediaType.TEXT_PLAIN).get(String.class)
+
+				.toString());
+				JSONObject jsonObj = (JSONObject) obj;
+				boolean valid = (Boolean)(jsonObj.get("userdetails"));
+				if(valid == true){
+					
+					out.print(username+ " "+  password);
+				}else{
+					out.print("Sign in failed!!");
+				}%>
 
 </body>
 </html>
