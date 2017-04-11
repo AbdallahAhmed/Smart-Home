@@ -18,7 +18,6 @@ org.glassfish.jersey.client.ClientConfig ,org.json.simple.parser.*,org.json.simp
 <body>
 <%	String username = request.getParameter("username");
   	String password = request.getParameter("pass");
-<<<<<<< HEAD
 	ClientConfig config1 = new ClientConfig();
 	Client client = ClientBuilder.newClient(config1);
 			WebTarget target = client.target(UriBuilder.fromUri(
@@ -28,26 +27,12 @@ org.glassfish.jersey.client.ClientConfig ,org.json.simple.parser.*,org.json.simp
 		Object obj = parser.parse(target.path("rest")
 				.path("signin").path(username)
 				.path(password).request()
-=======
-// 	ClientConfig config1 = new ClientConfig();
-// 	Client client = ClientBuilder.newClient(config1);
-// 			WebTarget target = client.target(UriBuilder.fromUri(
-// 				"http://localhost:8080/Smart-Home").build());
-			Client client = ClientBuilder.newClient();
-			WebTarget target = client
-			    .target("http://localhost:8080/Smart-Home/rest")
-			    .path("signin");
-// 		JSONParser parser = new JSONParser();
-// 		Object obj = parser.parse(target.path("rest")
-// 				.path("signin").path(username)
-// 				.path(password).request()
->>>>>>> 33daf5a603596b8948111381568ae5115892c416
 
-// 				.accept(MediaType.APPLICATION_JSON_TYPE).get(String.class)
+				.accept(MediaType.TEXT_PLAIN).get(String.class)
 
-// 				.toString());
-				JSONObject jsonObj = new JSONObject();
-				boolean valid = true;
+				.toString());
+				JSONObject jsonObj = (JSONObject) obj;
+				boolean valid = (Boolean)(jsonObj.get("userdetails"));
 				if(valid == true){
 					
 					out.print(username+ " "+  password);
