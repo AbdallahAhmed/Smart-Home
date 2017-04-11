@@ -23,13 +23,10 @@ org.glassfish.jersey.client.ClientConfig ,org.json.simple.parser.*,org.json.simp
 			WebTarget target = client.target(UriBuilder.fromUri(
 				"http://localhost:8080/Smart-Home").build());
 						JSONParser parser = new JSONParser();
-						System.out.println(target.path("rest").path("signin").path(username).path(password).toString());
 		Object obj = parser.parse(target.path("rest")
-				.path("signin").path(username)
+				.path("SignIn").path(username)
 				.path(password).request()
-
 				.accept(MediaType.TEXT_PLAIN).get(String.class)
-
 				.toString());
 				JSONObject jsonObj = (JSONObject) obj;
 				boolean valid = (Boolean)(jsonObj.get("userdetails"));
