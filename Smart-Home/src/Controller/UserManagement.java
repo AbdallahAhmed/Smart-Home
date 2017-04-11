@@ -9,9 +9,9 @@ public class UserManagement {
 	{
 		return true;
 	}
-	public Boolean SignIn(User u){
-		
-		return (new UserDBAccess()).checkUser(u.name, u.password);
+	public Boolean SignIn(User u)
+	{
+		return true;
 	}
 	
 	public boolean SignOut()
