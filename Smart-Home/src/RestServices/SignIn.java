@@ -1,6 +1,7 @@
 package RestServices;
 
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -19,10 +20,8 @@ public class SignIn {
 	{
 		  UserManagement um = new UserManagement();
 		  User user = new User(username, password);
-		  JSONObject object = new JSONObject();
-		  
+		  JSONObject object = new JSONObject();		  
 		  object.put("signin", um.SignIn(user));
-		  object.put("userdetails", um.getUser(username, password));
 		  return object.toString();
 	}
 }
