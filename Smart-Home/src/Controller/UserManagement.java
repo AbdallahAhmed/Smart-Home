@@ -7,7 +7,7 @@ public class UserManagement {
 	
 	public Boolean SignUp(User u)
 	{
-		return true;
+		return (new UserDBAccess()).SignUp(u);
 	}
 	public Boolean SignIn(User u){
 		

@@ -10,9 +10,9 @@ public class UserDBAccess {
 	static Connection currentCon;
 	static ResultSet rs = null;
 	
-	public void SignUp()
+	public boolean SignUp(User user)
 	{
-		
+		return true;
 	}
 	public void RemoveUser()
 	{
