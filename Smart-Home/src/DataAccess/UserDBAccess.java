@@ -54,7 +54,7 @@ public class UserDBAccess {
 		} catch (Exception e) {
 
 		}
-		return false;
+		return true;
 
 	}
 

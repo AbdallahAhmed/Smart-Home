@@ -7,13 +7,35 @@
 	</head>
 	<body>
 		<div id="upper">
-			<form action="Home.jsp">
+			<form action="Home.jsp" method="post">
 				<button class="fill" id="right">Sign in</button>
 				<input type="password" id="right" name="pass" placeholder="Password">
 				<input type="text" id="right" name="username" placeholder="Username">
 			</form>
 		</div>
 		<div id="inter">
+		<div class="register-form" id="right">
+				<form action="SignUpCheck.jsp" method="post">
+					<div id="comp">
+						<label id="left"> Username </label>
+						<input type="text" name="newuser" id="right" class="outborder">
+					</div>
+					<div id="comp">
+						<label id="left"> Password </label>
+						<input type="text" name="newpass" id="right" class="outborder">
+					</div>
+					<div id="comp">
+						<label id="left"> Re-Enter Password </label>
+						<input type="text" name="repass" id="right" class="outborder">
+					</div>
+					<div id="comp">
+						<label id="left"> Mail </label>
+						<input type="text" name="mail" id="right" class="outborder">
+					</div>
+					<button class="bord" id="right">Sign Up</button>
+				</form>
+			</div>
+		
 		</div>
 	</body>
 </html>
