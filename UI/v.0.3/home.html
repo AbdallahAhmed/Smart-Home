@@ -11,7 +11,15 @@
 <body>
 	<div id="upper" style="background-color: #e6e6e6;">
 		<button style="background-color: #165258; margin-left: 50px; color: #00ddf2" id="left"> Profile</button>
-		<span class="fa fa-cog" style="font-size: 35px; color: #165258; padding: 15px;"  id="right"></span>
+		<span class="fa fa-cog dropbtn" style="font-size: 35px; color: #165258; padding: 15px;"  id="right">
+			<div class="dropdown">
+ 		 		<div class="dropdown-content">
+    				<a href="#">Link 1</a>
+		    		<a href="#">Link 2</a>
+    				<a href="#">Link 3</a>
+  				</div>
+			</div>
+		</span>
 		<span class="fa fa-bell" style="font-size: 35px; color: #165258; padding: 15px; cursor: pointer;" id="right"></span>
 	</div>
 	<div class="inter">
@@ -25,16 +33,9 @@
 			<label id="left">Board No.</label>
 		</div>
 		<div class="board" id="left">
-			<label id="left">Board No.</label>
-		</div>
-		<div class="board" id="left">
-			<label id="left">Board No.</label>
-		</div>
-		<div class="board" id="left">
-			<label id="left">Board No.</label>
-		</div>
-		<div class="board" id="left">
-			<button>Add Board</button>
+			<button class="fill" id="add" style=" margin: 20%; margin-left: 28%; width: auto;">
+				Add Board<span class="fa fa-plus" style="color:#165258;"></span>
+			</button>
 		</div>
 	</div>
 </body>
