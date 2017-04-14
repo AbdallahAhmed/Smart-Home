@@ -1,13 +1,14 @@
 package Controller;
 
+import DataAccess.BoardDBAccess;
+
 public class BoardManagement {
 	public Board board;
 	
 	
-	public Board AddBoard(Board board)
+	public Boolean AddBoard(Board board,User user)
 	{
-		this.board = board;
-		return board;
+		return (new BoardDBAccess()).AddBoard(board, user);
 	}
 	public Boolean RemoveBoard(Board b)
 	{
