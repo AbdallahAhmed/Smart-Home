@@ -25,6 +25,7 @@ public class UserDBAccess {
 				Query = "insert into Users (UserName , UserPassword) values (\"" + u.name + "\" , \"" + u.password
 						+ "\" )";
 				stmt.executeUpdate(Query);
+				return true;
 			}
 
 			else if (more) {
