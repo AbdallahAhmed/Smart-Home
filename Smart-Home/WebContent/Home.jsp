@@ -32,7 +32,7 @@ org.glassfish.jersey.client.ClientConfig ,org.json.simple.parser.*,org.json.simp
 				 JSONObject jsonObj = (JSONObject) obj; 
 				boolean valid = (Boolean)(jsonObj.get("signin"));
 				if(valid == true){					
-					out.print(username+ " "+  password);
+					out.print(jsonObj.get("user"));
 				}else{
 					out.print("Sign in failed!!");
 				}%>

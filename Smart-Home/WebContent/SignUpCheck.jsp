@@ -32,7 +32,7 @@ org.glassfish.jersey.client.ClientConfig ,org.json.simple.parser.*,org.json.simp
 		JSONObject jsonObj = (JSONObject) obj;
 		boolean valid = (Boolean)(jsonObj.get("signup"));
 		if(valid == true){
-			out.println("Successfully Signed up !!");
+			out.println(jsonObj.get("user").toString());
 		}else{
 			out.println("Sign up failed !!");
 		}

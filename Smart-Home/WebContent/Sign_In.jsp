@@ -30,7 +30,7 @@
 					</div>
 					<div id="comp">
 						<label id="left"> Mail </label>
-						<input type="text" name="mail" id="right" class="outborder">
+						<input type="email" name="mail" id="right" class="outborder">
 					</div>
 					<button class="bord" id="right">Sign Up</button>
 				</form>

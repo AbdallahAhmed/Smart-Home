@@ -22,6 +22,7 @@ public class SignIn {
 		  User user = new User(username, password);
 		  JSONObject object = new JSONObject();		  
 		  object.put("signin", um.SignIn(user));
+		  object.put("user", user.toJson(user));
 		  return object.toString();
 	}
 }
