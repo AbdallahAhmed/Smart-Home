@@ -14,28 +14,21 @@ javax.ws.rs.core.MediaType ,
 javax.ws.rs.core.Response ,
 javax.ws.rs.core.UriBuilder , 
 org.glassfish.jersey.client.ClientConfig ,org.json.simple.parser.*,org.json.simple.*" %>
+<%@page import="RestServices.RestConnector"%>
 <body>
 <%
 	String username = request.getParameter("newuser");
 	String pass = request.getParameter("newpass");
-	ClientConfig config1 = new ClientConfig();
-	Client client = ClientBuilder.newClient(config1);
-			WebTarget target = client.target(UriBuilder.fromUri(
-				"http://localhost:8080/Smart-Home").build());
-						JSONParser parser = new JSONParser();
- 		Object obj = parser.parse(target
- 				.path("rest")
- 				.path("SignUp").path(username).path(pass)
- 				.request()
- 				.accept(MediaType.TEXT_PLAIN)
- 				.get(String.class).toString());
-		JSONObject jsonObj = (JSONObject) obj;
-		boolean valid = (Boolean)(jsonObj.get("signup"));
-		if(valid == true){
-			out.println("Successfully Signed up !!");
-		}else{
-			out.println("Sign up failed !!");
-		}
+	RestConnector rc = new RestConnector("SignUp");
+	String[] tmp = {username, pass};
+	rc.addParam(tmp);
+	JSONObject jsonObj = rc.getJSONObject();
+	boolean valid = (Boolean)(jsonObj.get("signup"));
+	if(valid == true){
+		out.println("Successfully Signed up !!");
+	}else{
+		out.println("Sign up failed !!");
+	}
 %>
 </body>
 </html>

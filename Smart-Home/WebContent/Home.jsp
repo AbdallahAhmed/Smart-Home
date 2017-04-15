@@ -1,3 +1,4 @@
+<%@page import="RestServices.RestConnector"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -18,24 +19,17 @@ org.glassfish.jersey.client.ClientConfig ,org.json.simple.parser.*,org.json.simp
 <body>
 <%	String username = request.getParameter("username");
   	String password = request.getParameter("pass");
-	ClientConfig config1 = new ClientConfig();
-	Client client = ClientBuilder.newClient(config1);
-			WebTarget target = client.target(UriBuilder.fromUri(
-				"http://localhost:8080/Smart-Home").build());
-						JSONParser parser = new JSONParser();
- 		Object obj = parser.parse(target
- 				.path("rest")
- 				.path("SignIn").path(username).path(password)
- 				.request()
- 				.accept(MediaType.TEXT_PLAIN)
- 				.get(String.class).toString()); 
-				 JSONObject jsonObj = (JSONObject) obj; 
-				boolean valid = (Boolean)(jsonObj.get("signin"));
-				if(valid == true){					
-					out.print(username+ " "+  password);
-				}else{
-					out.print("Sign in failed!!");
-				}%>
+	RestConnector rc = new RestConnector("SignIn");
+	String[] tmp = {username, password};
+	rc.addParam(tmp);
+	JSONObject jsonObj = rc.getJSONObject(); 
+	boolean valid = (Boolean)(jsonObj.get("signin"));
+	if(valid == true){					
+		out.print(username+ " "+  password);
+	}else{
+		out.print("Sign in failed!!");
+	}
+%>
 
 </body>
 </html>
