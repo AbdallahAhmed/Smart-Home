@@ -20,6 +20,7 @@ public class SignIn {
 	{
 		  UserManagement um = new UserManagement();
 		  User user = new User(username, password);
+		  System.out.println(username + " " + password);
 		  JSONObject object = new JSONObject();		  
 		  object.put("signin", um.SignIn(user));
 		  user = um.getUser(user.name, user.password);
