@@ -87,8 +87,8 @@ public class DeviceDBAccess {
 			while (rs.next()) {
 				ops[i] = new Operation();
 				ops[i].name = rs.getString("OperationsName");
-				ops[i].values = getValues(rs.getInt("OperationID"));
-				ops[i++].UIComponent = rs.getString("UIComponent");
+				ops[i].UIComponent = rs.getString("UIComponent");
+				ops[i++].values = getValues(rs.getInt("OperationID"));
 			}
 
 		}
@@ -120,7 +120,7 @@ public class DeviceDBAccess {
 	}
 	public String[] getValues(int opID) {
 		Statement stmt = null;
-		String Query = "select * from OpertionsValues where OperationID = " + opID;
+		String Query = "select * from OperationsValues where OperationID = " + opID;
 		String[] Values = null;
 		
 		try {
