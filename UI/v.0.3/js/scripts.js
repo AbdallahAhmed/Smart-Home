@@ -16,7 +16,6 @@ function validate() {
 	if (z == null || z == "") {
 		alert("Please Fill Password");
 		return false;
-
 	}
 
 	return submit;

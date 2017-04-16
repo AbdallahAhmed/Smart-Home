@@ -2,6 +2,7 @@ function validate() {
 	var x = document.forms["signup"]["fullname"].value;
 	var y = document.forms["signup"]["newuser"].value;
 	var z = document.forms["signup"]["newpass"].value;
+	var h = document.forms["signup"]["renewpass"].value;
 
 	var submit = true;
 
@@ -17,6 +18,10 @@ function validate() {
 		alert("Please Fill Password");
 		return false;
 
+	}
+	if( z != y) {
+		alert("Password doesn't match !!");
+		return false;
 	}
 
 	return submit;
