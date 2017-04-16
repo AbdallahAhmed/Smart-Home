@@ -26,7 +26,7 @@ org.glassfish.jersey.client.ClientConfig ,org.json.simple.parser.*,org.json.simp
 	boolean valid = (Boolean) (jsonObj.get("signin"));
 	if(valid == true)
 	{
-		out.print(jsonObj.get("user"));
+		out.print(jsonObj.toString());
 	}else {
 		out.print("Sign in failed!!");
 	}

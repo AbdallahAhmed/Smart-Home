@@ -2,6 +2,7 @@ package Controller;
 
 import java.util.ArrayList;
 
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 public class User {
@@ -12,12 +13,16 @@ public class User {
 		this.name = username;
 		this.password = password;
 	}
-	public String toJson(User user)
+	public JSONObject toJson(User user)
 	{
 		JSONObject object = new JSONObject();
 		object.put("name", user.name);
 		object.put("password", user.password);
-		
-		return object.toString();
+		JSONArray brds = new JSONArray();
+		for(int i = 0; i < boards.size(); i++){
+			brds.add(boards.get(i).toJson());
+		}
+		object.put("boards", (Object)brds);
+		return object;
 	}
 }
