@@ -6,7 +6,7 @@ import org.json.simple.JSONObject;
 public class Device {
 	public String model;
 	public String name;
-	public Boolean status;
+	public String status;
 	public Operation[] operations;
 	
 	public JSONObject toJson(){

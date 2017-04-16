@@ -8,19 +8,19 @@ import org.json.simple.JSONObject;
 public class User {
 	public String name;
 	public String password;
-	public ArrayList<Board> boards=new ArrayList<Board>();
+	public Board[] boards;
 	public User(String username, String password){
 		this.name = username;
 		this.password = password;
 	}
-	public JSONObject toJson(User user)
+	public JSONObject toJson()
 	{
 		JSONObject object = new JSONObject();
-		object.put("name", user.name);
-		object.put("password", user.password);
+		object.put("name", name);
+		object.put("password", password);
 		JSONArray brds = new JSONArray();
-		for(int i = 0; i < boards.size(); i++){
-			brds.add(boards.get(i).toJson());
+		for(int i = 0; i < boards.length; i++){
+			brds.add(boards[i].toJson());
 		}
 		object.put("boards", (Object)brds);
 		return object;

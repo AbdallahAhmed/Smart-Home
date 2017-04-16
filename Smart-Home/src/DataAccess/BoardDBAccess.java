@@ -69,5 +69,52 @@ public class BoardDBAccess {
 	public void EditBoard() {
 
 	}
+	
+	public Board[] getBoards(int userID) {
+		Statement stmt = null;
+		String Query = "select * from Boards join UserBoard on Boards.BoardID = UserBoard.BoardID where UserBoard.UserID = " + userID;
+		Board[] b = null;
+		DeviceDBAccess db = new DeviceDBAccess();
+		try {
+			currentCon = ConnectionManager.getConnection();
+			stmt = currentCon.createStatement();
+			rs = stmt.executeQuery(Query);
+			rs.last();
+			b = new Board[rs.getRow()];
+			rs.beforeFirst();
+			int i = 0;
+			while (rs.next()) {
+				b[i] = new Board(rs.getString("BoardName"));
+				b[i++].devices = db.getDevices(rs.getInt("BoardID"));
+			}
+
+		}
+
+
+		catch (Exception ex) {
+			System.out.println("Getting Devices failed: An Exception has occurred! " + ex);
+		}
+
+		// some exception handling
+		try {
+			if (rs != null) {
+				rs.close();
+				rs = null;
+			}
+			if (stmt != null) {
+				stmt.close();
+				stmt = null;
+			}
+			if (currentCon != null) {
+				currentCon.close();
+				currentCon = null;
+			}
+		} catch (Exception e) {
+
+		}
+
+		return b;
+
+	}
 
 }

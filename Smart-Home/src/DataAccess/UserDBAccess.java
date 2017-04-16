@@ -10,7 +10,6 @@ public class UserDBAccess {
 	static Connection currentCon;
 	static ResultSet rs = null;
 
-
 	public boolean SignUp(User u) {
 		Statement stmt = null;
 		String Query = "select * from Users where UserName= \"" + u.name + "\"";
@@ -113,9 +112,43 @@ public class UserDBAccess {
 	}
 
 	public User getUser(String username, String password) {
-		User user = new User(username, password);
-		return user;
+		Statement stmt = null;
+		String Query = "select * from Users where UserName= \"" + username + "\" and UserPassword = \"" + password
+				+ "\"";
+		User u = new User(username, password);
+		BoardDBAccess bdb = new BoardDBAccess();
+		try {
+			currentCon = ConnectionManager.getConnection();
+			stmt = currentCon.createStatement();
+			rs = stmt.executeQuery(Query);
+			rs.next();
+			u.boards = bdb.getBoards(rs.getInt("UserID"));
 
+		}
+
+		catch (Exception ex) {
+			System.out.println("Getting User failed: An Exception has occurred! " + ex);
+		}
+
+		// some exception handling
+		try {
+			if (rs != null) {
+				rs.close();
+				rs = null;
+			}
+			if (stmt != null) {
+				stmt.close();
+				stmt = null;
+			}
+			if (currentCon != null) {
+				currentCon.close();
+				currentCon = null;
+			}
+		} catch (Exception e) {
+
+		}
+
+		return u;
 	}
 
 }
