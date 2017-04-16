@@ -1,12 +1,14 @@
 package Controller;
 
+import java.util.ArrayList;
+
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 public class Operation {
 	public String name;
 	public String UIComponent;
-	public String [] values;
+	public ArrayList<String> values = new ArrayList<String>();
 	public int UIComponentID;
 	
 	public void SetUI()
@@ -24,8 +26,8 @@ public class Operation {
 		obj.put("name", name);
 		obj.put("UIComponent", UIComponent);
 		JSONArray vals = new JSONArray();
-		for(int i = 0; i < values.length; i++){
-			vals.add(values[i]);
+		for(int i = 0; i < values.size(); i++){
+			vals.add(values.get(i));
 		}			
 		obj.put("values", (Object)vals);
 		obj.put("UIComponentID", UIComponentID);

@@ -3,6 +3,7 @@ package DataAccess;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 import Controller.Device;
 import Controller.Operation;
@@ -10,7 +11,6 @@ import Controller.Operation;
 public class DeviceDBAccess {
 
 	static Connection currentCon;
-	static ResultSet rs = null;
 
 	public void AddDevice() {
 
@@ -24,26 +24,24 @@ public class DeviceDBAccess {
 
 	}
 
-	public Device[] getDevices(int BoardID) {
+	public ArrayList<Device> getDevices(int BoardID) {
+		ResultSet rs = null;
 		Statement stmt = null;
 		String Query = "select * from Devices where BoardID = " + BoardID;
-		Device[] d = null;
+		ArrayList<Device> d = new ArrayList<Device>();
 		try {
 			currentCon = ConnectionManager.getConnection();
 			stmt = currentCon.createStatement();
 			rs = stmt.executeQuery(Query);
-			rs.last();
-			d = new Device[rs.getRow()];
-			rs.beforeFirst();
-			int i = 0;
-			while (rs.next()) {
-				d[i] = new Device();
-				d[i].name = rs.getString("DeviceName");
-				d[i].status = rs.getString("DeviceStatus");
-				d[i].model = rs.getString("DeviceModel");
-				d[i++].operations = getOperations(rs.getInt("DeviceID"));
+			while(rs.next()) {
+				Device dev = new Device();
+				dev.name = rs.getString("DeviceName");
+				dev.model = rs.getString("DeviceModel");
+				dev.status = rs.getString("DeviceStatus");
+				dev.operations = (ArrayList<Operation>) getOperations(rs.getInt("DeviceID")).clone();
+				d.add(dev);
 			}
-
+			
 		}
 
 
@@ -71,26 +69,24 @@ public class DeviceDBAccess {
 
 		return d;
 	}
-	public Operation[] getOperations(int deviceID) {
+	public ArrayList<Operation> getOperations(int deviceID) {
+		ResultSet rs = null;
 		Statement stmt = null;
 		String Query = "select * from Operations where DeviceID = " + deviceID;
-		Operation[] ops = null;
+		ArrayList<Operation> ops= new ArrayList<Operation>();
 		
 		try {
 			currentCon = ConnectionManager.getConnection();
 			stmt = currentCon.createStatement();
 			rs = stmt.executeQuery(Query);
-			rs.last();
-			ops = new Operation[rs.getRow()];
-			rs.beforeFirst();
-			int i = 0;
-			while (rs.next()) {
-				ops[i] = new Operation();
-				ops[i].name = rs.getString("OperationsName");
-				ops[i].UIComponent = rs.getString("UIComponent");
-				ops[i++].values = getValues(rs.getInt("OperationID"));
+			while(rs.next()) {
+				Operation o = new Operation();
+				o.name = rs.getString("OperationsName");
+				o.UIComponent = rs.getString("UIComponent");
+				o.values = (ArrayList<String>) getValues(rs.getInt("OperationID")).clone();
+				ops.add(o);
 			}
-
+			
 		}
 
 		catch (Exception ex) {
@@ -118,22 +114,18 @@ public class DeviceDBAccess {
 		return ops;
 
 	}
-	public String[] getValues(int opID) {
+	public ArrayList<String> getValues(int opID) {
+		ResultSet rs = null;
 		Statement stmt = null;
 		String Query = "select * from OperationsValues where OperationID = " + opID;
-		String[] Values = null;
+		ArrayList<String> Values = new ArrayList<String>();
 		
 		try {
 			currentCon = ConnectionManager.getConnection();
 			stmt = currentCon.createStatement();
 			rs = stmt.executeQuery(Query);
-			rs.last();
-			Values = new String[rs.getRow()];
-			rs.beforeFirst();
-			int i = 0;
 			while (rs.next()) {
-				Values[i] = new String();
-				Values[i++] = rs.getString("Value");
+				Values.add(rs.getString("Value"));
 			}
 
 		}
