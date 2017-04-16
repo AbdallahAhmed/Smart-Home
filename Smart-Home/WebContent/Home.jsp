@@ -17,9 +17,11 @@ javax.ws.rs.core.UriBuilder ,
 org.glassfish.jersey.client.ClientConfig ,org.json.simple.parser.*,org.json.simple.*" %>
 
 <body>
-<%	String username = request.getParameter("username");
+<%	JSONObject obj = (JSONObject)session.getAttribute("user");
+	out.println(obj.toJSONString());
+/* 	 String username = request.getParameter("username");
   	String password = request.getParameter("pass");
-	RestConnector rc = new RestConnector("SignIn");
+/* 	RestConnector rc = new RestConnector("SignIn");
 	String[] tmp = {username, password};
 	rc.addParam(tmp);
 	JSONObject jsonObj = rc.getJSONObject();
@@ -29,7 +31,7 @@ org.glassfish.jersey.client.ClientConfig ,org.json.simple.parser.*,org.json.simp
 		out.print(jsonObj.toString());
 	}else {
 		out.print("Sign in failed!!");
-	}
+	} */ 
 	%>
 
 </body>

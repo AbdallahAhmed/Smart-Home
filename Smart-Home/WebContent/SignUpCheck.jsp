@@ -26,7 +26,9 @@ org.glassfish.jersey.client.ClientConfig ,org.json.simple.parser.*,org.json.simp
 	boolean valid = (Boolean) (jsonObj.get("signup"));
 	if(valid == true)
 	{
-		out.print(jsonObj.get("user"));
+		session.setAttribute("user", jsonObj.get("user"));
+		response.sendRedirect("Home.jsp");
+		
 	}else {
 		out.print("Sign up failed");
 	}

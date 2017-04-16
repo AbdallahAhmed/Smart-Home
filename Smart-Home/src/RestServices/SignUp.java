@@ -21,7 +21,8 @@ public class SignUp {
 		  UserManagement um = new UserManagement();
 		  JSONObject object = new JSONObject();		  
 		  object.put("signup", um.SignUp(user));
-		  object.put("user", user.toJson(user));
+		  user = um.getUser(user.name, user.password);
+		  object.put("user", user.toJson());
 		  return object.toString();
 		
 	}
