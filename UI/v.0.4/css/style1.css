@@ -12,7 +12,7 @@
   padding: 0;
   width: inherit;
   height: 75px;
-  background: linear-gradient(to right, #3949AB  , #3D5AFE);
+  //background: linear-gradient(to right, #3949AB  , #3D5AFE);
   //border-bottom: 10px #000000 solid;
 }
 #upper form{
@@ -72,7 +72,9 @@ input {
   cursor: pointer;
 }
 
+
 button {
+  font-family: 'Righteous', cursive;
   position: relative;
   //display:block;
   height: 45px;
@@ -80,10 +82,10 @@ button {
   margin: 10px 7px;
   padding: 5px 5px;
   font-weight: 700;
-  font-size: 15px;
+  font-size: 20px;
   letter-spacing: 2px;
   color: #FFFFFF;
-  border: 2px #FFFFFF solid;
+  border: 2px #165258 solid;
   border-radius: 4px;
   text-transform: uppercase;
   outline: 0;
@@ -92,7 +94,7 @@ button {
   z-index: 1;
   cursor: pointer;
   transition:         0.08s ease-in;
- 
+  text-align: right;
 }
 .fill:hover {
   color :#3D5AFE;

@@ -1,0 +1,147 @@
+html,body {
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  font-family: 'Righteous',cursive;
+  background-color: #165258;
+}
+#left {
+  float: left;  
+}
+#right{
+  float:right;
+}
+#upper{
+  margin: 0;
+  padding: 0;
+  width: inherit;
+  height: 125px;
+}
+#upper form{
+  width: inherit;
+  height: inherit;
+  float: right;
+}
+.inter{
+  position: relative;
+  width: inherit;
+  background-color: #165258;
+  height: 450px;
+}
+button { 
+  font-family: 'Righteous',cursive;
+ }
+ input {
+  font-family: 'Righteous',cursive;
+ }
+.inputin {
+  margin: 65px 4px;
+  background-color: #e6e6e6;
+  color: #00ddf2;
+  width: 150px;
+  height: 35px;
+  border-radius: 25px;
+  font-size: 15px;
+  color: #165258;
+  border: 5px #165258 solid;
+  cursor: pointer;    
+}
+.inputout {
+  border: 4px #00ddf2 solid;
+  border-radius: 10px; 
+  float: left;
+  background-color: #165258;
+  margin: 10px;
+  color: #e6e6e6;
+  width: 250px;
+  height: 45px;
+  border-radius: 20px;
+  font-size: 15px;
+  cursor: pointer;    
+
+}
+.inter form {
+  position: absolute;
+  width: auto;
+  height: auto;
+  margin: 50px 0px;
+  background-color: none;
+  bottom: 0;
+  right: 0;
+
+}
+.inputcomp label{
+  margin: 15px 0px;
+  font-family: 'Righteous',cursive;
+  font-size: 30px;
+  color: #00ddf2;
+}
+.inputcomp span {
+  margin: -30px 0px;
+  position: absolute;
+  color: red;
+}
+
+#name_error {
+  float: left;
+  position: relative;
+  top: 0;
+  right: 0;
+}
+
+.signin {
+  margin: 85px 25px;
+  background-color: #165258;
+  color: #00ddf2;
+  width: 100px;
+  height: 30px;
+  border-radius: 15px;
+  font-size: 15px;
+  border: 2px #165258 solid;
+  cursor: pointer;
+}
+
+.signup {
+  border: 4px #00ddf2 solid;
+  border-radius: 10px; 
+  float: left;
+  background-color: #00ddf2;
+  margin: 0;
+  color: #165258;
+  width: 250px;
+  height: 45px;
+  border-radius: 20px;
+  font-size: 38px;
+  cursor: pointer;
+  text-align: right;
+}
+.signin:hover {
+    -webkit-animation: pulse 1s;
+    animation: pulse 1s;
+}
+.signup:hover {
+  animation: wider 6s;
+}
+img {
+  max-width: 100%;
+  max-height: 100%;
+}
+.port {
+  position: absolute;
+  margin: 65px 20px;
+  width: 200px;
+  height: 40px;
+  cursor: pointer;
+}
+.port:hover {
+  
+  animation: pulse 1s;
+  background-image: url('http://i.imgur.com/En4bon4.png');
+}
+@keyframes wider {
+  0% { width: 250px; }
+  100% { width: 250px; }
+  50% { width: 300px; }
+}
+
