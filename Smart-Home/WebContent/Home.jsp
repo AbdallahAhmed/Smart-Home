@@ -56,10 +56,8 @@ org.glassfish.jersey.client.ClientConfig ,org.json.simple.parser.*,org.json.simp
 		</div> 
 		<%}%>
 		<form method="post">
-		<div class="board" id="left">
-			<button class="fill" id="add" style=" margin: 20%; margin-left: 28%; width: auto;">
-				Add Board<span class="fa fa-plus" style="color:#165258;"></span>
-			</button>
+		<div class="addboard">
+			<button id="myBtn" onclick="popup()" class="fill" style=" margin: 20%; margin-left: 28%; width: auto;"> Add Board </button>
 		</div>
 		</form>
 		<label style="margin: 10px 20px; position: absolute; color: #165258;">DELETE</label>
@@ -69,13 +67,15 @@ org.glassfish.jersey.client.ClientConfig ,org.json.simple.parser.*,org.json.simp
   			<div class="slider round"></div>
 		</label>
 	</div>
-	<form id="popuptheme" onsubmit="changeMain(getElementsByTagName('maincolor').value)">
-  		<a href="" title="Close" id="right">X</a>
-  		<h2>Change Theme</h2>
-  		<input type="color" name="maincolor" value="#165258">
-  		<input type="color" value="#00ddf2">
-  		<input type="submit" name="">
-   	</form>
+	<div id="myModal" class="popup">
+  			<div class="popup-content">
+				<span class="closebtn fa fa-close"></span>
+				<h1>Add Board</h1>
+				<p>board Name :</p>
+    			<input type="text" name="boardname" value="Board No."/>
+    			<button class="fill">Confirm</button>
+  			</div>
+	</div>
 
 </body>
 </html>
