@@ -25,15 +25,9 @@ javax.ws.rs.core.UriBuilder ,
 org.glassfish.jersey.client.ClientConfig ,org.json.simple.parser.*,org.json.simple.*" %>
 
 <body>
-<%/* JSONObject obj = (JSONObject)session.getAttribute("user"); */
+ <% JSONObject obj = (JSONObject)session.getAttribute("user"); 
 %>
-<%	String username = request.getParameter("username");
-String pass = request.getParameter("pass");
-System.out.println("From jsp : " + username + " " + pass);
-RestConnector rc = new RestConnector("SignIn");
-String[] tmp = {username, pass};
-rc.addParam(tmp);
-JSONObject obj = rc.getJSONObject(); %>
+
 <div id="upper" style="background-color: #e6e6e6;">
 		<div class="port">
 			<img src="http://i.imgur.com/WpmTCcz.png" id="left">
@@ -49,11 +43,11 @@ JSONObject obj = rc.getJSONObject(); %>
 		</span>
 		<span class="fa fa-bell" style="font-size: 35px; color: #165258; padding: 15px; cursor: pointer;" id="right"></span>
 		<button class="profile" style="background-color: #165258; margin-left: 50px; color: #00ddf2" id="right"> Profile</button>
-		<label class="" id="right"><%out.print(((JSONObject)(obj.get("user"))).get("name"));%></label>
+		<label class="" id="right"><% out.print(obj.get("name")); %></label>
 	</div>
 	<div class="inter" id="in">
 	<%
-	JSONArray brds = (JSONArray)((JSONObject)(obj.get("user"))).get("boards");
+	JSONArray brds = (JSONArray)obj.get("boards");
 	  
  	    for(int i = 0; i < brds.size(); i++){   %>
  		<div class="board" id="left">
