@@ -1,20 +1,39 @@
-
-<!DOCTYPE html>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 	<head>
 		<link href="https://fonts.googleapis.com/css?family=Righteous" rel="stylesheet">
 		<link rel="stylesheet" type="text/css" href="css/style_sign.css">
+		<link rel="stylesheet" type="text/css" href="css/load.css">
+		<link rel="stylesheet" type="text/css" href="css/animate_load.css">
 		<link rel="stylesheet" href="css/animate.css">
 		<script type="text/javascript" src="js/scripts.js"></script>
+			<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+	<link rel="stylesheet" href="v.0.3/css/animate.css">
+	<link href="https://fonts.googleapis.com/css?family=Righteous" rel="stylesheet">
 	</head>
 	<body>
+	<div id="all" style="visibility: hidden; z-index: 99;">
+		<div id="mainbox">
+			<div id="line2"></div>
+			<div id="largebox">
+				<label>SHCS</label>
+			</div>
+			<div id="line1"></div>
+			<div id="triangle"></div>
+			<div id="triangle2"></div>
+			<label id="l">Loading</label>
+		</div>
+	</div>
+<div id="sAll">
 		<div id="upper" style="background-color: #e6e6e6;">
 			<div class="port" id="left">
 				<img src="http://i.imgur.com/BuSJYNJ.png">
 			</div>
-			<form onsubmit="return validateSignin(e);" class="signinf" action="Home.jsp">
-				<button class="signin" id="right">Sign in</button>
-				<input class="inputin" type="password" id="right" name="pass" placeholder="Password" required>
+			<form id="ho" onsubmit="loading()" class="signinf" action="SignInCheck.jsp" method="post">
+				<button type="submit" class="signin" id="right">Sign in</button>
+				<input class="inputin" type="password" id="right" name="password" placeholder="Password" required>
 				<input class="inputin" type="text" id="right" name="username" placeholder="Username" required>
 			</form>
 		</div>
@@ -40,7 +59,9 @@
 				</div>
 				<button class="signup" type="submit">Sign Up</button>
 			</form>
-
 		</div>
+	</div>
+	<button onclick="loading()">Try</button>
 	</body>
 </html>
+

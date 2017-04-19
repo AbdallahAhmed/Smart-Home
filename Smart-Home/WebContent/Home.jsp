@@ -45,20 +45,23 @@ org.glassfish.jersey.client.ClientConfig ,org.json.simple.parser.*,org.json.simp
 		<button class="profile" style="background-color: #165258; margin-left: 50px; color: #00ddf2" id="right"> Profile</button>
 		<label class="" id="right"><% out.print(obj.get("name")); %></label>
 	</div>
-	<div class="inter" id="in">
+	<div class="inter">
 	<%
 	JSONArray brds = (JSONArray)obj.get("boards");
-	  
+	 
+
  	    for(int i = 0; i < brds.size(); i++){   %>
  		<div class="board" id="left">
-		<button class="close" id="la"><span class="fa fa-close"></span></button>
-			<label id="left">Board Name : <%  out.print(((JSONObject)(brds.get(i))).get("name"));   %></label>
+ 		
+			<button class="close" id="la"><span class="fa fa-close"></span></button>
+			<label id="left" style="max-width : 200px; ">Board Name :   <%  out.print(((JSONObject)(brds.get(i))).get("name"));   %></label>
+		<button class="view" id="right"><span class="fa fa-arrows-alt"></span></button>	
 		</div> 
 		<%}%>
 		<form method="post">
-		<div class="addboard">
-			<button id="myBtn" onclick="popup()" class="fill" style=" margin: 20%; margin-left: 28%; width: auto;"> Add Board </button>
-		</div>
+			<div class="addboard">
+				<button id="myBtn" onclick="popup()" type="button" class="fill" style=" margin: 20%; margin-left: 28%; width: auto;"> Add Board </button>
+			</div>
 		</form>
 		<label style="margin: 10px 20px; position: absolute; color: #165258;">DELETE</label>
 		<label style="margin: 25px 20px; position: absolute; color: #165258;">BOARD</label>

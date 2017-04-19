@@ -71,6 +71,9 @@ button {
   right: 0;
 
 }
+.inputcomp {
+  //float: right;
+}
 .inputcomp label{
   margin: 18px 0px;
   font-family: 'Righteous',cursive;
@@ -145,3 +148,7 @@ img {
   50% { width: 300px; }
 }
 
+#sAll {
+	margin : 0;
+	padding : 0;
+}
