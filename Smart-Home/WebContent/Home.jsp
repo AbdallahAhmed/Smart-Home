@@ -70,6 +70,7 @@ org.glassfish.jersey.client.ClientConfig ,org.json.simple.parser.*,org.json.simp
   			<div class="slider round"></div>
 		</label>
 	</div>
+	<form action="AddBoard.jsp">
 	<div id="myModal" class="popup">
   			<div class="popup-content">
 				<span class="closebtn fa fa-close"></span>
@@ -79,6 +80,6 @@ org.glassfish.jersey.client.ClientConfig ,org.json.simple.parser.*,org.json.simp
     			<button class="fill">Confirm</button>
   			</div>
 	</div>
-
+</form>
 </body>
 </html>

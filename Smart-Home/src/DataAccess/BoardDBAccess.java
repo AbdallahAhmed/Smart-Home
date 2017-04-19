@@ -11,9 +11,9 @@ public class BoardDBAccess {
 	static Connection currentCon;
 	static ResultSet rs = null;
 
-	public boolean AddBoard(Board b, User u) {
+	public boolean AddBoard(Board b, String u) {
 		Statement stmt = null;
-		String Query = "select * from Users where UserName= \"" + u.name + "\"";
+		String Query = "select * from Users where UserName= \"" + u + "\"";
 		try {
 			currentCon = ConnectionManager.getConnection();
 			stmt = currentCon.createStatement();

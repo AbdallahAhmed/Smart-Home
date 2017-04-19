@@ -13,21 +13,21 @@ import Controller.BoardManagement;
 import Controller.User;
 import Controller.UserManagement;
 
-@Path("/AddBoard/{username}/{password}{boardname}")
+@Path("/AddBoard/{username}/{boardname}")
 public class AddBoard {
 	  @GET
 	  @Produces(MediaType.TEXT_PLAIN)
-	public String AddBoard(@PathParam("username")String username,@PathParam("boardname")String boardname,@PathParam("password") String password )
+	public String AddBoard(@PathParam("username")String username,@PathParam("boardname")String boardname)
 	{
 		  UserManagement um = new UserManagement(); 
-		  User user = um.getUser(username, password);
 		  Board board = new Board(boardname);
+		  System.out.println(boardname);
 		  BoardManagement bm = new BoardManagement();
-		  bm.AddBoard(board,user);
-		  JSONObject object = new JSONObject();		  
-		  object.put("user", user.toJson());
+		  boolean valid = bm.AddBoard(board,username);
+		  JSONObject obj = new JSONObject();
+		  obj.put("valid", valid);
+		  return obj.toString();
 		  
-		  return object.toString();
 	}
 
 }
