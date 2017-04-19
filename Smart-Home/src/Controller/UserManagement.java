@@ -29,6 +29,6 @@ public class UserManagement {
 	}
 	public Boolean RemoveUser(User u)
 	{
-		return (new UserDBAccess()).RemoveUser(u);
+		
 	}
 }
