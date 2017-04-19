@@ -1,5 +1,5 @@
 package RestServices;
-import javax.servlet.http.HttpServletRequest;
+
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -21,7 +21,7 @@ public class AddBoard {
 	{
 		  UserManagement um = new UserManagement(); 
 		  User user = um.getUser(username, password);
-		  Board board = new Board("boardname");
+		  Board board = new Board(boardname);
 		  BoardManagement bm = new BoardManagement();
 		  bm.AddBoard(board,user);
 		  JSONObject object = new JSONObject();		  
