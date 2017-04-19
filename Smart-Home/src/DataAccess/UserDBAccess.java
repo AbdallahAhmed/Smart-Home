@@ -58,7 +58,52 @@ public class UserDBAccess {
 
 	}
 
-	public void RemoveUser() {
+	public boolean RemoveUser(User u) {
+		Statement stmt = null;
+		String Query = "select * from Users where UserName= \"" + u.name + "\"";
+
+		try {
+			currentCon = ConnectionManager.getConnection();
+			stmt = currentCon.createStatement();
+			rs = stmt.executeQuery(Query);
+			boolean more = rs.next();
+
+			if (more) {
+				Query = "delete from Users (UserName , UserPassword) values (\"" + u.name + "\" , \"" + u.password
+						+ "\" )";
+				stmt.executeUpdate(Query);
+				return true;
+			}
+
+			else if (!more) {
+				System.out.println("Username is not found");
+				return false;
+			}
+		}
+
+		catch (Exception ex) {
+			System.out.println("Adding failed: An Exception has occurred! " + ex);
+		}
+
+		// some exception handling
+		try {
+			if (rs != null) {
+				rs.close();
+				rs = null;
+			}
+			if (stmt != null) {
+				stmt.close();
+				stmt = null;
+			}
+			if (currentCon != null) {
+				currentCon.close();
+				currentCon = null;
+			}
+		} catch (Exception e) {
+
+		}
+		return true;
+
 
 	}
 
