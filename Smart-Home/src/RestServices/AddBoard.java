@@ -13,19 +13,20 @@ import Controller.BoardManagement;
 import Controller.User;
 import Controller.UserManagement;
 
-@Path("/AddBoard/{boardname}")
+@Path("/AddBoard/{username}/{password}{boardname}")
 public class AddBoard {
 	  @GET
 	  @Produces(MediaType.TEXT_PLAIN)
-	public String AddBoard(@PathParam("username")String username,@PathParam("boardname")String boardname,HttpServletRequest request)
+	public String AddBoard(@PathParam("username")String username,@PathParam("boardname")String boardname,@PathParam("password") String password )
 	{
-		  Board board = new Board("boardname");
 		  UserManagement um = new UserManagement(); 
-		  User user = (User) request.getSession().getAttribute("user");
+		  User user = um.getUser(username, password);
+		  Board board = new Board("boardname");
 		  BoardManagement bm = new BoardManagement();
-		  user.boards.add(board);
+		  bm.AddBoard(board,user);
 		  JSONObject object = new JSONObject();		  
-		  object.put("addboard", bm.AddBoard(board,user));
+		  object.put("user", user.toJson());
+		  
 		  return object.toString();
 	}
 
