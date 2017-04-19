@@ -20,7 +20,7 @@
 				<img src="http://i.imgur.com/BuSJYNJ.png">
 			</div>
 			<form id="ho" onsubmit="loading()" class="signinf" action="SignInCheck.jsp" method="post">
-				<button type="submit" class="signin" id="right">Sign in</button>
+				<button type="submit" onsubmit="loading()" class="signin" id="right">Sign in</button>
 				<input class="inputin" type="password" id="right" name="password" placeholder="Password" required>
 				<input class="inputin" type="text" id="right" name="username" placeholder="Username" required>
 			</form>
@@ -61,6 +61,7 @@
 			<label id="l">Loading</label>
 		</div>
 	</div>
+	
 	</body>
 </html>
 
