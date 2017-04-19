@@ -17,21 +17,17 @@ javax.ws.rs.core.UriBuilder ,
 org.glassfish.jersey.client.ClientConfig ,org.json.simple.parser.*,org.json.simple.*" %>
 <body>
 <%	
-long st = System.currentTimeMillis();
 String username = request.getParameter("username");
 String pass = request.getParameter("password");
 RestConnector rc = new RestConnector("SignIn");
 String[] tmp = {username, pass};
 rc.addParam(tmp);
 JSONObject obj = rc.getJSONObject();
-long end = System.currentTimeMillis();
-out.print(end - st);
 boolean valid = (Boolean) (obj.get("signin"));
 if(valid == true)
 {
-	Thread.sleep(10000);
 	session.setAttribute("user", obj.get("user"));
-	 response.sendRedirect("Home.jsp");
+	response.sendRedirect("Home.jsp"); 
 	
 }else {
 	out.print("Sign in failed");

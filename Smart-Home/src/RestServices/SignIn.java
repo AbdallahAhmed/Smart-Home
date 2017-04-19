@@ -24,7 +24,10 @@ public class SignIn {
 		  JSONObject object = new JSONObject();		  
 		  object.put("signin", um.SignIn(user));
 		  user = um.getUser(user.name, user.password);
+		  long st = System.currentTimeMillis();
 		  object.put("user", user.toJson());
+		  long end = System.currentTimeMillis();
+		  System.out.print("Time taken : " + (end - st));
 		  return object.toString();
 	}
 }
