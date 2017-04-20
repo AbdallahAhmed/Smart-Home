@@ -26,6 +26,9 @@ public class BoardDBAccess {
 
 			else if (more) {
 				int UserID = rs.getInt("UserID");
+				Query = "select * from UserBoard join Boards where UserBoard.UserID = " + UserID ;
+				rs = stmt.executeQuery(Query);
+				if (rs.next()) return false;
 				Query = "insert into Boards (BoardName) values (\"" + b.name + "\")";
 				stmt.executeUpdate(Query, Statement.RETURN_GENERATED_KEYS);
 				rs = stmt.getGeneratedKeys();

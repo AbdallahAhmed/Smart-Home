@@ -12,7 +12,69 @@ public class DeviceDBAccess {
 
 	static Connection currentCon;
 
-	public void AddDevice() {
+	public boolean AddDevice(String username , String boardname, Device d) {
+		ResultSet rs = null;
+		Statement stmt = null;
+		String Query = "select * from Users join UserBoard join Boards where UserName= \"" + username
+				+ "\" and BoardName = \"" + boardname + "\"";
+		try {
+			currentCon = ConnectionManager.getConnection();
+			stmt = currentCon.createStatement();
+			rs = stmt.executeQuery(Query);
+			boolean more = rs.next();
+
+			if (!more) {
+				return false;
+			}
+
+			else if (more) {
+				int BoardID = rs.getInt("BoardID");
+				Query = "insert into Devices (DeviceName, DeviceStatus, DeviceModel, BoardID) values (\"" 
+				+ d.name + "\", \"" + d.status +  "\", \"" + d.model + "\", " + BoardID+ ")";
+				stmt.executeUpdate(Query, Statement.RETURN_GENERATED_KEYS);
+				rs = stmt.getGeneratedKeys();
+				rs.next();
+				int DeviceID = rs.getInt(1);
+				for (int i = 0 ; i < d.operations.size(); i++){
+					Query = "insert into Operations (OperationsName , UIComponent, DeviceID) values (\"" 
+							+ d.operations.get(i).name + "\" , \"" + d.operations.get(i).UIComponent 
+							+ "\" , " + DeviceID + ")";
+					stmt.executeUpdate(Query, Statement.RETURN_GENERATED_KEYS);
+					rs = stmt.getGeneratedKeys();
+					rs.next();
+					int OperationID = rs.getInt(1);
+					for (int j = 0 ; j < d.operations.get(i).values.size(); j++){
+						Query = "insert into OperationsValues (Value, OperationID) values (\"" 
+								+ d.operations.get(i).values.get(j) + "\" , " + OperationID + ")";
+						stmt.executeUpdate(Query);
+					}
+				}
+				return true;
+			}
+		}
+
+		catch (Exception ex) {
+			System.out.println("Adding Board failed: An Exception has occurred! " + ex);
+		}
+
+		// some exception handling
+		try {
+			if (rs != null) {
+				rs.close();
+				rs = null;
+			}
+			if (stmt != null) {
+				stmt.close();
+				stmt = null;
+			}
+			if (currentCon != null) {
+				currentCon.close();
+				currentCon = null;
+			}
+		} catch (Exception e) {
+
+		}
+		return false;
 
 	}
 
