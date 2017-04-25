@@ -26,7 +26,7 @@
 			</form>
 		</div>
 		<div class="inter">
-			<form onsubmit="return validate()" name="signup">
+			<form onsubmit="return validate()" name="signup" action="SignUpCheck.jsp" method="post">
 				<div class="inputcomp">
 					<label id="left">Full Name</label>
 					<input class="inputout" id="right"  type="text" name="fullname" required>

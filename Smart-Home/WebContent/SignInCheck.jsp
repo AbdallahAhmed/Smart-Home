@@ -1,3 +1,5 @@
+<%@page import="javax.ws.rs.client.Entity"%>
+<%@page import="javax.ws.rs.core.Form"%>
 <%@ page import="RestServices.RestConnector" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -19,10 +21,11 @@ org.glassfish.jersey.client.ClientConfig ,org.json.simple.parser.*,org.json.simp
 <%	
 String username = request.getParameter("username");
 String pass = request.getParameter("password");
-RestConnector rc = new RestConnector("SignIn");
-String[] tmp = {username, pass};
-rc.addParam(tmp);
+RestConnector rc = new RestConnector("SignIn", "POST");
+rc.addParamPost("username", username);
+rc.addParamPost("password", pass);
 JSONObject obj = rc.getJSONObject();
+ 
 boolean valid = (Boolean) (obj.get("signin"));
 if(valid == true)
 {
@@ -31,7 +34,7 @@ if(valid == true)
 	
 }else {
 	out.print("Sign in failed");
-}
-%>
+} 
+ %>
 </body>
 </html>

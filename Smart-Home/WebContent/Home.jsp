@@ -25,7 +25,8 @@ javax.ws.rs.core.UriBuilder ,
 org.glassfish.jersey.client.ClientConfig ,org.json.simple.parser.*,org.json.simple.*" %>
 
 <body>
- <% JSONObject obj = (JSONObject)session.getAttribute("user"); 
+ <% JSONParser parser = new JSONParser(); 
+ JSONObject obj = (JSONObject)parser.parse(session.getAttribute("user").toString()); 
 %>
 
 <div id="upper" style="background-color: #e6e6e6;">
@@ -51,12 +52,13 @@ org.glassfish.jersey.client.ClientConfig ,org.json.simple.parser.*,org.json.simp
 	 
 
  	    for(int i = 0; i < brds.size(); i++){   %>
+ 		<form action="">
  		<div class="board" id="left">
- 		
 			<button class="close" id="la"><span class="fa fa-close"></span></button>
 			<label id="left" style="max-width : 200px; ">Board Name :   <%  out.print(((JSONObject)(brds.get(i))).get("name"));   %></label>
 		<button class="view" id="right"><span class="fa fa-arrows-alt"></span></button>	
 		</div> 
+		</form>
 		<%}%>
 		<form method="post">
 			<div class="addboard">
