@@ -10,7 +10,7 @@ public class Try2 {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		
-		/*Operation o = new Operation();
+		Operation o = new Operation();
 		o.name = "Power";
 		o.values = new ArrayList<String>();
 		o.values.add("On");
@@ -19,8 +19,9 @@ public class Try2 {
 		d.name = "Light";
 		d.operations.add(o);
 		DeviceDBAccess db = new DeviceDBAccess();
-		db.AddDevice("Admin", "Board2", d);*/
-		UserDBAccess d = new UserDBAccess();
-		System.out.println(d.getUser("Admin", "Admin").toJson());
+		db.RegisterDevice(d);
+		/*db.AddDevice("Admin", "Board2", d);*/
+		/*UserDBAccess d = new UserDBAccess();
+		System.out.println(d.getUser("Admin", "Admin").toJson());*/
 	}
 }

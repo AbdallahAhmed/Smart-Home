@@ -12,7 +12,63 @@ public class DeviceDBAccess {
 
 	static Connection currentCon;
 
-	public boolean AddDevice(String username , String boardname, Device d) {
+	public boolean RegisterDevice(Device d) {
+		ResultSet rs = null;
+		Statement stmt = null;
+		String Query = "insert into Devices (DeviceName, DeviceStatus, DeviceModel) values (\"" + d.name + "\", \""
+				+ d.status + "\", \"" + d.model + "\" )";
+		try {
+			currentCon = ConnectionManager.getConnection();
+			stmt = currentCon.createStatement();
+			stmt.executeUpdate(Query, Statement.RETURN_GENERATED_KEYS);
+			rs = stmt.getGeneratedKeys();
+			rs.next();
+			int DeviceID = rs.getInt(1);
+			for (int i = 0; i < d.operations.size(); i++) {
+				Query = "insert into Operations (OperationsName , UIComponent, DeviceID) values (\""
+						+ d.operations.get(i).name + "\" , \"" + d.operations.get(i).UIComponent + "\" , " + DeviceID
+						+ ")";
+				stmt.executeUpdate(Query, Statement.RETURN_GENERATED_KEYS);
+				rs = stmt.getGeneratedKeys();
+				rs.next();
+				int OperationID = rs.getInt(1);
+				for (int j = 0; j < d.operations.get(i).values.size(); j++) {
+					Query = "insert into OperationsValues (Value, OperationID) values (\""
+							+ d.operations.get(i).values.get(j) + "\" , " + OperationID + ")";
+					stmt.executeUpdate(Query);
+				}
+			}
+			return true;
+		}
+
+		catch (
+
+		Exception ex) {
+			System.out.println("Registering Device failed: An Exception has occurred! " + ex);
+		}
+
+		// some exception handling
+		try {
+			if (rs != null) {
+				rs.close();
+				rs = null;
+			}
+			if (stmt != null) {
+				stmt.close();
+				stmt = null;
+			}
+			if (currentCon != null) {
+				currentCon.close();
+				currentCon = null;
+			}
+		} catch (Exception e) {
+
+		}
+		return false;
+
+	}
+
+	public boolean AddDevice(String username, String boardname, Device d) {
 		ResultSet rs = null;
 		Statement stmt = null;
 		String Query = "select * from Users join UserBoard join Boards where UserName= \"" + username
@@ -29,22 +85,22 @@ public class DeviceDBAccess {
 
 			else if (more) {
 				int BoardID = rs.getInt("BoardID");
-				Query = "insert into Devices (DeviceName, DeviceStatus, DeviceModel, BoardID) values (\"" 
-				+ d.name + "\", \"" + d.status +  "\", \"" + d.model + "\", " + BoardID+ ")";
+				Query = "insert into Devices (DeviceName, DeviceStatus, DeviceModel, BoardID) values (\"" + d.name
+						+ "\", \"" + d.status + "\", \"" + d.model + "\", " + BoardID + ")";
 				stmt.executeUpdate(Query, Statement.RETURN_GENERATED_KEYS);
 				rs = stmt.getGeneratedKeys();
 				rs.next();
 				int DeviceID = rs.getInt(1);
-				for (int i = 0 ; i < d.operations.size(); i++){
-					Query = "insert into Operations (OperationsName , UIComponent, DeviceID) values (\"" 
-							+ d.operations.get(i).name + "\" , \"" + d.operations.get(i).UIComponent 
-							+ "\" , " + DeviceID + ")";
+				for (int i = 0; i < d.operations.size(); i++) {
+					Query = "insert into Operations (OperationsName , UIComponent, DeviceID) values (\""
+							+ d.operations.get(i).name + "\" , \"" + d.operations.get(i).UIComponent + "\" , "
+							+ DeviceID + ")";
 					stmt.executeUpdate(Query, Statement.RETURN_GENERATED_KEYS);
 					rs = stmt.getGeneratedKeys();
 					rs.next();
 					int OperationID = rs.getInt(1);
-					for (int j = 0 ; j < d.operations.get(i).values.size(); j++){
-						Query = "insert into OperationsValues (Value, OperationID) values (\"" 
+					for (int j = 0; j < d.operations.get(i).values.size(); j++) {
+						Query = "insert into OperationsValues (Value, OperationID) values (\""
 								+ d.operations.get(i).values.get(j) + "\" , " + OperationID + ")";
 						stmt.executeUpdate(Query);
 					}
@@ -54,7 +110,7 @@ public class DeviceDBAccess {
 		}
 
 		catch (Exception ex) {
-			System.out.println("Adding Board failed: An Exception has occurred! " + ex);
+			System.out.println("Adding Device failed: An Exception has occurred! " + ex);
 		}
 
 		// some exception handling
@@ -95,7 +151,7 @@ public class DeviceDBAccess {
 			currentCon = ConnectionManager.getConnection();
 			stmt = currentCon.createStatement();
 			rs = stmt.executeQuery(Query);
-			while(rs.next()) {
+			while (rs.next()) {
 				Device dev = new Device();
 				dev.name = rs.getString("DeviceName");
 				dev.model = rs.getString("DeviceModel");
@@ -103,9 +159,8 @@ public class DeviceDBAccess {
 				dev.operations = (ArrayList<Operation>) getOperations(rs.getInt("DeviceID")).clone();
 				d.add(dev);
 			}
-			
-		}
 
+		}
 
 		catch (Exception ex) {
 			System.out.println("Getting Devices failed: An Exception has occurred! " + ex);
@@ -131,25 +186,25 @@ public class DeviceDBAccess {
 
 		return d;
 	}
-	
+
 	public ArrayList<Operation> getOperations(int deviceID) {
 		ResultSet rs = null;
 		Statement stmt = null;
 		String Query = "select * from Operations where DeviceID = " + deviceID;
-		ArrayList<Operation> ops= new ArrayList<Operation>();
-		
+		ArrayList<Operation> ops = new ArrayList<Operation>();
+
 		try {
-			/*currentCon = ConnectionManager.getConnection();*/
+			/* currentCon = ConnectionManager.getConnection(); */
 			stmt = currentCon.createStatement();
 			rs = stmt.executeQuery(Query);
-			while(rs.next()) {
+			while (rs.next()) {
 				Operation o = new Operation();
 				o.name = rs.getString("OperationsName");
 				o.UIComponent = rs.getString("UIComponent");
 				o.values = (ArrayList<String>) getValues(rs.getInt("OperationID")).clone();
 				ops.add(o);
 			}
-			
+
 		}
 
 		catch (Exception ex) {
@@ -166,25 +221,25 @@ public class DeviceDBAccess {
 				stmt.close();
 				stmt = null;
 			}
-			/*if (currentCon != null) {
-				currentCon.close();
-				currentCon = null;
-			}
-*/		} catch (Exception e) {
+			/*
+			 * if (currentCon != null) { currentCon.close(); currentCon = null;
+			 * }
+			 */ } catch (Exception e) {
 
 		}
 
 		return ops;
 
 	}
+
 	public ArrayList<String> getValues(int opID) {
 		ResultSet rs = null;
 		Statement stmt = null;
 		String Query = "select * from OperationsValues where OperationID = " + opID;
 		ArrayList<String> Values = new ArrayList<String>();
-		
+
 		try {
-			/*currentCon = ConnectionManager.getConnection();*/
+			/* currentCon = ConnectionManager.getConnection(); */
 			stmt = currentCon.createStatement();
 			rs = stmt.executeQuery(Query);
 			while (rs.next()) {
@@ -207,15 +262,15 @@ public class DeviceDBAccess {
 				stmt.close();
 				stmt = null;
 			}
-			/*if (currentCon != null) {
-				currentCon.close();
-				currentCon = null;
-			}*/
+			/*
+			 * if (currentCon != null) { currentCon.close(); currentCon = null;
+			 * }
+			 */
 		} catch (Exception e) {
 
 		}
 
 		return Values;
-		
+
 	}
 }
