@@ -13,9 +13,9 @@
 System.out.println(boardName);
 	JSONObject obj = (JSONObject)session.getAttribute("user");
 	String username = (String)obj.get("name");
- 	RestConnector rc = new RestConnector("AddBoard");
+ 	RestConnector rc = new RestConnector("AddBoard","GET");
 	String[] param = {username, boardName};
-	rc.addParam(param); 
+	rc.addParamGet(param); 
 	JSONObject btengan = rc.getJSONObject();
 	Board brd = new Board(boardName);
 	JSONArray brds =  (JSONArray)obj.get("boards");

@@ -1,11 +1,13 @@
 package Controller;
 
+import DataAccess.DeviceDBAccess;
+
 public class DeviceManagement {
 	public Device device;
 	
 	public Boolean RegisterDevice(Device dev)
 	{
-		return true;
+		return (new DeviceDBAccess()).RegisterDevice(dev);
 	}
 	public Boolean RemoveDevice(Device dev)
 	{
