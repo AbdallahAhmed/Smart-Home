@@ -27,17 +27,22 @@ public class BoardDBAccess {
 
 			else if (more) {
 				int UserID = rs.getInt("UserID");
-				Query = "select * from UserBoard join Boards where UserBoard.UserID = " + UserID ;
+				Query = "select * from UserBoard join Boards where UserBoard.UserID = " + UserID
+						+ " && Boards.BoardName = \"" + b.name + " \" ";
 				rs = stmt.executeQuery(Query);
-				if (rs.next()) return false;
-				Query = "insert into Boards (BoardName) values (\"" + b.name + "\")";
-				stmt.executeUpdate(Query, Statement.RETURN_GENERATED_KEYS);
-				rs = stmt.getGeneratedKeys();
-				rs.next();
-				int BoardID = rs.getInt(1);
-				Query = "insert into UserBoard (UserID , BoardID) values (\"" + UserID + "\" , \"" + BoardID + "\")";
-				stmt.executeUpdate(Query);
-				result = true;
+				if (rs.next())
+					result = false;
+				else {
+					Query = "insert into Boards (BoardName) values (\"" + b.name + "\")";
+					stmt.executeUpdate(Query, Statement.RETURN_GENERATED_KEYS);
+					rs = stmt.getGeneratedKeys();
+					rs.next();
+					int BoardID = rs.getInt(1);
+					Query = "insert into UserBoard (UserID , BoardID) values (\"" + UserID + "\" , \"" + BoardID
+							+ "\")";
+					stmt.executeUpdate(Query);
+					result = true;
+				}
 			}
 		}
 
@@ -73,10 +78,11 @@ public class BoardDBAccess {
 	public void EditBoard() {
 
 	}
-	
+
 	public Board[] getBoards(int userID) {
 		Statement stmt = null;
-		String Query = "select * from Boards join UserBoard on Boards.BoardID = UserBoard.BoardID where UserBoard.UserID = " + userID;
+		String Query = "select * from Boards join UserBoard on Boards.BoardID = UserBoard.BoardID where UserBoard.UserID = "
+				+ userID;
 		Board[] b = null;
 		DeviceDBAccess db = new DeviceDBAccess();
 		try {
@@ -89,11 +95,10 @@ public class BoardDBAccess {
 			int i = 0;
 			while (rs.next()) {
 				b[i++] = new Board(rs.getString("BoardName"));
-				//b[i++].devices = db.getDevices(rs.getInt("BoardID"));
+				// b[i++].devices = db.getDevices(rs.getInt("BoardID"));
 			}
 
 		}
-
 
 		catch (Exception ex) {
 			System.out.println("Getting Boards failed: An Exception has occurred! " + ex);
