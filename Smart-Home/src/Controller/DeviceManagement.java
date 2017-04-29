@@ -1,5 +1,7 @@
 package Controller;
 
+import java.util.ArrayList;
+
 import DataAccess.DeviceDBAccess;
 
 public class DeviceManagement {
@@ -36,9 +38,9 @@ public class DeviceManagement {
 		return true;
 	}
 
-	public Device[] ViewDevices() {
-		Device[] dev = null;
-		return dev;
+	public ArrayList<Device> ViewDevices() {
+		ArrayList<Device> dev = null;
+		return (new DeviceDBAccess()).getDevices();
 	}
 
 	public void ExecuteCommand(String s) {
