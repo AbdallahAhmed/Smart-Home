@@ -13,10 +13,11 @@ public class DeviceDBAccess {
 	static Connection currentCon;
 
 	public boolean RegisterDevice(Device d) {
+		boolean result = false;
 		ResultSet rs = null;
 		Statement stmt = null;
-		String Query = "insert into Devices (DeviceName, DeviceStatus, DeviceModel) values (\"" + d.name + "\", \""
-				+ d.status + "\", \"" + d.model + "\" )";
+		String Query = "insert into Devices (DeviceName, DeviceStatus, DeviceModel, ID) values (\"" + d.name + "\", \""
+				+ d.status + "\", \"" + d.model + "\"" + d.Id + ")";
 		try {
 			currentCon = ConnectionManager.getConnection();
 			stmt = currentCon.createStatement();
@@ -38,12 +39,10 @@ public class DeviceDBAccess {
 					stmt.executeUpdate(Query);
 				}
 			}
-			return true;
+			result = true;
 		}
 
-		catch (
-
-		Exception ex) {
+		catch (Exception ex) {
 			System.out.println("Registering Device failed: An Exception has occurred! " + ex);
 		}
 
@@ -64,11 +63,49 @@ public class DeviceDBAccess {
 		} catch (Exception e) {
 
 		}
-		return false;
+		return result;
 
 	}
 
+	public boolean CheckDevice(Device d) {
+		boolean result = false;
+		ResultSet rs = null;
+		Statement stmt = null;
+		String Query = "select * from Device where ID = " + d.Id;
+		try {
+			currentCon = ConnectionManager.getConnection();
+			stmt = currentCon.createStatement();
+			stmt.executeUpdate(Query, Statement.RETURN_GENERATED_KEYS);
+			rs = stmt.getGeneratedKeys();
+			result = rs.next();
+		}
+
+		catch (Exception ex) {
+			System.out.println("Checking Device failed: An Exception has occurred! " + ex);
+		}
+
+		// some exception handling
+		try {
+			if (rs != null) {
+				rs.close();
+				rs = null;
+			}
+			if (stmt != null) {
+				stmt.close();
+				stmt = null;
+			}
+			if (currentCon != null) {
+				currentCon.close();
+				currentCon = null;
+			}
+		} catch (Exception e) {
+
+		}
+		return result;
+	}
+
 	public boolean AddDevice(String username, String boardname, Device d) {
+		boolean result = false;
 		ResultSet rs = null;
 		Statement stmt = null;
 		String Query = "select * from Users join UserBoard join Boards where UserName= \"" + username
@@ -80,7 +117,7 @@ public class DeviceDBAccess {
 			boolean more = rs.next();
 
 			if (!more) {
-				return false;
+				result = false;
 			}
 
 			else if (more) {
@@ -105,7 +142,7 @@ public class DeviceDBAccess {
 						stmt.executeUpdate(Query);
 					}
 				}
-				return true;
+				result = true;
 			}
 		}
 
@@ -130,7 +167,7 @@ public class DeviceDBAccess {
 		} catch (Exception e) {
 
 		}
-		return false;
+		return result;
 
 	}
 

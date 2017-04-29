@@ -10,6 +10,7 @@ public class Device {
 	public String name;
 	public String status;
 	public ArrayList<Operation> operations = new ArrayList<Operation>();
+	public int Id;
 	
 	public JSONObject toJson(){
 		JSONObject obj = new JSONObject();
