@@ -21,7 +21,6 @@ public class AddBoard {
 	{
 		  UserManagement um = new UserManagement(); 
 		  Board board = new Board(boardname);
-		  System.out.println(boardname);
 		  BoardManagement bm = new BoardManagement();
 		  boolean valid = bm.AddBoard(board,username);
 		  JSONObject obj = new JSONObject();
