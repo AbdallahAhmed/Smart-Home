@@ -31,7 +31,9 @@ org.glassfish.jersey.client.ClientConfig ,org.json.simple.parser.*,org.json.simp
 
 <div id="upper" style="background-color: #e6e6e6;">
 		<div class="port">
+		<a href="Home.jsp">
 			<img src="http://i.imgur.com/WpmTCcz.png" id="left">
+		</a>
 		</div>
 		<span class="fa fa-cog dropbtn" style="font-size: 35px; color: #165258; padding: 15px;"  id="right">
 			<div class="dropdown">
@@ -52,11 +54,11 @@ org.glassfish.jersey.client.ClientConfig ,org.json.simple.parser.*,org.json.simp
 	 
 
  	    for(int i = 0; i < brds.size(); i++){   %>
- 		<form action="">
+ 		<form action="Board.jsp">
  		<div class="board" id="left">
 			<button class="close" id="la"><span class="fa fa-close"></span></button>
 			<label id="left" style="max-width : 200px; ">Board Name :   <%  out.print(((JSONObject)(brds.get(i))).get("name"));   %></label>
-		<button class="view" id="right"><span class="fa fa-arrows-alt"></span></button>	
+			<button type="submit" class="view" id="right"><span class="fa fa-arrows-alt"></span></button>	
 		</div> 
 		</form>
 		<%}%>

@@ -14,6 +14,7 @@ html,body {
   font-size: 30px;
   cursor: pointer;
 }
+
 @keyframes ch {
   0% { color : #165258; }
   100% { color: #00ddf2; }
@@ -200,6 +201,7 @@ button {
   background-color: #e74c3c;
   animation: shake 1s infinite;
 }
+
 .close span {
   position: relative;
   color: #e6e6e6;
@@ -247,6 +249,14 @@ img {
 }
 
 .closebtn {
+    color: #aaaaaa;
+    float: right;
+    font-size: 40px;
+    font-weight: bold;
+
+}
+
+.try {
     color: #aaaaaa;
     float: right;
     font-size: 40px;
