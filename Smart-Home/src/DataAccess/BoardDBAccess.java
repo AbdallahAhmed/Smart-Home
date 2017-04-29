@@ -12,6 +12,7 @@ public class BoardDBAccess {
 	static ResultSet rs = null;
 
 	public boolean AddBoard(Board b, String u) {
+		boolean result = false;
 		Statement stmt = null;
 		String Query = "select * from Users where UserName= \"" + u + "\"";
 		try {
@@ -21,7 +22,7 @@ public class BoardDBAccess {
 			boolean more = rs.next();
 
 			if (!more) {
-				return false;
+				result = false;
 			}
 
 			else if (more) {
@@ -36,7 +37,7 @@ public class BoardDBAccess {
 				int BoardID = rs.getInt(1);
 				Query = "insert into UserBoard (UserID , BoardID) values (\"" + UserID + "\" , \"" + BoardID + "\")";
 				stmt.executeUpdate(Query);
-				return true;
+				result = true;
 			}
 		}
 
@@ -61,7 +62,7 @@ public class BoardDBAccess {
 		} catch (Exception e) {
 
 		}
-		return false;
+		return result;
 
 	}
 
@@ -87,15 +88,15 @@ public class BoardDBAccess {
 			rs.beforeFirst();
 			int i = 0;
 			while (rs.next()) {
-				b[i] = new Board(rs.getString("BoardName"));
-				b[i++].devices = db.getDevices(rs.getInt("BoardID"));
+				b[i++] = new Board(rs.getString("BoardName"));
+				//b[i++].devices = db.getDevices(rs.getInt("BoardID"));
 			}
 
 		}
 
 
 		catch (Exception ex) {
-			System.out.println("Getting Devices failed: An Exception has occurred! " + ex);
+			System.out.println("Getting Boards failed: An Exception has occurred! " + ex);
 		}
 
 		// some exception handling

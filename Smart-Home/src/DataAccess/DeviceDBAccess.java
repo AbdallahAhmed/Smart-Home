@@ -104,7 +104,7 @@ public class DeviceDBAccess {
 		return result;
 	}
 
-	public boolean AddDevice(String username, String boardname, Device d) {
+	public boolean AddDevice(String username, String boardname, int ID) {
 		boolean result = false;
 		ResultSet rs = null;
 		Statement stmt = null;
@@ -122,26 +122,8 @@ public class DeviceDBAccess {
 
 			else if (more) {
 				int BoardID = rs.getInt("BoardID");
-				Query = "insert into Devices (DeviceName, DeviceStatus, DeviceModel, BoardID) values (\"" + d.name
-						+ "\", \"" + d.status + "\", \"" + d.model + "\", " + BoardID + ")";
-				stmt.executeUpdate(Query, Statement.RETURN_GENERATED_KEYS);
-				rs = stmt.getGeneratedKeys();
-				rs.next();
-				int DeviceID = rs.getInt(1);
-				for (int i = 0; i < d.operations.size(); i++) {
-					Query = "insert into Operations (OperationsName , UIComponent, DeviceID) values (\""
-							+ d.operations.get(i).name + "\" , \"" + d.operations.get(i).UIComponent + "\" , "
-							+ DeviceID + ")";
-					stmt.executeUpdate(Query, Statement.RETURN_GENERATED_KEYS);
-					rs = stmt.getGeneratedKeys();
-					rs.next();
-					int OperationID = rs.getInt(1);
-					for (int j = 0; j < d.operations.get(i).values.size(); j++) {
-						Query = "insert into OperationsValues (Value, OperationID) values (\""
-								+ d.operations.get(i).values.get(j) + "\" , " + OperationID + ")";
-						stmt.executeUpdate(Query);
-					}
-				}
+				Query = "update Devices set BoardID = " + BoardID;
+				stmt.executeUpdate(Query);
 				result = true;
 			}
 		}
@@ -179,14 +161,20 @@ public class DeviceDBAccess {
 
 	}
 
-	public ArrayList<Device> getDevices(int BoardID) {
+	public ArrayList<Device> getDevices(String Username, String BoardName) {
 		ResultSet rs = null;
 		Statement stmt = null;
-		String Query = "select * from Devices where BoardID = " + BoardID;
+		String Query = "select * from Users join UserBoard join Boards on Users.UserID = UserBoard.UserID &&"
+				+ " UserBoard.BoardID = Boards.BoardID where Users.UserName = \"" + Username
+				+ "\" && Boards.BoardName = \"" + BoardName + "\"";
 		ArrayList<Device> d = new ArrayList<Device>();
 		try {
 			currentCon = ConnectionManager.getConnection();
 			stmt = currentCon.createStatement();
+			rs = stmt.executeQuery(Query);
+			rs.next();
+			int BoardID = rs.getInt("BoardID");
+			Query = "select * from Devices where BoardID = " + BoardID;
 			rs = stmt.executeQuery(Query);
 			while (rs.next()) {
 				Device dev = new Device();
@@ -258,10 +246,12 @@ public class DeviceDBAccess {
 				stmt.close();
 				stmt = null;
 			}
-			/*
-			 * if (currentCon != null) { currentCon.close(); currentCon = null;
-			 * }
-			 */ } catch (Exception e) {
+
+			if (currentCon != null) {
+				currentCon.close();
+				currentCon = null;
+			}
+		} catch (Exception e) {
 
 		}
 
@@ -299,10 +289,12 @@ public class DeviceDBAccess {
 				stmt.close();
 				stmt = null;
 			}
-			/*
-			 * if (currentCon != null) { currentCon.close(); currentCon = null;
-			 * }
-			 */
+
+			if (currentCon != null) {
+				currentCon.close();
+				currentCon = null;
+			}
+
 		} catch (Exception e) {
 
 		}
