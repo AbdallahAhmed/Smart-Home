@@ -219,7 +219,7 @@ public class DeviceDBAccess {
 		ArrayList<Operation> ops = new ArrayList<Operation>();
 
 		try {
-			/* currentCon = ConnectionManager.getConnection(); */
+			currentCon = ConnectionManager.getConnection(); 
 			stmt = currentCon.createStatement();
 			rs = stmt.executeQuery(Query);
 			while (rs.next()) {
@@ -266,7 +266,7 @@ public class DeviceDBAccess {
 		ArrayList<String> Values = new ArrayList<String>();
 
 		try {
-			/* currentCon = ConnectionManager.getConnection(); */
+			currentCon = ConnectionManager.getConnection();
 			stmt = currentCon.createStatement();
 			rs = stmt.executeQuery(Query);
 			while (rs.next()) {
