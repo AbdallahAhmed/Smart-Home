@@ -54,20 +54,33 @@ org.glassfish.jersey.client.ClientConfig ,org.json.simple.parser.*,org.json.simp
 <body>
  <% JSONParser parser = new JSONParser(); 
  JSONObject obj = (JSONObject)parser.parse(session.getAttribute("user").toString()); 
+ String username = (String) obj.get("name");
+ String boardName = request.getParameter("boardName");
+ RestConnector rc = new RestConnector("viewBoard", "GET");
+ String[] param = {username, boardName};
+ rc.addParamGet(param);
+ JSONObject d = rc.getJSONObject();
+ JSONArray devs = (JSONArray) d.get("devices");
+ 
+ 
 %>
 
 	<div id="upper" style="background-color: #e6e6e6;">
 		<a href="Home.jsp"><button class="back"><span class="fa fa-angle-left"></span></button></a>
-		<label style="position:absolute; right: 20px;" id="right">Board No.1</label>
+		<label style="position:absolute; right: 20px;" id="right"><%out.print(boardName);%></label>
 	</div>
 	<div class="inter">
- 		<form action="">
+	<%
+		for(int i = 0; i < devs.size(); i++){
+	%>
+	 		<form action="">
  		<div class="board" id="left">
 			<button class="close" id="la"><span class="fa fa-close"></span></button>
-			<label id="left" style="max-width : 200px; ">Device Name :   </label>
+			<label id="left" style="max-width : 200px; ">Device Name : <%out.print(((JSONObject)devs.get(i)).get("name")); %>  </label>
 		<a href="Board.jsp"><button class="view" id="right"><span class="fa fa-arrows-alt"></span></button></a>	
 		</div> 
 		</form>
+		<%} %>
 		<form method="post">
 			<div class="addboard">
 				<button id="myBtn" onclick="popup()" type="button" class="fill" style=" margin: 20%; margin-left: 28%; width: auto;"> Add Device </button>
