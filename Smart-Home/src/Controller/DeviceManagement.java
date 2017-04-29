@@ -29,7 +29,7 @@ public class DeviceManagement {
 	}
 
 	public Boolean AddDevice(String username, String boardname, String deviceId) {
-		return (new DeviceDBAccess()).AddDevice(username, boardname, deviceId);
+		return (new DeviceDBAccess()).AddDevice(username, boardname, Integer.parseInt(deviceId));
 	}
 
 	public Boolean SetStatus(int ID) {
