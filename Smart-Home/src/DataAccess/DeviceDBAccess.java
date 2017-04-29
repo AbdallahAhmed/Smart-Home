@@ -161,6 +161,49 @@ public class DeviceDBAccess {
 
 	}
 
+	public ArrayList<Device> getDevices() {
+		ResultSet rs = null;
+		Statement stmt = null;
+		String Query = "select * from Devices where BoardID is NULL";
+		ArrayList<Device> d = new ArrayList<Device>();
+		try {
+			currentCon = ConnectionManager.getConnection();
+			stmt = currentCon.createStatement();
+			rs = stmt.executeQuery(Query);
+			while (rs.next()) {
+				Device dev = new Device();
+				dev.name = rs.getString("DeviceName");
+				dev.model = rs.getString("DeviceModel");
+				dev.status = rs.getString("DeviceStatus");
+				dev.Id = rs.getInt("ID");
+				dev.operations = (ArrayList<Operation>) getOperations(rs.getInt("DeviceID")).clone();
+				d.add(dev);
+			}
+		} catch (Exception ex) {
+			System.out.println("Getting Devices failed: An Exception has occurred! " + ex);
+		}
+
+		// some exception handling
+		try {
+			if (rs != null) {
+				rs.close();
+				rs = null;
+			}
+			if (stmt != null) {
+				stmt.close();
+				stmt = null;
+			}
+			if (currentCon != null) {
+				currentCon.close();
+				currentCon = null;
+			}
+		} catch (Exception e) {
+
+		}
+
+		return d;
+	}
+
 	public ArrayList<Device> getDevices(String Username, String BoardName) {
 		ResultSet rs = null;
 		Statement stmt = null;
@@ -181,9 +224,30 @@ public class DeviceDBAccess {
 				dev.name = rs.getString("DeviceName");
 				dev.model = rs.getString("DeviceModel");
 				dev.status = rs.getString("DeviceStatus");
+				dev.Id = rs.getInt("ID");
 				dev.operations = (ArrayList<Operation>) getOperations(rs.getInt("DeviceID")).clone();
 				d.add(dev);
 			}
+
+			// some exception handling
+			try {
+				if (rs != null) {
+					rs.close();
+					rs = null;
+				}
+				if (stmt != null) {
+					stmt.close();
+					stmt = null;
+				}
+				if (currentCon != null) {
+					currentCon.close();
+					currentCon = null;
+				}
+			} catch (Exception e) {
+
+			}
+
+			return d;
 
 		}
 
@@ -219,7 +283,7 @@ public class DeviceDBAccess {
 		ArrayList<Operation> ops = new ArrayList<Operation>();
 
 		try {
-			currentCon = ConnectionManager.getConnection(); 
+			currentCon = ConnectionManager.getConnection();
 			stmt = currentCon.createStatement();
 			rs = stmt.executeQuery(Query);
 			while (rs.next()) {
