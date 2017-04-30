@@ -35,7 +35,7 @@ if(valid == true)
 	response.sendRedirect("Home.jsp"); 
 	
 }else {
-	out.print("Sign in failed");
+	response.sendRedirect("404.jsp");
 } 
  %>
 </body>

@@ -85,3 +85,7 @@ function loading() {
 	document.getElementById('sAll').style.visibility = "hidden";
 	document.getElementById('all').style.visibility = "visible";
 }
+
+function showPass(x) {
+	
+}
