@@ -12,7 +12,7 @@ import org.json.simple.JSONObject;
 import Controller.Device;
 import Controller.DeviceManagement;
 
-@Path("/ViewDevice/{deviceID}")
+@Path("/ViewDevice/{deviceId}")
 public class ViewDevice {
 	@GET
 	@Produces(MediaType.TEXT_PLAIN)
