@@ -15,10 +15,10 @@ public class Operation {
 	{
 		
 	}
-	public UILoader GetUI()
+	public String GetUI(int UIComponentID)
 	{
-		UILoader u = null;
-		return u;
+		String x = "";
+		return x;
 	}
 	
 	public JSONObject toJson(){

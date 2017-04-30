@@ -1,3 +1,5 @@
+<%@page import="javax.ws.rs.client.Entity"%>
+<%@page import="javax.ws.rs.core.Form"%>
 <%@ page import="RestServices.RestConnector" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -20,22 +22,21 @@ org.glassfish.jersey.client.ClientConfig ,org.json.simple.parser.*,org.json.simp
 long st = System.currentTimeMillis();
 String username = request.getParameter("username");
 String pass = request.getParameter("password");
-RestConnector rc = new RestConnector("SignIn");
-String[] tmp = {username, pass};
-rc.addParam(tmp);
+RestConnector rc = new RestConnector("SignIn", "POST");
+rc.addParamPost("username", username);
+rc.addParamPost("password", pass);
 JSONObject obj = rc.getJSONObject();
 long end = System.currentTimeMillis();
-out.print(end - st);
+System.out.print(end - st);
 boolean valid = (Boolean) (obj.get("signin"));
 if(valid == true)
 {
-	Thread.sleep(10000);
 	session.setAttribute("user", obj.get("user"));
-	 response.sendRedirect("Home.jsp");
+	response.sendRedirect("Home.jsp"); 
 	
 }else {
-	out.print("Sign in failed");
-}
-%>
+	response.sendRedirect("404.jsp");
+} 
+ %>
 </body>
 </html>

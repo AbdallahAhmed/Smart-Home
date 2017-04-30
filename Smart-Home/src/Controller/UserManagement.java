@@ -27,8 +27,8 @@ public class UserManagement {
 	{
 		return true;
 	}
-	public Boolean RemoveUser(User u)
+	public void RemoveUser(User u)
 	{
-		return true;
+		
 	}
 }

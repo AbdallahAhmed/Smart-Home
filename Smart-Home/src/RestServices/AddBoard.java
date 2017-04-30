@@ -1,5 +1,5 @@
 package RestServices;
-import javax.servlet.http.HttpServletRequest;
+
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -13,20 +13,20 @@ import Controller.BoardManagement;
 import Controller.User;
 import Controller.UserManagement;
 
-@Path("/AddBoard/{boardname}")
+@Path("/AddBoard/{username}/{boardname}")
 public class AddBoard {
 	  @GET
 	  @Produces(MediaType.TEXT_PLAIN)
-	public String AddBoard(@PathParam("username")String username,@PathParam("boardname")String boardname,HttpServletRequest request)
+	public String AddBoard(@PathParam("username")String username,@PathParam("boardname")String boardname)
 	{
-		  Board board = new Board("boardname");
 		  UserManagement um = new UserManagement(); 
-		  User user = (User) request.getSession().getAttribute("user");
+		  Board board = new Board(boardname);
 		  BoardManagement bm = new BoardManagement();
-		  user.boards.add(board);
-		  JSONObject object = new JSONObject();		  
-		  object.put("addboard", bm.AddBoard(board,user));
-		  return object.toString();
+		  boolean valid = bm.AddBoard(board,username);
+		  JSONObject obj = new JSONObject();
+		  obj.put("valid", valid);
+		  return obj.toString();
+		  
 	}
 
 }

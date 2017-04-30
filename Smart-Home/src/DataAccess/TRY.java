@@ -8,7 +8,7 @@ public class TRY {
 		// TODO Auto-generated method stub
 		
 		SignIn s = new SignIn();
-		System.out.println(s.SignIn("1", "1"));
+		System.out.println(s.SignIn("2", "2"));
 
 	}
 

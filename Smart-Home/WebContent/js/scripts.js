@@ -19,7 +19,7 @@ function validate() {
 		return false;
 
 	}
-	if( z != y) {
+	if( z != h) {
 		alert("Password doesn't match !!");
 		return false;
 	}
@@ -35,12 +35,20 @@ function deleteShow() {
 for(var i=0; i<elements.length; i++) {
     elements[i].style.display = "block";
 }
+var velements = document.getElementsByClassName("view");
+for(var i=0; i<velements.length; i++) {
+    velements[i].style.display = "none";
+}
 }
 
 function deleteHide() {
  var elements = document.getElementsByClassName("close");
 for(var i=0; i<elements.length; i++) {
     elements[i].style.display = "none";
+}
+var velements = document.getElementsByClassName("view");
+for(var i=0; i<velements.length; i++) {
+    velements[i].style.display = "block";
 }
 }
 var fn3 = (function() {
@@ -51,9 +59,33 @@ var fn3 = (function() {
   }
 })();
 
-function themepopup(){
-	getElementById("popuptheme").style.display = "none";
+function popup() {
+	
+var modal = document.getElementById('myModal');
+
+var btn = document.getElementById('myBtn');
+
+var span = document.getElementsByClassName("closebtn")[0];
+
+btn.onclick = function() {
+    modal.style.display = "block";
 }
-function changeMain(color) {
-	getElementById("uppder").style.backgroundColor = "#" + color;
+
+span.onclick = function() {
+    modal.style.display = "none";
+}
+
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+}
+function loading() {			
+	document.getElementById('sAll').style.visibility = "hidden";
+	document.getElementById('all').style.visibility = "visible";
+}
+
+function showPass(x) {
+	
 }

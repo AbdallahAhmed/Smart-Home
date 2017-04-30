@@ -19,9 +19,9 @@ org.glassfish.jersey.client.ClientConfig ,org.json.simple.parser.*,org.json.simp
 <%
 	String username = request.getParameter("newuser");
 	String pass = request.getParameter("newpass");
-	RestConnector rc = new RestConnector("SignUp");
-	String[] tmp = {username, pass};
-	rc.addParam(tmp);
+	RestConnector rc = new RestConnector("SignUp", "POST");
+	rc.addParamPost("name", username);
+	rc.addParamPost("password", pass);
 	JSONObject jsonObj = rc.getJSONObject();
 	boolean valid = (Boolean) (jsonObj.get("signup"));
 	if(valid == true)

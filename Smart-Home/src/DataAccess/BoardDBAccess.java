@@ -11,9 +11,10 @@ public class BoardDBAccess {
 	static Connection currentCon;
 	static ResultSet rs = null;
 
-	public boolean AddBoard(Board b, User u) {
+	public boolean AddBoard(Board b, String u) {
+		boolean result = false;
 		Statement stmt = null;
-		String Query = "select * from Users where UserName= \"" + u.name + "\"";
+		String Query = "select * from Users where UserName= \"" + u + "\"";
 		try {
 			currentCon = ConnectionManager.getConnection();
 			stmt = currentCon.createStatement();
@@ -21,19 +22,27 @@ public class BoardDBAccess {
 			boolean more = rs.next();
 
 			if (!more) {
-				return false;
+				result = false;
 			}
 
 			else if (more) {
 				int UserID = rs.getInt("UserID");
-				Query = "insert into Boards (BoardName) values (\"" + b.name + "\")";
-				stmt.executeUpdate(Query, Statement.RETURN_GENERATED_KEYS);
-				rs = stmt.getGeneratedKeys();
-				rs.next();
-				int BoardID = rs.getInt(1);
-				Query = "insert into UserBoard (UserID , BoardID) values (\"" + UserID + "\" , \"" + BoardID + "\")";
-				stmt.executeUpdate(Query);
-				return true;
+				Query = "select * from UserBoard join Boards where UserBoard.UserID = " + UserID
+						+ " && Boards.BoardName = \"" + b.name + " \" ";
+				rs = stmt.executeQuery(Query);
+				if (rs.next())
+					result = false;
+				else {
+					Query = "insert into Boards (BoardName) values (\"" + b.name + "\")";
+					stmt.executeUpdate(Query, Statement.RETURN_GENERATED_KEYS);
+					rs = stmt.getGeneratedKeys();
+					rs.next();
+					int BoardID = rs.getInt(1);
+					Query = "insert into UserBoard (UserID , BoardID) values (\"" + UserID + "\" , \"" + BoardID
+							+ "\")";
+					stmt.executeUpdate(Query);
+					result = true;
+				}
 			}
 		}
 
@@ -58,7 +67,7 @@ public class BoardDBAccess {
 		} catch (Exception e) {
 
 		}
-		return false;
+		return result;
 
 	}
 
@@ -69,10 +78,11 @@ public class BoardDBAccess {
 	public void EditBoard() {
 
 	}
-	
+
 	public Board[] getBoards(int userID) {
 		Statement stmt = null;
-		String Query = "select * from Boards join UserBoard on Boards.BoardID = UserBoard.BoardID where UserBoard.UserID = " + userID;
+		String Query = "select * from Boards join UserBoard on Boards.BoardID = UserBoard.BoardID where UserBoard.UserID = "
+				+ userID;
 		Board[] b = null;
 		DeviceDBAccess db = new DeviceDBAccess();
 		try {
@@ -84,15 +94,14 @@ public class BoardDBAccess {
 			rs.beforeFirst();
 			int i = 0;
 			while (rs.next()) {
-				b[i] = new Board(rs.getString("BoardName"));
-				b[i++].devices = db.getDevices(rs.getInt("BoardID"));
+				b[i++] = new Board(rs.getString("BoardName"));
+				// b[i++].devices = db.getDevices(rs.getInt("BoardID"));
 			}
 
 		}
 
-
 		catch (Exception ex) {
-			System.out.println("Getting Devices failed: An Exception has occurred! " + ex);
+			System.out.println("Getting Boards failed: An Exception has occurred! " + ex);
 		}
 
 		// some exception handling

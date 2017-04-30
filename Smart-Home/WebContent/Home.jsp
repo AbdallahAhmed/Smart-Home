@@ -25,12 +25,15 @@ javax.ws.rs.core.UriBuilder ,
 org.glassfish.jersey.client.ClientConfig ,org.json.simple.parser.*,org.json.simple.*" %>
 
 <body>
- <% JSONObject obj = (JSONObject)session.getAttribute("user"); 
+ <% JSONParser parser = new JSONParser(); 
+ JSONObject obj = (JSONObject)parser.parse(session.getAttribute("user").toString()); 
 %>
 
 <div id="upper" style="background-color: #e6e6e6;">
 		<div class="port">
+		<a href="Home.jsp">
 			<img src="http://i.imgur.com/WpmTCcz.png" id="left">
+		</a>
 		</div>
 		<span class="fa fa-cog dropbtn" style="font-size: 35px; color: #165258; padding: 15px;"  id="right">
 			<div class="dropdown">
@@ -45,22 +48,24 @@ org.glassfish.jersey.client.ClientConfig ,org.json.simple.parser.*,org.json.simp
 		<button class="profile" style="background-color: #165258; margin-left: 50px; color: #00ddf2" id="right"> Profile</button>
 		<label class="" id="right"><% out.print(obj.get("name")); %></label>
 	</div>
-	<div class="inter" id="in">
+	<div class="inter">
 	<%
 	JSONArray brds = (JSONArray)obj.get("boards");
-	  
+	 
+
  	    for(int i = 0; i < brds.size(); i++){   %>
+ 		<form action="Board.jsp">
  		<div class="board" id="left">
-		<button class="close" id="la"><span class="fa fa-close"></span></button>
-			<label id="left">Board Name : <%  out.print(((JSONObject)(brds.get(i))).get("name"));   %></label>
+			<button class="close" id="la"><span class="fa fa-close"></span></button>
+			<label id="left" style="max-width : 200px; ">Board Name :   <%  out.print(((JSONObject)(brds.get(i))).get("name"));   %></label>
+			<button type="submit" class="view" id="right"><span class="fa fa-arrows-alt"></span></button>	
 		</div> 
+		</form>
 		<%}%>
 		<form method="post">
-		<div class="board" id="left">
-			<button class="fill" id="add" style=" margin: 20%; margin-left: 28%; width: auto;">
-				Add Board<span class="fa fa-plus" style="color:#165258;"></span>
-			</button>
-		</div>
+			<div class="addboard">
+				<button id="myBtn" onclick="popup()" type="button" class="fill" style=" margin: 20%; margin-left: 28%; width: auto;"> Add Board </button>
+			</div>
 		</form>
 		<label style="margin: 10px 20px; position: absolute; color: #165258;">DELETE</label>
 		<label style="margin: 25px 20px; position: absolute; color: #165258;">BOARD</label>
@@ -69,13 +74,16 @@ org.glassfish.jersey.client.ClientConfig ,org.json.simple.parser.*,org.json.simp
   			<div class="slider round"></div>
 		</label>
 	</div>
-	<form id="popuptheme" onsubmit="changeMain(getElementsByTagName('maincolor').value)">
-  		<a href="" title="Close" id="right">X</a>
-  		<h2>Change Theme</h2>
-  		<input type="color" name="maincolor" value="#165258">
-  		<input type="color" value="#00ddf2">
-  		<input type="submit" name="">
-   	</form>
-
+	<form action="AddBoard.jsp">
+	<div id="myModal" class="popup">
+  			<div class="popup-content">
+				<span class="closebtn fa fa-close"></span>
+				<h1>Add Board</h1>
+				<p>board Name :</p>
+    			<input type="text" name="boardname" value="Board No."/>
+    			<button class="fill">Confirm</button>
+  			</div>
+	</div>
+</form>
 </body>
 </html>

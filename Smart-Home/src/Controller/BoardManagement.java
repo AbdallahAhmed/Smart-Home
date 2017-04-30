@@ -6,7 +6,7 @@ public class BoardManagement {
 	public Board board;
 	
 	
-	public Boolean AddBoard(Board board,User user)
+	public Boolean AddBoard(Board board,String user)
 	{
 		return (new BoardDBAccess()).AddBoard(board, user);
 	}

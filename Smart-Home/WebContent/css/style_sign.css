@@ -23,6 +23,7 @@ html,body {
   height: inherit;
   float: right;
 }
+
 .inter{
   position: relative;
   width: inherit;
@@ -70,6 +71,9 @@ button {
   bottom: 0;
   right: 0;
 
+}
+.inputcomp {
+  //float: right;
 }
 .inputcomp label{
   margin: 18px 0px;
@@ -145,3 +149,7 @@ img {
   50% { width: 300px; }
 }
 
+#sAll {
+	margin : 0;
+	padding : 0;
+}

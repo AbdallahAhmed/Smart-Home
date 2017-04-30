@@ -12,8 +12,8 @@
   padding: 0;
   width: inherit;
   height: 75px;
-  background: linear-gradient(to right, #3949AB  , #3D5AFE);
-  //border-bottom: 10px #000000 solid;
+  background-color : red;
+  border-bottom: 10px #000000 solid;
 }
 #upper form{
   width: inherit;

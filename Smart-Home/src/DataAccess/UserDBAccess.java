@@ -58,13 +58,8 @@ public class UserDBAccess {
 
 	}
 
-	public void RemoveUser() {
-
-	}
-
-	public void EditUser() {
-
-	}
+	public void RemoveUser(User u) {
+			}
 
 	public boolean checkUser(String username, String password) {
 		Statement stmt = null;
