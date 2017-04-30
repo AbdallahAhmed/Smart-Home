@@ -17,7 +17,7 @@ public class DeviceDBAccess {
 		ResultSet rs = null;
 		Statement stmt = null;
 		String Query = "insert into Devices (DeviceName, DeviceStatus, DeviceModel, ID) values (\"" + d.name + "\", \""
-				+ d.status + "\", \"" + d.model + "\"" + d.Id + ")";
+				+ d.status + "\", \"" + d.model + "\" ," + d.Id + ")";
 		try {
 			currentCon = ConnectionManager.getConnection();
 			stmt = currentCon.createStatement();
