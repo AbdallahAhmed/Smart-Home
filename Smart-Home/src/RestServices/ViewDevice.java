@@ -11,6 +11,7 @@ import org.json.simple.JSONObject;
 
 import Controller.Device;
 import Controller.DeviceManagement;
+import Controller.Operation;
 
 @Path("/ViewDevice/{deviceId}")
 public class ViewDevice {
@@ -22,7 +23,7 @@ public class ViewDevice {
 		JSONObject obj = new JSONObject();
 		JSONArray arr = new JSONArray();
 		for (int i = 0; i < dev.operations.size(); i++) {
-			arr.add(dev.operations.get(i).GetUI(dev.Id));
+			arr.add(dev.operations.get(i).GetUI(dev.operations.get(i).UIComponentID));
 		}
 		obj.put("operations", (Object) arr);
 		return obj.toJSONString();

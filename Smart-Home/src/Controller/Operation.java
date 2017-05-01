@@ -10,26 +10,34 @@ public class Operation {
 	public String UIComponent;
 	public ArrayList<String> values = new ArrayList<String>();
 	public int UIComponentID;
-	
-	public void SetUI()
-	{
-		
+
+	public String GetUI(int UIID) {
+		UILoader u = null;
+
+		switch (UIID) {
+		case 1:
+			return (new Slider().execute());
+		case 2:
+			return (new OnAndOff().execute());
+		case 3:
+			return (new UpAndDown().execute());
+		case 4:
+			return (new modes().execute());
+		default:
+			break;
+		}
+		return null;
 	}
-	public String GetUI(int UIComponentID)
-	{
-		String x = "";
-		return x;
-	}
-	
-	public JSONObject toJson(){
+
+	public JSONObject toJson() {
 		JSONObject obj = new JSONObject();
 		obj.put("name", name);
 		obj.put("UIComponent", UIComponent);
 		JSONArray vals = new JSONArray();
-		for(int i = 0; i < values.size(); i++){
+		for (int i = 0; i < values.size(); i++) {
 			vals.add(values.get(i));
-		}			
-		obj.put("values", (Object)vals);
+		}
+		obj.put("values", (Object) vals);
 		obj.put("UIComponentID", UIComponentID);
 		return obj;
 	}
