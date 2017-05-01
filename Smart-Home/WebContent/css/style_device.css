@@ -145,7 +145,20 @@ html, body {
 	font-size: 40px;
 	color:#00ddf2;
 }
-
+.operation select {
+	position:absolute;
+	right:1%;
+	width: 150px;
+	height: 40px;
+	float: right;
+	border-radius: 5px;
+	font-size:20px;
+	background-color: #165258;
+	color:#00ddf2;
+	border: 2px #00ddf2 solid;
+	cursor: pointer;
+	font-family: 'Righteous', cursive;
+}
 #lamp {
 	position:relative;
 	width: 40px;
