@@ -14,9 +14,14 @@ String [] param = {"50"};
 rc.addParamGet(param);
 JSONObject obj = rc.getJSONObject();
 JSONArray arr = (JSONArray) obj.get("operations");
-String s = (String)arr.get(1);
-System.out.print(s);
-out.print(s);
+String s = "";
+for(int i = 0; i < arr.size(); i++)
+{
+	
+ s = (String)arr.get(i);
+out.println(s);
+	System.out.print(s);
+}
 
 
 
