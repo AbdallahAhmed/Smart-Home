@@ -25,7 +25,7 @@ org.glassfish.jersey.client.ClientConfig ,org.json.simple.parser.*,org.json.simp
 <title>Device</title>
 </head>
 
-<body>
+<body onload="construct()">
 	<% JSONParser parser = new JSONParser(); 
  JSONObject obj = (JSONObject)parser.parse(session.getAttribute("user").toString()); 
 %>
@@ -36,12 +36,11 @@ org.glassfish.jersey.client.ClientConfig ,org.json.simple.parser.*,org.json.simp
 			</button></a> <label style="" id="">Device Name</label>
 	</div>
 	<div class="inter">
-
 		<div id="dev">
 			<form action="">
 			<div class="operation">
-				<label>ON/OFF</label> <input onclick="updateSwitch(this)"
-					type="button" class="fill" value="OFF">
+				<label>ON/OFF</label> 
+				<input onclick="updateSwitch(this)"	type="button" class="fill" id="statusbtn" value="OFF">
 				<button id="lamp"></button>
 			</div>
 			</form>
