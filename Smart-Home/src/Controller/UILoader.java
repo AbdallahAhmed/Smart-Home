@@ -1,6 +1,10 @@
 package Controller;
 
-public abstract class UILoader {
-	public void execute(){};
+public interface  UILoader {
+	public default String execute()
+	{
+		return null;
+		
+	};
 
 }

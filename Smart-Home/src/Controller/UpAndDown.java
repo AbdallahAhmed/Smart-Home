@@ -1,9 +1,10 @@
 package Controller;
 
-public class UpAndDown extends UILoader{
-	public void execute()
+public class UpAndDown implements UILoader{
+	public String execute()
 	{
-		
+		String s = "";
+		return s;
 	}
 
 }
