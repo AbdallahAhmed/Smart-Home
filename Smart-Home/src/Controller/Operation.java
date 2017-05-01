@@ -11,12 +11,16 @@ public class Operation {
 	public ArrayList<String> values = new ArrayList<String>();
 	public int UIComponentID;
 
-	public String GetUI(int UIID) {
+	public String GetUI(Device dev, int UIID, int onumber) {
 		UILoader u = null;
 
 		switch (UIID) {
 		case 1:
-			return (new Slider().execute());
+			int min = Integer.parseInt(dev.operations.get(onumber).values.get(0));
+			int max = Integer.parseInt(dev.operations.get(onumber).values.get(1));
+			System.out.println(min);
+			System.out.println(max);
+			return (new Slider().execute(min, max));
 		case 2:
 			return (new OnAndOff().execute());
 		case 3:

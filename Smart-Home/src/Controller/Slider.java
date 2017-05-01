@@ -1,9 +1,9 @@
 package Controller;
 
 public class Slider implements UILoader{
-	public String execute()
+	public String execute(int min, int max)
 	{
-		String s = "<html><body><input type=\"range\" min=\"0\" max=\"100\" value=\"0\" "
+		String s = "<html><body><input type=\"range\" min=\"" + min + "\"" + " max=\"" + max + "\""  + "value=\"0\" "
 				+ "step=\"5\"onchange=\"showValue(this.value)\" /><span id=\"range\">"
 				+ "0</span><script type=\"text/javascript\">function showValue(newValue)"
 				+ "{document.getElementById(\"range\").innerHTML=newValue;}"
