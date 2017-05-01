@@ -61,11 +61,11 @@ org.glassfish.jersey.client.ClientConfig ,org.json.simple.parser.*,org.json.simp
 		<label style="position:absolute; right: 20px;" id="right">Board No.1</label>
 	</div>
 	<div class="inter">
- 		<form action="">
+ 		<form action="Device.jsp">
  		<div class="board" id="left">
 			<button class="close" id="la"><span class="fa fa-close"></span></button>
 			<label id="left" style="max-width : 200px; ">Device Name :   </label>
-		<a href="Board.jsp"><button class="view" id="right"><span class="fa fa-arrows-alt"></span></button></a>	
+		<a href="Device.jsp"><button class="view" id="right"><span class="fa fa-arrows-alt"></span></button></a>	
 		</div> 
 		</form>
 		<form method="post">
