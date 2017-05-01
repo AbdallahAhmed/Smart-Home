@@ -1,9 +1,10 @@
 package Controller;
 
-public class Slider extends UILoader{
-	public void execute()
+public class Slider implements UILoader{
+	public String execute()
 	{
-		
+		String s = "";
+		return s;
 	}
 
 }

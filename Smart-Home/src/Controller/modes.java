@@ -1,9 +1,10 @@
 package Controller;
 
-public class modes extends UILoader{
-	public void execute()
+public class modes implements UILoader{
+	public String execute()
 	{
-		
+		String s = "";
+		return s;
 	}
 
 }

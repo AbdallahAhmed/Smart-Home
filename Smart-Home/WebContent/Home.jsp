@@ -15,6 +15,7 @@
 	<script type="text/javascript" src="js/scripts.js"></script>
 	<title>Home</title>
 </head>
+
 <%@ page import="java.net.URI, 
 javax.ws.rs.client.Client , 
 javax.ws.rs.client.ClientBuilder , 
