@@ -22,6 +22,9 @@ public class ViewDevice {
 		Device dev = dm.ViewDevice(Integer.parseInt(deviceId));
 		JSONObject obj = new JSONObject();
 		JSONArray arr = new JSONArray();
+		Operation o = new Operation();
+		o.UIComponentID = 1;
+		dev.operations.add(o);
 		for (int i = 0; i < dev.operations.size(); i++) {
 			arr.add(dev.operations.get(i).GetUI(dev.operations.get(i).UIComponentID));
 		}

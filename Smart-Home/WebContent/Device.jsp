@@ -49,6 +49,21 @@ org.glassfish.jersey.client.ClientConfig ,org.json.simple.parser.*,org.json.simp
 				<button id="lamp"></button>
 			</div>
 			</form>
+			<%
+			RestConnector rc = new RestConnector("ViewDevice", "GET");
+			String [] x = {"50"};
+			rc.addParamGet(x);
+			JSONObject obj1 = rc.getJSONObject();
+			JSONArray arr = (JSONArray) obj1.get("operations");
+			String s = "";
+			for(int i = 0; i < arr.size(); i++)
+			{
+				out.print(arr.get(i));
+				System.out.print(arr.get(i));
+			}
+			
+			
+			%>
 			<form>
 			<div class="operation">
 				<label>Volume</label> <input type="range" step="2" value="50"
