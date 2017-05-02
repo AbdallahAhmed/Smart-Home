@@ -1,57 +1,252 @@
+/*Dark Blue #165258
+White #e6e6e6
+Aqua #00ddf2
+Black #141414
+Grey #cccccc*/
+
 html,body {
-  padding: 0;
-  margin: 0;
-  width: 100%;
-  height: 100%;
-  font-family: 'Chewy', cursive;
-  background-color: #cccccc;
+	margin: 0;
+	padding: 0;
+	background-color: #141414;
+	animation: toLight 12s infinite;
+	overflow: hidden;
+}
+@keyframes toLight {
+	0%{ background-color: #141414; }
+	50% { background-color: white; }
+	100%{ background-color: #141414; }
 }
 
-.circle {
-	position:relative;
-	float:left;
-	margin: auto;
-	top:100px;
-	left: 15%;
-	width: 200px;
-	height: 200px;
-	border-radius: 150px;
-	border: 20px #165258 solid;
-	background-color: none;
-	animation: bounce 5s infinite;
-	
-}
-.circle label {
-	
-	position: relative;
-	font-size: 150px;
-	color: #165258;
-	margin: auto;
-	left: 28%;
-	top: 0%;
-}
-.circle span {
-	
-	position: relative;
-	font-size: 150px;
-	color: #165258;
-	margin: auto;
-	left: 18%;
+#errorMsg {
+	position: absolute;
+	width: 300px;
+	height: 100px;
+	left: 5%;
 	top: 10%;
+	color: white;
+	font-family: 'Droid Sans', sans-serif;
+	font-size: 25px;
+	background: linear-gradient(20deg, #165258, #2c9aa5);
+	border-radius: 30px;
+	padding: 20px;
 }
-.msg {
-	position:absolute;
+a {
+	color: white;
+}
+#moon {
+	position: absolute;
+	width: 300px;
+	height: 300px;
+	border-radius: 200px;
+	background-color: #d3d3d3;
+	box-shadow: 0px 0px 10px #d3d3d3;
+	margin: auto;
+	left: 40%;
+	margin-top: 5%;
+	box-shadow: 10px white;
+	animation: moveMoon 12s infinite;
+	
+}
+#sun {
+	position: absolute;
+	width: 300px;
+	height: 300px;
+	border-radius: 200px;
+	background-color: #F4D03F;
+	margin: auto;
+	left: 40%;
+	margin-top: 30%;
+	box-shadow: 0px 0px 100px #F4D03F;
+	z-index:0;
+	animation: moveSun 12s infinite;
+	
+}
+@keyframes moveMoon {
+	0% { margin-top: 5% ;}
+	100% {margin-top: 5%;}
+	50% { margin-top: 30%; }
+}
+@keyframes moveSun {
+	0% { margin-top: 30% ;}
+	100% {margin-top: 30%;}
+	50% { margin-top: 5%; }
+}
+.circle {
+	background-color: #C2C2C2;	
+}
+
+#circle1 {
+	position: absolute;
+	left: 25%;
+	top: 25%;
+	width: 60px;
+	height: 60px;
+	border-radius: 30px;
+}
+#circle2 {
+	position: absolute;
+	left: 65%;
+	top: 55%;
+	width: 60px;
+	height: 60px;
+	border-radius: 30px;
+}
+#circle3 {
+	position: absolute;
+	left: 55%;
+	top: 55%;
+	width: 20px;
+	height: 20px;
+	border-radius: 10px;
+}
+
+#circle4 {
+	position: absolute;
+	left: 80%;
+	top: 35%;
+	width: 20px;
+	height: 20px;
+	border-radius: 10px;
+}
+
+#circle5 {
+	position: absolute;
+	left: 30%;
+	top: 80%;
+	width: 10px;
+	height: 10px;
+	border-radius: 5px;
+}
+#circle6 {
+	position: absolute;
+	left: 15%;
+	top: 40%;
+	width: 10px;
+	height: 10px;
+	border-radius: 5px;
+}
+#circle7 {
+	position: absolute;
+	left: 30%;
+	top: 60%;
+	width: 20px;
+	height: 20px;
+	border-radius: 10px;
+}
+
+#backTri {
+	position: fixed;
+	overflow: hidden;
+	top: 35%;
+	right: -10%;
+	width: 150%;
+	height: 250px;
+	background-color: none;
+	z-index: 1;
+}
+
+.tri {
+	float: right;
+	position: relative;
+	transform: rotate(45deg);
+    background: linear-gradient(-45deg, #165258, #2c9aa5);
+    width:300px;
+    height:300px;
+    top: 40%;
+    margin: auto;
+    border-radius: 30px;
+    animation: moveTri 20s infinite;
+}
+#frontTri {
+	position: fixed;
+	overflow: hidden;
+	top: 40%;
+	right: -10%;
+	width: 150%;
+	height: 250px;
+	background-color: none;
+	z-index: 2;
+}
+
+.trif { 
+	float: right;
+	position: relative;
+	transform: rotate(45deg);
+    background: linear-gradient(-45deg, #2c9aa5, #165258);
+    width:300px;
+    margin: auto;
+    height:300px;
+    top: 40%;
+    border-radius: 30px;
+    animation: moveTrif 20s infinite;
+}
+
+#ground {
+	position: fixed;
+	overflow: hidden;
+	background-color: none; 
+	width: 200%;
+	left: -50%;
+	height: 232px;
+	bottom: 0%;
+	z-index: 10;
+}
+#floor {
+	position: absolute;
 	width: 100%;
-	height: 200px;
-	background-color: none;
-	bottom: 10%;
+	height:134px;
+	background-color: #0b2a2d;
+	z-index: 10;
+	bottom: 0%
+
 }
-.inner {
-	margin:auto;
-	width: 50%;
-	height: 100%;
+#light {
+	float: left;
+	position: relative;
+	width: 50px;
+	height: 100px;
+	top: 0%;
+	animation: moveLamp 10s infinite; 
+	margin-right: 100px;
 	background-color: none;
-	color: #165258;
-	font-size: 50px;
-	font-family: 'Montserrat', sans-serif;
+	z-index: 100;
+}
+@keyframes moveLamp {
+	0% { left: 0%; }
+	100% { left: 0%; }
+	50% { left: 10%; }
+}
+
+#stand {
+	margin: auto;
+	background-color: #0b2a2d;
+	height: 50px;
+	width: 5px;
+	
+}
+#block {
+	width: 15px;
+	height: 20px;
+	background-color: #0b2a2d;
+	margin: auto;
+}
+#lamp {
+	width: 30px;
+	height: 30px;
+	margin: auto;
+	border-radius: 15px;
+	background-color: white;
+	box-shadow: 0px 0px 10px white;
+}
+@keyframes moveTri {
+	0% { left: -5% ;}
+	100% {left: -5%;}
+	25% { left: -7%; }
+
+}
+@keyframes moveTrif {
+	0% { left: 0% ;}
+	100% {left: 0%;}
+	25% { left: 3%; }
+
 }

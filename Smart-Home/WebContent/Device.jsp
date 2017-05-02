@@ -13,6 +13,7 @@ org.glassfish.jersey.client.ClientConfig ,org.json.simple.parser.*,org.json.simp
 <!DOCTYPE html >
 <html>
 <head>
+<link rel="shortcut icon" href="icons/favicon.ico" type="image/x-icon">
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link rel="stylesheet" href="css/style_device.css">
 <link rel="stylesheet" type="text/css"
@@ -33,9 +34,13 @@ org.glassfish.jersey.client.ClientConfig ,org.json.simple.parser.*,org.json.simp
 	<div id="upper">
 		<a href="Board.jsp"><button class="back">
 				<span class="fa fa-angle-left"></span>
-			</button></a> <label style="" id="">Device Name</label>
+			</button></a> <label style="" id="devName">Device Name</label>
 	</div>
 	<div class="inter">
+	<form action="">
+		<input type="color" name="mainColor" id="color">
+		<button onclick="ch()" type="submit">Confirm</button>
+	</form>
 		<div id="dev">
 			<form action="">
 			<div class="operation">

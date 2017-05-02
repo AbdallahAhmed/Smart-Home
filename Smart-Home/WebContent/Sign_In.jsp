@@ -9,6 +9,7 @@
 		<link rel="stylesheet" type="text/css" href="css/animate_load.css">
 		<link rel="stylesheet" href="css/animate.css">
 		<script type="text/javascript" src="js/scripts.js"></script>
+		<script type="text/javascript" src="js/scripts0.js"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 		<link rel="stylesheet" href="v.0.3/css/animate.css">
 		<link href="https://fonts.googleapis.com/css?family=Righteous" rel="stylesheet">
@@ -30,10 +31,9 @@
 			</div>
 			<form id="ho" onsubmit="loading()" class="signinf" action="SignInCheck.jsp" method="post">
 				<button type="submit" onsubmit="loading()" class="signin" id="right">Sign in</button>
-				<input class="spass" type="checkbox" id="right">
-				<label class="spass" id="right">show password</label>
-				<input class="inputin pass" type="password" id="right" name="password" placeholder="Password" required>
-				<input class="inputin" type="text" id="right" name="username" placeholder="Username" required>
+				<label onmouseover="showPass()" onmouseout="hidePass()" style="position: relative; float:right; font-size: 20px; margin-top: 70px; cursor: pointer;">Show Password</label>
+				<input class="inputin" type="text" id="" name="username" placeholder="Username" required>
+				<input class="inputin" type="password" id="pass" name="password" placeholder="Password" required>
 			</form>
 		</div>
 		<div class="inter">
