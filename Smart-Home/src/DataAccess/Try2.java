@@ -10,6 +10,9 @@ import Controller.User;
 public class Try2 {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
+		DeviceDBAccess d = new DeviceDBAccess();
+		ArrayList<Device> x = d.getDevices("admin");
+		System.out.println(x.size());
 		/*BoardDBAccess b = new BoardDBAccess();
 		System.out.println(b.AddBoard(new Board("Board2"), "Admin"));*/
 		/*DeviceDBAccess d = new DeviceDBAccess();
@@ -32,11 +35,12 @@ public class Try2 {
 		o.values.add("On");
 		o.values.add("Off");
 		Device d = new Device();
-		d.name = "Light";
+		d.name = "TV";
+		d.Id = 8000;
 		d.operations.add(o);
 		DeviceDBAccess db = new DeviceDBAccess();
-		db.RegisterDevice(d);*/
-		/*db.AddDevice("Admin", "Board2", d);*/
+		db.RegisterDevice(d,4444,"admin");*/
+		//db.AddDevice("Admin", "Board2", d);
 		/*UserDBAccess d = new UserDBAccess();
 		System.out.println(d.getUser("Admin", "Admin").toJson());*/
 	}
