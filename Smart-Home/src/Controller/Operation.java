@@ -25,6 +25,8 @@ public class Operation {
 			return (new OnAndOff().execute(status));
 		case 3:
 			ArrayList<String> mode = dev.operations.get(onumber).values;
+			System.out.println(mode.get(0));
+			System.out.println(mode.get(1));
 			return (new modes().execute(mode));
 		default:
 			return null;

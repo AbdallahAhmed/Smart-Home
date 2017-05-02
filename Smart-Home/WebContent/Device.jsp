@@ -28,8 +28,8 @@ org.glassfish.jersey.client.ClientConfig ,org.json.simple.parser.*,org.json.simp
 
 <body onload="construct()">
 	<%
-		JSONParser parser = new JSONParser();
-		JSONObject obj = (JSONObject) parser.parse(session.getAttribute("user").toString());
+// 		JSONParser parser = new JSONParser();
+// 		JSONObject obj = (JSONObject) parser.parse(session.getAttribute("user").toString());
 	%>
 
 	<div id="upper">
@@ -38,18 +38,7 @@ org.glassfish.jersey.client.ClientConfig ,org.json.simple.parser.*,org.json.simp
 			</button></a> <label style="" id="devName">Device Name</label>
 	</div>
 	<div class="inter">
-		<form action="">
-			<input type="color" name="mainColor" id="color">
-			<button onclick="ch()" type="submit">Confirm</button>
-		</form>
 		<div id="dev">
-			<form action="">
-				<div class="operation">
-					<label>ON/OFF</label> <input onclick="updateSwitch(this)"
-						type="button" class="fill" id="statusbtn" value="OFF">
-					<button id="lamp"></button>
-				</div>
-			</form>
 			<%
 				RestConnector rc = new RestConnector("ViewDevice", "GET");
 				String[] x = { "50" };
@@ -62,29 +51,6 @@ org.glassfish.jersey.client.ClientConfig ,org.json.simple.parser.*,org.json.simp
 					System.out.print(arr.get(i));
 				}
 			%>
-			<form>
-				<div class="operation">
-					<label>Volume</label> <input type="range" step="2" value="50"
-						min="0" max="100" onchange="updateChosen(this)">
-					<div id="chosen">50</div>
-				</div>
-			</form>
-			<div class="operation">
-				<label>Mode :
-					<div id="chosenMode">Mode 1</div>
-				</label>
-				<form action="">
-					<select name="mode" id="mode">
-						<option value="mode1">Mode 1</option>
-						<option value="mode2">Mode 2</option>
-						<option value="mode3">Mode 3</option>
-						<option value="mode4">Mode 4</option>
-					</select> <br>
-					<br> <input type="button" value="Submit"
-						onclick="updateMode()">
-				</form>
-
-			</div>
 		</div>
 		<div id="light"></div>
 	</div>

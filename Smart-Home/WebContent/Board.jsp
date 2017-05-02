@@ -4,6 +4,27 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<%@ page
+	import="java.net.URI, 
+javax.ws.rs.client.Client , 
+javax.ws.rs.client.ClientBuilder , 
+javax.ws.rs.client.WebTarget , 
+javax.ws.rs.core.MediaType , 
+javax.ws.rs.core.Response ,
+javax.ws.rs.core.UriBuilder , 
+org.glassfish.jersey.client.ClientConfig ,org.json.simple.parser.*,org.json.simple.*"%>
+<%
+		JSONParser parser = new JSONParser();
+		JSONObject obj = (JSONObject) parser.parse(session.getAttribute("user").toString());
+		String username = (String) obj.get("name");
+		String boardName = request.getParameter("boardName");
+		RestConnector rc = new RestConnector("viewBoard", "GET");
+		String[] param = { username, boardName };
+		rc.addParamGet(param);
+		JSONObject d = rc.getJSONObject();
+		JSONArray devs = (JSONArray) d.get("devices");
+	%>
+<link rel="shortcut icon" href="icons/favicon.ico" type="image/x-icon">
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link rel="stylesheet" type="text/css" href="css/style0.css">
 <link rel="stylesheet" type="text/css"
@@ -16,7 +37,7 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
 <script type="text/javascript" src="js/scripts.js"></script>
-<title>Board</title>
+<title><% out.print(boardName);%></title>
 <style type="text/css">
 #devName {
 	position: relative;
@@ -49,27 +70,8 @@
 }
 </style>
 </head>
-<%@ page
-	import="java.net.URI, 
-javax.ws.rs.client.Client , 
-javax.ws.rs.client.ClientBuilder , 
-javax.ws.rs.client.WebTarget , 
-javax.ws.rs.core.MediaType , 
-javax.ws.rs.core.Response ,
-javax.ws.rs.core.UriBuilder , 
-org.glassfish.jersey.client.ClientConfig ,org.json.simple.parser.*,org.json.simple.*"%>
 <body>
-	<%
-		JSONParser parser = new JSONParser();
-		JSONObject obj = (JSONObject) parser.parse(session.getAttribute("user").toString());
-		String username = (String) obj.get("name");
-		String boardName = request.getParameter("boardName");
-		RestConnector rc = new RestConnector("viewBoard", "GET");
-		String[] param = { username, boardName };
-		rc.addParamGet(param);
-		JSONObject d = rc.getJSONObject();
-		JSONArray devs = (JSONArray) d.get("devices");
-	%>
+	
 
 	<div id="upper" style="background-color: #e6e6e6;">
 		<a href="Home.jsp"><button class="back">
