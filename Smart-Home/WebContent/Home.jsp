@@ -60,6 +60,7 @@ org.glassfish.jersey.client.ClientConfig ,org.json.simple.parser.*,org.json.simp
  		<div class="board" id="left">
 			<button class="close" id="la"><span class="fa fa-close"></span></button>
 			<label id="left" style="max-width : 200px; ">Board Name :   <%  out.print(((JSONObject)(brds.get(i))).get("name"));   %></label>
+			<input type="hidden" name = "boardName" value="<%out.print(((JSONObject)(brds.get(i))).get("name")); %>" />
 			<button type="submit" class="view" id="right"><span class="fa fa-arrows-alt"></span></button>	
 		</div> 
 		</form>

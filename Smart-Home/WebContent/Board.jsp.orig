@@ -70,6 +70,7 @@ org.glassfish.jersey.client.ClientConfig ,org.json.simple.parser.*,org.json.simp
 		<label style="position:absolute; right: 20px;" id="right"><%out.print(boardName);%></label>
 	</div>
 	<div class="inter">
+<<<<<<< HEAD
 	<%
 		for(int i = 0; i < devs.size(); i++){
 	%>
@@ -78,6 +79,13 @@ org.glassfish.jersey.client.ClientConfig ,org.json.simple.parser.*,org.json.simp
 			<button class="close" id="la"><span class="fa fa-close"></span></button>
 			<label id="left" style="max-width : 200px; ">Device Name : <%out.print(((JSONObject)devs.get(i)).get("name")); %>  </label>
 		<a href="Board.jsp"><button class="view" id="right"><span class="fa fa-arrows-alt"></span></button></a>	
+=======
+ 		<form action="Device.jsp">
+ 		<div class="board" id="left">
+			<button class="close" id="la"><span class="fa fa-close"></span></button>
+			<label id="left" style="max-width : 200px; ">Device Name :   </label>
+		<a href="Device.jsp"><button class="view" id="right"><span class="fa fa-arrows-alt"></span></button></a>	
+>>>>>>> 63ca77ce99c446c699adcc8e4372ed755f7543a6
 		</div> 
 		</form>
 		<%} %>

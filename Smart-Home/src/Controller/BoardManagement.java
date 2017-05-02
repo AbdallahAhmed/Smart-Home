@@ -1,6 +1,9 @@
 package Controller;
 
+import java.util.ArrayList;
+
 import DataAccess.BoardDBAccess;
+import DataAccess.DeviceDBAccess;
 
 public class BoardManagement {
 	public Board board;
@@ -13,6 +16,11 @@ public class BoardManagement {
 	public Boolean RemoveBoard(Board b)
 	{
 		return true;
+	}
+	
+	public ArrayList<Device> getDevices(String username, String boardName){
+		ArrayList<Device> devs = (new DeviceDBAccess()).getDevices(username, boardName);
+		return devs;
 	}
 
 }
