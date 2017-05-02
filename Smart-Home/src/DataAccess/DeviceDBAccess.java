@@ -12,34 +12,38 @@ public class DeviceDBAccess {
 
 	static Connection currentCon;
 
-	public boolean RegisterDevice(Device d) {
+	public boolean RegisterDevice(Device d, int portNumber, String username) {
 		boolean result = false;
 		ResultSet rs = null;
 		Statement stmt = null;
-		String Query = "insert into Devices (DeviceName, DeviceStatus, DeviceModel, ID) values (\"" + d.name + "\", \""
-				+ d.status + "\", \"" + d.model + "\" ," + d.Id + ")";
+		String Query = "select * from Users where UserName = \"" + username + "\"";
 		try {
 			currentCon = ConnectionManager.getConnection();
 			stmt = currentCon.createStatement();
-			stmt.executeUpdate(Query, Statement.RETURN_GENERATED_KEYS);
-			rs = stmt.getGeneratedKeys();
-			rs.next();
-			int DeviceID = rs.getInt(1);
-			for (int i = 0; i < d.operations.size(); i++) {
-				Query = "insert into Operations (OperationsName , UIComponent, DeviceID) values (\""
-						+ d.operations.get(i).name + "\" , \"" + d.operations.get(i).UIComponent + "\" , " + DeviceID
-						+ ")";
+			rs = stmt.executeQuery(Query);
+			boolean more = rs.next();
+			if (more) {
+				Query = "insert into Devices (DeviceName, DeviceStatus, DeviceModel, ID, PortNumber, UserID) values (\"" + d.name + "\", \""
+						+ d.status + "\", \"" + d.model + "\" ," + d.Id + "," + portNumber + "," + rs.getInt("UserID") +")";
 				stmt.executeUpdate(Query, Statement.RETURN_GENERATED_KEYS);
 				rs = stmt.getGeneratedKeys();
-				rs.next();
-				int OperationID = rs.getInt(1);
-				for (int j = 0; j < d.operations.get(i).values.size(); j++) {
-					Query = "insert into OperationsValues (Value, OperationID) values (\""
-							+ d.operations.get(i).values.get(j) + "\" , " + OperationID + ")";
-					stmt.executeUpdate(Query);
+				int DeviceID = rs.getInt(1);
+				for (int i = 0; i < d.operations.size(); i++) {
+					Query = "insert into Operations (OperationsName , UIComponent, DeviceID) values (\""
+							+ d.operations.get(i).name + "\" , \"" + d.operations.get(i).UIComponent + "\" , "
+							+ DeviceID + ")";
+					stmt.executeUpdate(Query, Statement.RETURN_GENERATED_KEYS);
+					rs = stmt.getGeneratedKeys();
+					rs.next();
+					int OperationID = rs.getInt(1);
+					for (int j = 0; j < d.operations.get(i).values.size(); j++) {
+						Query = "insert into OperationsValues (Value, OperationID) values (\""
+								+ d.operations.get(i).values.get(j) + "\" , " + OperationID + ")";
+						stmt.executeUpdate(Query);
+					}
 				}
+				result = true;
 			}
-			result = true;
 		}
 
 		catch (Exception ex) {
@@ -161,23 +165,28 @@ public class DeviceDBAccess {
 
 	}
 
-	public ArrayList<Device> getDevices() {
+	public ArrayList<Device> getDevices(String username) {
 		ResultSet rs = null;
 		Statement stmt = null;
-		String Query = "select * from Devices where BoardID is NULL";
+		String Query = "select * from Users where UserName = \"" + username + "\"";
 		ArrayList<Device> d = new ArrayList<Device>();
 		try {
 			currentCon = ConnectionManager.getConnection();
 			stmt = currentCon.createStatement();
 			rs = stmt.executeQuery(Query);
-			while (rs.next()) {
-				Device dev = new Device();
-				dev.name = rs.getString("DeviceName");
-				dev.model = rs.getString("DeviceModel");
-				dev.status = rs.getString("DeviceStatus");
-				dev.Id = rs.getInt("ID");
-				dev.operations = (ArrayList<Operation>) getOperations(rs.getInt("DeviceID")).clone();
-				d.add(dev);
+			boolean more = rs.next();
+			if (more) {
+				Query = "select * from Devices where BoardID is NULL && UserID = " + rs.getInt("UserID");
+				rs = stmt.executeQuery(Query);
+				while (rs.next()) {
+					Device dev = new Device();
+					dev.name = rs.getString("DeviceName");
+					dev.model = rs.getString("DeviceModel");
+					dev.status = rs.getString("DeviceStatus");
+					dev.Id = rs.getInt("ID");
+					dev.operations = (ArrayList<Operation>) getOperations(rs.getInt("DeviceID")).clone();
+					d.add(dev);
+				}
 			}
 		} catch (Exception ex) {
 			System.out.println("Getting Devices failed: An Exception has occurred! " + ex);
