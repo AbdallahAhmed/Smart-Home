@@ -3,6 +3,7 @@
 <!DOCTYPE>
 <html>
 	<head>
+	<link rel="shortcut icon" href="icons/favicon.ico" type="image/x-icon">
 		<link href="https://fonts.googleapis.com/css?family=Righteous" rel="stylesheet">
 		<link rel="stylesheet" type="text/css" href="css/style_sign.css">
 		<link rel="stylesheet" type="text/css" href="css/load.css">
