@@ -3,7 +3,7 @@ function updateSwitch(elem) {
 	var lamp = document.getElementById("lamp");
 	var dev = document.getElementById("dev");
 	var light = document.getElementById("light");
-    if(value == "ON"){
+	if(value == "ON"){
     elem.value = "OFF";
     lamp.style.background = "linear-gradient(#ff7777, #ff0000)";
     lamp.style.boxShadow= "0px 0px 10px #ff0000";
@@ -56,4 +56,10 @@ function construct(){
     light.style.zIndex = "-1";
     light.style.opacity = "0.0";
     }
+}
+
+function ch(){
+	var color = document.getElementById("color").value;
+	var devName = document.getElementById("devName");
+	devName.style.color = color;
 }

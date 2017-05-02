@@ -22,8 +22,18 @@ public class ViewDevice {
 		Device dev = dm.ViewDevice(Integer.parseInt(deviceId));
 		JSONObject obj = new JSONObject();
 		JSONArray arr = new JSONArray();
+		Operation o = new Operation();
+		o.UIComponentID = 2;
+		o.values.add("OFF");
+		Operation o1 = new Operation();
+		o1.UIComponentID = 3;
+		o1.name = "Temp";
+		o1.values.add("Mode A");
+		o1.values.add("Mode B");
+		dev.operations.add(o);
+		dev.operations.add(o1);
 		for (int i = 0; i < dev.operations.size(); i++) {
-			arr.add(dev.operations.get(i).GetUI(dev.operations.get(i).UIComponentID));
+			arr.add(dev.operations.get(i).GetUI(dev, dev.operations.get(i).UIComponentID, i));
 		}
 		obj.put("operations", (Object) arr);
 		return obj.toJSONString();

@@ -13,6 +13,7 @@ org.glassfish.jersey.client.ClientConfig ,org.json.simple.parser.*,org.json.simp
 <!DOCTYPE html >
 <html>
 <head>
+<link rel="shortcut icon" href="icons/favicon.ico" type="image/x-icon">
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link rel="stylesheet" href="css/style_device.css">
 <link rel="stylesheet" type="text/css"
@@ -26,44 +27,30 @@ org.glassfish.jersey.client.ClientConfig ,org.json.simple.parser.*,org.json.simp
 </head>
 
 <body onload="construct()">
-	<% JSONParser parser = new JSONParser(); 
- JSONObject obj = (JSONObject)parser.parse(session.getAttribute("user").toString()); 
-%>
+	<%
+// 		JSONParser parser = new JSONParser();
+// 		JSONObject obj = (JSONObject) parser.parse(session.getAttribute("user").toString());
+	%>
 
 	<div id="upper">
 		<a href="Board.jsp"><button class="back">
 				<span class="fa fa-angle-left"></span>
-			</button></a> <label style="" id="">Device Name</label>
+			</button></a> <label style="" id="devName">Device Name</label>
 	</div>
 	<div class="inter">
 		<div id="dev">
-			<form action="">
-			<div class="operation">
-				<label>ON/OFF</label> 
-				<input onclick="updateSwitch(this)"	type="button" class="fill" id="statusbtn" value="OFF">
-				<button id="lamp"></button>
-			</div>
-			</form>
-			<form>
-			<div class="operation">
-				<label>Volume</label> <input type="range" step="2" value="50"
-					min="0" max="100" onchange="updateChosen(this)">
-				<div id="chosen">50</div>
-			</div>
-			</form>
-			<div class="operation">
-				<label>Mode : <div id="chosenMode">Mode 1</div></label>
-				<form action="">
-					<select name="mode" id="mode">
-						<option value="mode1">Mode 1</option>
-						<option value="mode2">Mode 2</option>
-						<option value="mode3">Mode 3</option>
-						<option value="mode4">Mode 4</option>
-					</select> <br><br> 
-					<input type="button" value="Submit" onclick="updateMode()">
-				</form>
-				
-			</div>
+			<%
+				RestConnector rc = new RestConnector("ViewDevice", "GET");
+				String[] x = { "50" };
+				rc.addParamGet(x);
+				JSONObject obj1 = rc.getJSONObject();
+				JSONArray arr = (JSONArray) obj1.get("operations");
+				String s = "";
+				for (int i = 0; i < arr.size(); i++) {
+					out.print(arr.get(i));
+					System.out.print(arr.get(i));
+				}
+			%>
 		</div>
 		<div id="light"></div>
 	</div>

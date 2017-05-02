@@ -5,21 +5,125 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link rel="stylesheet" type="text/css" href="css/404.css">
-<link rel="stylesheet" href="css/animate.css">
-<link href="https://fonts.googleapis.com/css?family=Chewy" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
-<link rel="stylesheet" type="text/css" href="css/font-awesome-4.7.0/css/font-awesome.css">
-<title>404</title>
+<link href="https://fonts.googleapis.com/css?family=Droid+Sans" rel="stylesheet">
+	<title>404</title>
 </head>
 <body>
-	<div class="circle"><label>4</label></div>
-	<div class="circle"><label>0</label></div>
-	<div class="circle"><label>4</label></div>
-	<div class="circle"><span class="fa fa-frown-o"></span></div>
-	<div class="msg">
-		<div class="inner">
-		Sorry You haven't signed up before please <a href="Sign_In.jsp">go back</a> and sign up
+	<div id="errorMsg">
+		<label>We are fixing the System <br><a href="Sign_In.jsp">Go Back</a> and Try to Sign in Again</label>
+	</div>
+	<div id="ground">
+		<div id="floor"></div>
+		<div id="light">
+		<div id="lamp"></div>
+			<div id="stand"></div>
+			<div id="block"></div>
 		</div>
+		<div id="light">
+		<div id="lamp"></div>
+			<div id="stand"></div>
+			<div id="block"></div>
+		</div>
+		<div id="light">
+		<div id="lamp"></div>
+			<div id="stand"></div>
+			<div id="block"></div>
+		</div>
+		<div id="light">
+		<div id="lamp"></div>
+			<div id="stand"></div>
+			<div id="block"></div>
+		</div>
+		<div id="light">
+		<div id="lamp"></div>
+			<div id="stand"></div>
+			<div id="block"></div>
+		</div>
+		<div id="light">
+		<div id="lamp"></div>
+			<div id="stand"></div>
+			<div id="block"></div>
+		</div>
+		<div id="light">
+		<div id="lamp"></div>
+			<div id="stand"></div>
+			<div id="block"></div>
+		</div>
+		<div id="light">
+		<div id="lamp"></div>
+			<div id="stand"></div>
+			<div id="block"></div>
+		</div>
+		<div id="light">
+		<div id="lamp"></div>
+			<div id="stand"></div>
+			<div id="block"></div>
+		</div>
+		<div id="light">
+		<div id="lamp"></div>
+			<div id="stand"></div>
+			<div id="block"></div>
+		</div>
+		<div id="light">
+		<div id="lamp"></div>
+			<div id="stand"></div>
+			<div id="block"></div>
+		</div>
+		<div id="light">
+		<div id="lamp"></div>
+			<div id="stand"></div>
+			<div id="block"></div>
+		</div>
+		<div id="light">
+		<div id="lamp"></div>
+			<div id="stand"></div>
+			<div id="block"></div>
+		</div>
+		<div id="light">
+		<div id="lamp"></div>
+			<div id="stand"></div>
+			<div id="block"></div>
+		</div>
+		<div id="light">
+		<div id="lamp"></div>
+			<div id="stand"></div>
+			<div id="block"></div>
+		</div>
+		<div id="light">
+		<div id="lamp"></div>
+			<div id="stand"></div>
+			<div id="block"></div>
+		</div>
+		
+	</div>
+	<div id="backTri">
+		<div class="tri"></div>
+		<div class="tri"></div>
+		<div class="tri"></div>
+		<div class="tri"></div>
+		<div class="tri"></div>
+		<div class="tri"></div>
+		<div class="tri"></div>
+		<div class="tri"></div>
+		<div class="tri"></div>
+	</div>
+	<div id="frontTri">
+		<div class="trif"></div>
+		<div class="trif"></div>
+		<div class="trif"></div>
+		<div class="trif"></div>
+		<div class="trif"></div>
+		<div class="trif"></div>
+	</div>
+	<div id="sun"></div>
+	<div id="moon">
+		<div id="circle1" class="circle"></div>
+		<div id="circle2" class="circle"></div>
+		<div id="circle3" class="circle"></div>
+		<div id="circle4" class="circle"></div>
+		<div id="circle5" class="circle"></div>
+		<div id="circle6" class="circle"></div>
+		<div id="circle7" class="circle"></div>
 	</div>
 </body>
 </html>
