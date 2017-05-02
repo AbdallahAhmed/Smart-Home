@@ -12,11 +12,11 @@ public class Try2 {
 		// TODO Auto-generated method stub
 		/*BoardDBAccess b = new BoardDBAccess();
 		System.out.println(b.AddBoard(new Board("Board2"), "Admin"));*/
-		DeviceDBAccess d = new DeviceDBAccess();
+		/*DeviceDBAccess d = new DeviceDBAccess();
 		ArrayList<Device> m = d.getDevices();
 		for (Device device : m) {
 			System.out.println(device.toJson());
-		}
+		}*/
 		/*UserDBAccess u = new UserDBAccess();
 		System.out.println(u.checkUser("Admin", "Admin"));
 		User n = u.getUser("Admin", "Admin");
