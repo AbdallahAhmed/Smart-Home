@@ -18,12 +18,13 @@ import Controller.DeviceManagement;
 import Controller.Operation;
 
 
-@Path("/RegisterDevice")
+@Path("/RegisterDevice/{Username}")
 public class RegisterDevice {
 	  @POST
 	  @Produces(MediaType.TEXT_PLAIN)
-	public String RegisterDevice(@FormParam("Device") String s) throws ParseException
+	public String RegisterDevice(@FormParam("Device") String s, @FormParam("Username")String Username) throws ParseException
 	{	
+		int portnumber = 0;
 		JSONParser parser = new JSONParser();
 		JSONObject dev = (JSONObject) parser.parse(s);
 		Device regDev = new Device();
@@ -44,7 +45,7 @@ public class RegisterDevice {
 		}
 		DeviceManagement dm = new DeviceManagement();
 		JSONObject ob = new JSONObject();
-		ob.put("register", dm.RegisterDevice(regDev));
+		ob.put("register", dm.RegisterDevice(regDev, portnumber, Username));
 		return ob.toJSONString();
 				
 	}

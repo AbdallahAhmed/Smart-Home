@@ -7,9 +7,9 @@ import DataAccess.DeviceDBAccess;
 public class DeviceManagement {
 	public Device device;
 
-	public Boolean RegisterDevice(Device dev) {
+	public Boolean RegisterDevice(Device dev, int portnumber, String username) {
 		if (CheckDevice(dev)) {
-			return (new DeviceDBAccess()).RegisterDevice(dev);
+			return (new DeviceDBAccess()).RegisterDevice(dev, portnumber, username);
 		} else
 			return false;
 	}
@@ -38,9 +38,8 @@ public class DeviceManagement {
 		return true;
 	}
 
-	public ArrayList<Device> ViewDevices() {
-		ArrayList<Device> dev = null;
-		return (new DeviceDBAccess()).getDevices();
+	public ArrayList<Device> ViewDevices(String username) {
+		return (new DeviceDBAccess()).getDevices(username);
 	}
 
 	public void ExecuteCommand(String s) {

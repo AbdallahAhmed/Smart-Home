@@ -115,10 +115,21 @@ org.glassfish.jersey.client.ClientConfig ,org.json.simple.parser.*,org.json.simp
 			<div class="slider round"></div>
 		</label>
 	</div>
-	<form action="AddBoard.jsp">
+	<form action="">
 		<div id="myModal" class="popup">
 			<div class="popup-content">
 				<span class="closebtn fa fa-close"></span>
+				<%
+				RestConnector rc1 = new RestConnector("ViewDevices", "GET");
+				String [] param1 = {username};
+				rc1.addParamGet(param1);
+				JSONObject ob1 = rc1.getJSONObject();
+				JSONArray arr = (JSONArray) ob1.get("Devices");
+				for(int i = 0; i < arr.size(); i++)
+				{
+					System.out.println(arr.get(i).toString());
+				}
+				%>
 				<h1>Add Device</h1>
 				<input type="radio" name="device" value="Samsung TV"><label
 					id="devName">Samsung Smart TV</label> <br> <input type="radio"
