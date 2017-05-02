@@ -27,6 +27,7 @@ public class DeviceDBAccess {
 						+ d.status + "\", \"" + d.model + "\" ," + d.Id + "," + portNumber + "," + rs.getInt("UserID") +")";
 				stmt.executeUpdate(Query, Statement.RETURN_GENERATED_KEYS);
 				rs = stmt.getGeneratedKeys();
+				rs.next();
 				int DeviceID = rs.getInt(1);
 				for (int i = 0; i < d.operations.size(); i++) {
 					Query = "insert into Operations (OperationsName , UIComponent, DeviceID) values (\""
