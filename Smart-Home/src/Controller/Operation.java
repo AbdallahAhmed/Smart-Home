@@ -11,22 +11,24 @@ public class Operation {
 	public ArrayList<String> values = new ArrayList<String>();
 	public int UIComponentID;
 
-	public String GetUI(int UIID) {
-		UILoader u = null;
+	public String GetUI(Device dev, int UIID, int onumber) {
 
 		switch (UIID) {
 		case 1:
-			return (new Slider().execute());
+
+			String name = dev.operations.get(onumber).name;
+			int min = Integer.parseInt(dev.operations.get(onumber).values.get(0));
+			int max = Integer.parseInt(dev.operations.get(onumber).values.get(1));
+			return (new Slider().execute(name, min, max));
 		case 2:
-			return (new OnAndOff().execute());
+			String status = dev.operations.get(onumber).values.get(0);
+			return (new OnAndOff().execute(status));
 		case 3:
-			return (new UpAndDown().execute());
-		case 4:
-			return (new modes().execute());
+			ArrayList<String> mode = dev.operations.get(onumber).values;
+			return (new modes().execute(mode));
 		default:
-			break;
+			return null;
 		}
-		return null;
 	}
 
 	public JSONObject toJson() {

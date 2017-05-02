@@ -24,9 +24,12 @@ public class ViewDevice {
 		JSONArray arr = new JSONArray();
 		Operation o = new Operation();
 		o.UIComponentID = 1;
+		o.values.add("4");
+		o.values.add("5");
+		o.name = "temp";
 		dev.operations.add(o);
 		for (int i = 0; i < dev.operations.size(); i++) {
-			arr.add(dev.operations.get(i).GetUI(dev.operations.get(i).UIComponentID));
+			arr.add(dev.operations.get(i).GetUI(dev, dev.operations.get(i).UIComponentID, i));
 		}
 		obj.put("operations", (Object) arr);
 		return obj.toJSONString();
