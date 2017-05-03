@@ -7,6 +7,8 @@ import javax.ws.rs.core.Form;
 
 import org.json.simple.parser.ParseException;
 
+import com.mysql.fabric.xmlrpc.base.Value;
+
 import Connectors.RestConnector;
 import Controller.Action;
 import Controller.Device;
@@ -21,7 +23,9 @@ public class Light {
 		d.model = "ABC";
 		d.name = "Room Light";
 		Operation o = new Operation();
-		o.name = "On";
+		o.values.add("Turn On:TurnON");
+		o.values.add("Turn Off:TurnOFF");
+		o.name = "On/Off";
 		o.UIComponent = "button";
 		o.UIComponentID = 1;
 		d.operations.add(o);
@@ -30,11 +34,13 @@ public class Light {
 		rc.addParamPost("Username","admin");
 		rc.addParamPost("port", "4444");
 		System.out.println(rc.getJSONObject());
-		Action ac = (Action)Class.forName("Controller.TurnOFF").newInstance();
-		ac.execute();
 		Connectors.SocketConnector sc = new Connectors.SocketConnector(5555);
 		while(true){
-			System.out.println(sc.recv());
+			String msg = sc.recv();
+			msg = "Controller." + msg;
+			//System.out.println(sc.recv());
+			Action ac = (Action)Class.forName(msg).newInstance();
+			ac.execute();
 		}
 		
 		

@@ -24,12 +24,12 @@ public class ViewDevice {
 		JSONArray arr = new JSONArray();
 		Operation o = new Operation();
 		o.UIComponentID = 2;
-		o.values.add("OFF");
+		o.values.add("Turn on: TurnON");
 		Operation o1 = new Operation();
 		o1.UIComponentID = 3;
 		o1.name = "Temp";
-		o1.values.add("Mode A");
-		o1.values.add("Mode B");
+		o1.values.add("Temp up: TempUP");
+		o1.values.add("Temp down: TempDOWN");
 		dev.operations.add(o);
 		dev.operations.add(o1);
 		for (int i = 0; i < dev.operations.size(); i++) {

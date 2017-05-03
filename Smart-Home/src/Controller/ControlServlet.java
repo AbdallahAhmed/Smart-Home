@@ -25,13 +25,13 @@ public class ControlServlet extends HttpServlet {
 		  name = request.getParameter("user");
 		  String msg = "";
 		  System.out.println("jjceb");
-		  if(name.equals("+")){
+		  /*if(name.equals("+")){
 			  msg = "volume up";
 		  }else if(name.equals("-")){
 			  msg = "volume down";
-		  }
+		  }*/
 		  SocketConnector sc = new SocketConnector(5555);
-		  sc.send(msg);
+		  sc.send(name);
 		  if(request.getParameter("user").toString().equals("")){
 		   name="Hello User";
 		  }

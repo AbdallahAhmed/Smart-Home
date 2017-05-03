@@ -56,8 +56,8 @@ org.glassfish.jersey.client.ClientConfig ,org.json.simple.parser.*,org.json.simp
 			%>
 			<script>
             $(document).ready(function() {                        
-                $('#sub').click(function(event) {  
-                    var username=$('#sub').val();
+                $('#statusbtn').click(function(event) {  
+                    var username=$('#statusbtn').val();
                  $.get('ActionServlet',{user:username},function(responseText) { 
                                  
                     });
