@@ -8,7 +8,7 @@ public class DeviceManagement {
 	public Device device;
 
 	public Boolean RegisterDevice(Device dev, int portnumber, String username) {
-		if (CheckDevice(dev)) {
+		if (!CheckDevice(dev)) {
 			return (new DeviceDBAccess()).RegisterDevice(dev, portnumber, username);
 		} else
 			return false;

@@ -1,3 +1,4 @@
+<%@page import="Connectors.SocketConnector"%>
 <%@ page import="RestServices.RestConnector"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
@@ -23,6 +24,8 @@ org.glassfish.jersey.client.ClientConfig ,org.json.simple.parser.*,org.json.simp
 <link rel="stylesheet" href="css/animate.css">
 <!-- 	<link rel="stylesheet" href="css/buttons.css"> -->
 <script type="text/javascript" src="js/device.js"></script>
+        <script src="http://code.jquery.com/jquery-latest.js">   
+        </script>
 <title>Device</title>
 </head>
 
@@ -49,9 +52,36 @@ org.glassfish.jersey.client.ClientConfig ,org.json.simple.parser.*,org.json.simp
 				for (int i = 0; i < arr.size(); i++) {
 					out.print(arr.get(i));
 					System.out.print(arr.get(i));
-				}
+				}				
 			%>
+			<script>
+            $(document).ready(function() {                        
+                $('#sub').click(function(event) {  
+                    var username=$('#sub').val();
+                 $.get('ActionServlet',{user:username},function(responseText) { 
+                                 
+                    });
+                });
+                $('#sub2').click(function(event) {  
+                    var username=$('#sub2').val();
+                 $.get('ActionServlet',{user:username},function(responseText) { 
+                                 
+                    });
+                });
+            });
+			</script>
+		<div class="operation" >
+			<label>Volume</label>
+			<form id = "form1">
+			<input id="sub" type="button" value="+">
+			<input id="sub2" type="button" value="-">
+			</form>
+			<form id="form2">
+			</form>
 		</div>
+		
+		</div>
+		
 		<div id="light"></div>
 	</div>
 </body>

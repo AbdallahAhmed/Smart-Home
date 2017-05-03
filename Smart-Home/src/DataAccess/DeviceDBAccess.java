@@ -76,12 +76,11 @@ public class DeviceDBAccess {
 		boolean result = false;
 		ResultSet rs = null;
 		Statement stmt = null;
-		String Query = "select * from Device where ID = " + d.Id;
+		String Query = "select * from Devices where ID = " + d.Id;
 		try {
 			currentCon = ConnectionManager.getConnection();
 			stmt = currentCon.createStatement();
-			stmt.executeUpdate(Query, Statement.RETURN_GENERATED_KEYS);
-			rs = stmt.getGeneratedKeys();
+			rs = stmt.executeQuery(Query);
 			result = rs.next();
 		}
 
