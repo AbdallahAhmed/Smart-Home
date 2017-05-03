@@ -42,6 +42,11 @@ public class RegisterDevice {
 			dop.name = (String) op.get("name");
 			dop.UIComponent = (String) op.get("UIComponent");
 			dop.UIComponentID = Integer.parseInt(op.get("UIComponentID").toString());
+			JSONArray ja = new JSONArray();
+			ja = (JSONArray) op.get("values");
+			for(int r = 0; r < ja.size(); r++){
+				dop.values.add((String)ja.get(i));
+			}
 			regDev.operations.add(dop);
 			
 		}

@@ -27,7 +27,7 @@ rc.addParamPost("username", username);
 rc.addParamPost("password", pass);
 JSONObject obj = rc.getJSONObject();
 long end = System.currentTimeMillis();
-System.out.print(end - st);
+//System.out.print(end - st);
 boolean valid = (Boolean) (obj.get("signin"));
 if(valid == true)
 {

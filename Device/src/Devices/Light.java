@@ -19,14 +19,18 @@ public class Light {
 	public static void main(String[] args) throws ParseException, IOException, InstantiationException, IllegalAccessException, ClassNotFoundException{
 		RestConnector rc = new RestConnector("RegisterDevice", "POST");
 		Device d = new Device();
-		d.Id = 20;
+		d.Id = 78;
 		d.model = "ABC";
 		d.name = "Room Light";
 		Operation o = new Operation();
-		o.values.add("Turn On:TurnON");
-		o.values.add("Turn Off:TurnOFF");
+		ArrayList<String> values = new ArrayList<String>();
+		values.add("Turn On:TurnON");
+		values.add("Turn Off:TurnOFF");
+		o.values = (ArrayList<String>) values.clone();
+		/*o.values.add("Turn On:TurnON");
+		o.values.add("Turn Off:TurnOFF");*/
 		o.name = "On/Off";
-		o.UIComponent = "button";
+		o.UIComponent = "OnAndOff";
 		o.UIComponentID = 1;
 		d.operations.add(o);
 		d.status = "OFF";

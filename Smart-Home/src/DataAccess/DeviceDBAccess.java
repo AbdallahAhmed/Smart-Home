@@ -375,4 +375,53 @@ public class DeviceDBAccess {
 		return Values;
 
 	}
+
+	public ArrayList<Operation> getDevices(int dev) {
+		
+		ResultSet rs = null;
+		Statement stmt = null;
+		String Query = "select * from Devices join Operations on Devices.DeviceID = Operations.DeviceID where ID = " + dev;
+		ArrayList<Operation> ops = new ArrayList<Operation>();
+
+		try {
+			currentCon = ConnectionManager.getConnection();
+			stmt = currentCon.createStatement();
+			rs = stmt.executeQuery(Query);
+			while (rs.next()) {
+				Operation o = new Operation();
+				o.name = rs.getString("OperationsName");
+				o.UIComponent = rs.getString("UIComponent");
+				o.values = (ArrayList<String>) getValues(rs.getInt("OperationID")).clone();
+				ops.add(o);
+			}
+
+		}
+
+		catch (Exception ex) {
+			System.out.println("Getting Opperations failed: An Exception has occurred! " + ex);
+		}
+
+		// some exception handling
+		try {
+			if (rs != null) {
+				rs.close();
+				rs = null;
+			}
+			if (stmt != null) {
+				stmt.close();
+				stmt = null;
+			}
+
+			if (currentCon != null) {
+				currentCon.close();
+				currentCon = null;
+			}
+		} catch (Exception e) {
+
+		}
+
+		return ops;
+
+
+	}
 }

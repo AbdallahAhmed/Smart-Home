@@ -11,20 +11,19 @@ public class Operation {
 	public ArrayList<String> values = new ArrayList<String>();
 	public int UIComponentID;
 
-	public String GetUI(Device dev, int UIID, int onumber) {
+	public String GetUI(ArrayList<Operation> dev, String UIID, int onumber) {
 
 		switch (UIID) {
-		case 1:
-
-			String name = dev.operations.get(onumber).name;
-			int min = Integer.parseInt(dev.operations.get(onumber).values.get(0));
-			int max = Integer.parseInt(dev.operations.get(onumber).values.get(1));
-			return (new Slider().execute(name, min, max));
-		case 2:
-			String status = dev.operations.get(onumber).values.get(0);
+		case "UpAndDown":
+			String name = dev.get(onumber).name;
+			String Up = dev.get(onumber).values.get(0);
+			String down = dev.get(onumber).values.get(1);
+			return (new UpAndDown().execute(name,Up, down));
+		case "OnAndOff":
+			String status = dev.get(onumber).values.get(0);
 			return (new OnAndOff().execute(status));
-		case 3:
-			ArrayList<String> mode = dev.operations.get(onumber).values;
+		case "Modes":
+			ArrayList<String> mode = dev.get(onumber).values;
 			System.out.println(mode.get(0));
 			System.out.println(mode.get(1));
 			return (new modes().execute(mode));

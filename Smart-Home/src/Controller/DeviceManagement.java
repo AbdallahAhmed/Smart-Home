@@ -26,8 +26,8 @@ public class DeviceManagement {
 		return true;
 	}
 
-	public Device ViewDevice(int dev) {
-		return new Device();
+	public ArrayList<Operation> ViewDevice(int dev) {
+		return (new DeviceDBAccess().getDevices(dev));
 	}
 
 	public Boolean AddDevice(String username, String boardname, String deviceId) {

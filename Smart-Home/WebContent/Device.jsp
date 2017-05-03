@@ -44,7 +44,8 @@ org.glassfish.jersey.client.ClientConfig ,org.json.simple.parser.*,org.json.simp
 		<div id="dev">
 			<%
 				RestConnector rc = new RestConnector("ViewDevice", "GET");
-				String[] x = { "50" };
+				String deviceId = request.getParameter("deviceId");
+				String[] x = { deviceId };
 				rc.addParamGet(x);
 				JSONObject obj1 = rc.getJSONObject();
 				JSONArray arr = (JSONArray) obj1.get("operations");
@@ -70,15 +71,7 @@ org.glassfish.jersey.client.ClientConfig ,org.json.simple.parser.*,org.json.simp
                 });
             });
 			</script>
-		<div class="operation" >
-			<label>Volume</label>
-			<form id = "form1">
-			<input id="sub" type="button" value="+">
-			<input id="sub2" type="button" value="-">
-			</form>
-			<form id="form2">
-			</form>
-		</div>
+		
 		
 		</div>
 		
