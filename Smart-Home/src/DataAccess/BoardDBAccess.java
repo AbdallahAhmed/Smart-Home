@@ -71,8 +71,8 @@ public class BoardDBAccess {
 
 	}
 
-	public void RemoveBoard() {
-
+	public Boolean RemoveBoard(String boardname, int userid) {
+		return true;
 	}
 
 	public void EditBoard() {

@@ -24,11 +24,11 @@ public class ViewDevices {
 		ArrayList<Device> d = dm.ViewDevices(username);
 		JSONObject obj = new JSONObject();
 		JSONArray arr = new JSONArray();
-		System.out.println("size" + d.size());
+		//System.out.println("size" + d.size());
 		for(int i = 0; i < d.size(); i++)
 		{
 			arr.add(d.get(i).toJson());
-			System.out.println(d.get(i)+"mfish devices");
+			//System.out.println(d.get(i).name);
 		}
 		obj.put("Devices", (Object)arr);
 		return obj.toJSONString();

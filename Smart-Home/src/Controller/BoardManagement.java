@@ -13,9 +13,9 @@ public class BoardManagement {
 	{
 		return (new BoardDBAccess()).AddBoard(board, user);
 	}
-	public Boolean RemoveBoard(Board b)
+	public Boolean RemoveBoard(String boardname, int userid)
 	{
-		return true;
+		return (new BoardDBAccess()).RemoveBoard(boardname, userid);
 	}
 	
 	public ArrayList<Device> getDevices(String username, String boardName){

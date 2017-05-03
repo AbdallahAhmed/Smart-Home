@@ -20,7 +20,9 @@ public class AddDevice {
 	public String AddDevice(@PathParam("username") String username, @PathParam("boardname") String boardname,
 						 	 @PathParam("deviceId") String deviceId )
 	{
+		 System.out.println(username + " " + boardname + " " +deviceId);
 		DeviceManagement dm = new DeviceManagement();
+		//System.out.println("boardname" + boardname);
 		boolean valid = dm.AddDevice(username, boardname, deviceId);
 		JSONObject obj = new JSONObject();
 		obj.put("valid", valid);

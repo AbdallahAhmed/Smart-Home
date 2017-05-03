@@ -9,20 +9,19 @@
 <title>Insert title here</title>
 </head>
 <body>
-<%
+<% 
+
 JSONObject obj = (JSONObject)session.getAttribute("user");
 String username = (String)obj.get("name");
-String deviceId = request.getParameter("deviceId");
-String boardname = request.getParameter("boardname");
-RestConnector rc = new RestConnector("AddDevice","GET");
-String[] param = {username, boardname, deviceId};
-rc.addParamGet(param);
-JSONObject btengan = rc.getJSONObject();
-//System.out.println("btengan " + btengan.toJSONString());
-session.setAttribute("user", obj);
+RestConnector rc1 = new RestConnector("ViewDevices", "GET");
+String[] param1 = { username };
+rc1.addParamGet(param1);
+JSONObject ob1 = rc1.getJSONObject();
+JSONArray arr = (JSONArray) ob1.get("Devices");
+session.setAttribute("devices", arr);
 response.sendRedirect("Board.jsp");
-
 %>
+
 
 </body>
 </html>

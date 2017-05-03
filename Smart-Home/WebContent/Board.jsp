@@ -14,19 +14,19 @@ javax.ws.rs.core.Response ,
 javax.ws.rs.core.UriBuilder , 
 org.glassfish.jersey.client.ClientConfig ,org.json.simple.parser.*,org.json.simple.*"%>
 <%
-		JSONParser parser = new JSONParser();
-		JSONObject obj = (JSONObject) parser.parse(session.getAttribute("user").toString());
-		String username = (String) obj.get("name");
-		String boardName = request.getParameter("boardName");
-		RestConnector rc = new RestConnector("viewBoard", "GET");
-		String[] param = { username, boardName };
-		rc.addParamGet(param);
-		JSONObject d = rc.getJSONObject();
-		JSONArray devs = (JSONArray) d.get("devices");
-	%>
+	JSONParser parser = new JSONParser();
+	JSONObject obj = (JSONObject) parser.parse(session.getAttribute("user").toString());
+	String username = (String) obj.get("name");
+	String boardName = request.getParameter("boardName");
+	RestConnector rc = new RestConnector("viewBoard", "GET");
+	String[] param = { username, boardName };
+	rc.addParamGet(param);
+	JSONObject d = rc.getJSONObject();
+	JSONArray devs = (JSONArray) d.get("devices");
+%>
 <link rel="shortcut icon" href="icons/favicon.ico" type="image/x-icon">
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<link rel="stylesheet" type="text/css" href="css/style0.css">
+<link rel="stylesheet" type="text/css" href="css/board.css">
 <link rel="stylesheet" type="text/css"
 	href="css/font-awesome-4.7.0/css/font-awesome.css">
 <link href="https://fonts.googleapis.com/css?family=Righteous"
@@ -37,7 +37,11 @@ org.glassfish.jersey.client.ClientConfig ,org.json.simple.parser.*,org.json.simp
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
 <script type="text/javascript" src="js/scripts.js"></script>
-<title><% out.print(boardName);%></title>
+<title>
+	<%
+		out.print(boardName);
+	%>
+</title>
 <style type="text/css">
 #devName {
 	position: relative;
@@ -71,7 +75,7 @@ org.glassfish.jersey.client.ClientConfig ,org.json.simple.parser.*,org.json.simp
 </style>
 </head>
 <body>
-	
+
 
 	<div id="upper" style="background-color: #e6e6e6;">
 		<a href="Home.jsp"><button class="back">
@@ -102,7 +106,7 @@ org.glassfish.jersey.client.ClientConfig ,org.json.simple.parser.*,org.json.simp
 		<%
 			}
 		%>
-		<form method="post">
+		<form >
 			<div class="addboard">
 				<button id="myBtn" onclick="popup()" type="button" class="fill"
 					style="margin: 20%; margin-left: 28%; width: auto;">Add
@@ -115,27 +119,33 @@ org.glassfish.jersey.client.ClientConfig ,org.json.simple.parser.*,org.json.simp
 			<div class="slider round"></div>
 		</label>
 	</div>
-	<form action="">
+	<form action="AddDevice.jsp" method ="post">
 		<div id="myModal" class="popup">
 			<div class="popup-content">
 				<span class="closebtn fa fa-close"></span>
-				<%
-				RestConnector rc1 = new RestConnector("ViewDevices", "GET");
-				String [] param1 = {username};
-				rc1.addParamGet(param1);
-				JSONObject ob1 = rc1.getJSONObject();
-				JSONArray arr = (JSONArray) ob1.get("Devices");
-				for(int i = 0; i < arr.size(); i++)
-				{
-					System.out.println(arr.get(i).toString());
-				}
-				%>
 				<h1>Add Device</h1>
-				<input type="radio" name="device" value="Samsung TV"><label
-					id="devName">Samsung Smart TV</label> <br> <input type="radio"
-					name="device" value="Samsung TV"><label id="devName">Dell
-					Laptop</label> <br>
-				<button type="submit" class="fill">Confirm</button>
+				<%
+					RestConnector rc1 = new RestConnector("ViewDevices", "GET");
+					String[] param1 = { username };
+					rc1.addParamGet(param1);
+					JSONObject ob1 = rc1.getJSONObject();
+					JSONArray arr = (JSONArray) ob1.get("Devices"); %>
+					<%for (int i = 0; i < arr.size(); i++) {	
+				%>
+				<div id="dev">
+ 				<input type="radio" name="deviceId" value=<%out.print(((JSONObject) (arr.get(i))).get("id"));%>> 
+				<label id="devName">
+ 					<% 
+ 						System.out.println(((JSONObject) (arr.get(i))).get("id"));
+ 						out.print(((JSONObject) (arr.get(i))).get("name"));
+					%> 
+				</label> <br>
+				</div>
+ 				<% 
+				} 
+ 				%> 
+				<button type="submit" class="fill" id="co">Confirm</button>
+ 				<input type="hidden" class="fill" value="<% out.print(boardName); %>" name="boardname"> 
 			</div>
 		</div>
 	</form>
