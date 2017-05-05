@@ -86,13 +86,6 @@ org.glassfish.jersey.client.ClientConfig ,org.json.simple.parser.*,org.json.simp
 			%>
 		</label>
 	</div>
-	<form action="RemoveBoard.jsp" method="post">
-		<button class="fill"
-			style="position: absolute; right: 25px; width: 95px; height: 70px" type="submit"
-			value="<%out.print(boardName);%>" name="boardname">Delete
-			Board</button>
-		<input type="hidden" value="<%out.print(username);%>" name="username">
-	</form>
 	<div class="inter">
 		<%
 			for (int i = 0; i < devs.size(); i++) {
@@ -102,13 +95,10 @@ org.glassfish.jersey.client.ClientConfig ,org.json.simple.parser.*,org.json.simp
 				<button class="close" id="la">
 					<span class="fa fa-close"></span>
 				</button>
-				<input type="hidden" class="fill" value="<%out.print(boardName);%>"
-					name="boardname"> <input type="hidden" class="fill"
-					value="<%out.print(((JSONObject) devs.get(i)).get("id"));%>"
-					name="deviceId"> <label id="left" style="max-width: 200px;">Device
-					Name : <%
- 	out.print(((JSONObject) devs.get(i)).get("name"));
- %>
+				<input type="hidden" class="fill" value="<% out.print(((JSONObject) devs.get(i)).get("id")); %>" name="deviceId">
+				<label id="left" style="max-width: 200px;">Device Name : <%
+					out.print(((JSONObject) devs.get(i)).get("name"));
+				%>
 				</label> <a href="Board.jsp"><button class="view" id="right">
 						<span class="fa fa-arrows-alt"></span>
 					</button></a>
@@ -117,20 +107,20 @@ org.glassfish.jersey.client.ClientConfig ,org.json.simple.parser.*,org.json.simp
 		<%
 			}
 		%>
-		<form>
+		<form >
 			<div class="addboard">
 				<button id="myBtn" onclick="popup()" type="button" class="fill"
 					style="margin: 20%; margin-left: 28%; width: auto;">Add
 					Device</button>
 			</div>
 		</form>
-<!-- 		<label style="margin: 10px 20px; position: absolute; color: #165258;">DELETE</label> -->
-<!-- 		<label style="margin: 25px 20px; position: absolute; color: #165258;">DEVICE</label> -->
-<!-- 		<label class="switch"> <input onclick="fn3()" type="checkbox"> -->
-<!-- 			<div class="slider round"></div> -->
-<!-- 		</label> -->
-<!-- 	</div> -->
-	<form action="AddDevice.jsp" method="post">
+		<label style="margin: 10px 20px; position: absolute; color: #165258;">DELETE</label>
+		<label style="margin: 25px 20px; position: absolute; color: #165258;">DEVICE</label>
+		<label class="switch"> <input onclick="fn3()" type="checkbox">
+			<div class="slider round"></div>
+		</label>
+	</div>
+	<form action="AddDevice.jsp" method ="post">
 		<div id="myModal" class="popup">
 			<div class="popup-content">
 				<span class="closebtn fa fa-close"></span>
@@ -140,26 +130,23 @@ org.glassfish.jersey.client.ClientConfig ,org.json.simple.parser.*,org.json.simp
 					String[] param1 = { username };
 					rc1.addParamGet(param1);
 					JSONObject ob1 = rc1.getJSONObject();
-					JSONArray arr = (JSONArray) ob1.get("Devices");
-				%>
-				<%
-					for (int i = 0; i < arr.size(); i++) {
+					JSONArray arr = (JSONArray) ob1.get("Devices"); %>
+					<%for (int i = 0; i < arr.size(); i++) {	
 				%>
 				<div id="dev">
-					<input type="radio" name="deviceId"
-						value=<%out.print(((JSONObject) (arr.get(i))).get("id"));%>>
-					<label id="devName"> <%
- 	System.out.println(((JSONObject) (arr.get(i))).get("id"));
- 		out.print(((JSONObject) (arr.get(i))).get("name"));
- %>
-					</label> <br>
+ 				<input type="radio" name="deviceId" value=<%out.print(((JSONObject) (arr.get(i))).get("id"));%>> 
+				<label id="devName">
+ 					<% 
+ 						System.out.println(((JSONObject) (arr.get(i))).get("id"));
+ 						out.print(((JSONObject) (arr.get(i))).get("name"));
+					%> 
+				</label> <br>
 				</div>
-				<%
-					}
-				%>
+ 				<% 
+				} 
+ 				%> 
 				<button type="submit" class="fill" id="co">Confirm</button>
-				<input type="hidden" class="fill" value="<%out.print(boardName);%>"
-					name="boardname">
+ 				<input type="hidden" class="fill" value="<% out.print(boardName); %>" name="boardname"> 
 			</div>
 		</div>
 	</form>

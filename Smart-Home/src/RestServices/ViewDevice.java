@@ -37,7 +37,7 @@ public class ViewDevice {
 		System.out.println("viewwww" + dev.size() + dev.get(0));
 		for (int i = 0; i < dev.size(); i++) {
 			arr.add(dev.get(i).GetUI(dev, dev.get(i).UIComponent, i));
-			//System.out.println(dev.get(i).GetUI(dev, dev.get(i).UIComponent, i));
+			System.out.println(dev.get(i).GetUI(dev, dev.get(i).UIComponent, i));
 		}
 		obj.put("operations", (Object) arr);
 		return obj.toJSONString();

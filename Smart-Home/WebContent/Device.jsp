@@ -21,7 +21,6 @@ org.glassfish.jersey.client.ClientConfig ,org.json.simple.parser.*,org.json.simp
 	href="css/font-awesome-4.7.0/css/font-awesome.css">
 <link href="https://fonts.googleapis.com/css?family=Righteous"
 	rel="stylesheet">
-	<link rel="stylesheet" type="text/css" href="css/board.css">
 <link rel="stylesheet" href="css/animate.css">
 <!-- 	<link rel="stylesheet" href="css/buttons.css"> -->
 <script type="text/javascript" src="js/device.js"></script>
@@ -40,18 +39,7 @@ org.glassfish.jersey.client.ClientConfig ,org.json.simple.parser.*,org.json.simp
 		<a href="Board.jsp"><button class="back">
 				<span class="fa fa-angle-left"></span>
 			</button></a> <label style="" id="devName">Device Name</label>
-		<%
-			String boardname = request.getParameter("boardname");
-			String deviceId1 = request.getParameter("deviceId");
-		%>
 	</div>
-	<form action="RemoveDevice.jsp" method="post">
-		<button class="fill"
-			style="position: absolute; right: 25px; width: 200px;" type="submit"
-			value="<%out.print(deviceId1);%>" name="deviceId">Remove
-			Device</button>
-		<input type="hidden" value="<% out.print(boardname); %>" name="boardname">
-	</form>
 	<div class="inter">
 		<div id="dev">
 			<%
@@ -64,7 +52,7 @@ org.glassfish.jersey.client.ClientConfig ,org.json.simple.parser.*,org.json.simp
 				String s = "";
 				for (int i = 0; i < arr.size(); i++) {
 					out.print(arr.get(i));
-					//System.out.print(arr.get(i));
+					System.out.print(arr.get(i));
 				}				
 			%>
 			<script>

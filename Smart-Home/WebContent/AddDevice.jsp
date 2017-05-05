@@ -14,7 +14,6 @@ JSONObject obj = (JSONObject)session.getAttribute("user");
 String username = (String)obj.get("name");
 String deviceId = request.getParameter("deviceId");
 String boardname = request.getParameter("boardname");
-System.out.println("boardname = " + boardname);
 RestConnector rc = new RestConnector("AddDevice","GET");
 String[] param = {username, boardname, deviceId};
 rc.addParamGet(param);
