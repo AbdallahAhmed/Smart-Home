@@ -10,13 +10,13 @@ import org.json.simple.JSONObject;
 
 import Controller.DeviceManagement;
 
-@Path("/RemoveDevice/{DeviceId}/{boardname}")
+@Path("/RemoveDevice/{deviceId}/{boardname}")
 public class RemoveDevice {
 	@GET
 	@Produces(MediaType.TEXT_PLAIN)
-	public String RemoveDevice(@PathParam("DeviceId") String id, @PathParam("boardname") String boardname) {
+	public String RemoveDevice(@PathParam("deviceId") String deviceId, @PathParam("boardname") String boardname) {
 		DeviceManagement dm = new DeviceManagement();
-		Boolean valid = dm.RemoveDevice(Integer.parseInt(id), boardname);
+		Boolean valid = dm.RemoveDevice(Integer.parseInt(deviceId), boardname);
 		JSONObject obj = new JSONObject();
 		obj.put("valid", valid);
 		return obj.toJSONString();

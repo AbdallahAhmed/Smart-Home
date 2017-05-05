@@ -18,7 +18,7 @@ public class DeviceManagement {
 		return (new DeviceDBAccess().CheckDevice(dev));
 	}
 
-	public Boolean RemoveDevice(Device dev) {
+	public Boolean RemoveDevice(int deviceid, String boardname) {
 		return true;
 	}
 
