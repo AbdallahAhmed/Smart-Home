@@ -3,17 +3,12 @@ package Devices;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import javax.ws.rs.core.Form;
-
 import org.json.simple.parser.ParseException;
-
-import com.mysql.fabric.xmlrpc.base.Value;
 
 import Connectors.RestConnector;
 import Controller.Action;
 import Controller.Device;
 import Controller.Operation;
-import Controller.SocketConnector;
 
 public class Light {
 	public static void main(String[] args) throws ParseException, IOException, InstantiationException, IllegalAccessException, ClassNotFoundException{
