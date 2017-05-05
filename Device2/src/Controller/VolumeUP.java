@@ -2,6 +2,7 @@ package Controller;
 
 public class VolumeUP extends Action{
 	public void execute() {
-		volume++;
+		//volume++;
+		System.out.println(volume++);
 	}
 }

@@ -19,7 +19,7 @@ public class TV {
 	public static void main(String[] args) throws ParseException, IOException, InstantiationException, IllegalAccessException, ClassNotFoundException{
 		RestConnector rc = new RestConnector("RegisterDevice", "POST");
 		Device d = new Device();
-		d.Id = 55;
+		d.Id = 7000;
 		d.model = "ABC";
 		d.name = "Room TV";
 		Operation o = new Operation();
@@ -35,14 +35,14 @@ public class TV {
 		d.operations.add(o);
 		Operation o1 = new Operation();
 		ArrayList<String> values1 = new ArrayList<String>();
-		values.add("Volume up: volumeUP");
-		values.add("Volume down: VolumeDOWN");
-		o.values = (ArrayList<String>) values.clone();
+		values1.add("Volume up:VolumeUP");
+		values1.add("Volume down:VolumeDOWN");
+		o1.values = (ArrayList<String>) values1.clone();
 		/*o.values.add("Turn On:TurnON");
 		o.values.add("Turn Off:TurnOFF");*/
-		o.name = "Volume";
-		o.UIComponent = "UpAndDown";
-		o.UIComponentID = 1;
+		o1.name = "Volume";
+		o1.UIComponent = "UpAndDown";
+		o1.UIComponentID = 1;
 		d.operations.add(o1);
 		d.status = "OFF";
 		rc.addParamPost("Device", d.toJson().toJSONString());

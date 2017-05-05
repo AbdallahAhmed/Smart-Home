@@ -112,7 +112,8 @@ public class DeviceDBAccess {
 		boolean result = false;
 		ResultSet rs = null;
 		Statement stmt = null;
-		String Query = "select * from Users join UserBoard join Boards where UserName= \"" + username
+		String Query = "select * from Users join UserBoard join Boards on UserBoard.UserID = Users.UserID and "
+				+ "UserBoard.BoardID = Boards.BoardID where UserName= \"" + username
 				+ "\" and BoardName = \"" + boardname + "\"";
 		try {
 			currentCon = ConnectionManager.getConnection();
@@ -126,7 +127,7 @@ public class DeviceDBAccess {
 
 			else if (more) {
 				int BoardID = rs.getInt("BoardID");
-				Query = "update Devices set BoardID = " + BoardID;
+				Query = "update Devices set BoardID = " + BoardID + " where ID = " + ID;
 				stmt.executeUpdate(Query);
 				result = true;
 			}

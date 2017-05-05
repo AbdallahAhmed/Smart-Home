@@ -20,7 +20,7 @@ rc.addParamGet(param);
 JSONObject btengan = rc.getJSONObject();
 //System.out.println("btengan " + btengan.toJSONString());
 session.setAttribute("user", obj);
-response.sendRedirect("Board.jsp");
+response.sendRedirect("Board.jsp?boardName=" + boardname);
 
 %>
 
