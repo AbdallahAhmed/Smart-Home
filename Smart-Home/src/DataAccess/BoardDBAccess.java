@@ -71,7 +71,7 @@ public class BoardDBAccess {
 
 	}
 
-	public Boolean RemoveBoard(String boardname, int userid) {
+	public Boolean RemoveBoard(String boardname, String username) {
 		return true;
 	}
 

@@ -11,13 +11,13 @@ import org.json.simple.JSONObject;
 import Controller.BoardManagement;
 import Controller.DeviceManagement;
 
-@Path("/RemoveBoard/{boardname}/{userId}")
+@Path("/RemoveBoard/{boardname}/{username}")
 public class RemoveBoard {
 	@GET
 	@Produces(MediaType.TEXT_PLAIN)
-	public String RemoveBoard(@PathParam("boardname") String boardname, @PathParam("userId") String userId) {
+	public String RemoveBoard(@PathParam("boardname") String boardname, @PathParam("username") String username) {
 		BoardManagement bm = new BoardManagement();
-		Boolean valid = bm.RemoveBoard(boardname,Integer.parseInt(userId));
+		Boolean valid = bm.RemoveBoard(boardname,username);
 		JSONObject obj = new JSONObject();
 		obj.put("valid", valid);
 		return obj.toJSONString();
