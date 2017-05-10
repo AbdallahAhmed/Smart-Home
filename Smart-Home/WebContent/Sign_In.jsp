@@ -40,22 +40,20 @@
 		<div class="inter">
 			<form onsubmit="return validate()" name="signup" action="SignUpCheck.jsp" method="post">
 				<div class="inputcomp">
-					<label id="left">Full Name</label>
-					<input class="inputout" id="right"  type="text" name="fullname" required>
-
+					<label id="">Full Name</label>
+					<input class="inputout" id=""  type="text" name="fullname" required>
 				</div>
 				<div class="inputcomp">
-					<span  class="error"><p id="username_error"></p></span>
-					<label id="left">Username</label>
+					<label id="">Username</label>
 					<input class="inputout" id="right"  type="text" name="newuser">
 				</div>
 				<div class="inputcomp">
-					<label id="left">Password</label>
-					<input class="inputout" id="right"  type="password" name="newpass" minlength="8">
+					<label id="">Password</label>
+					<input class="inputout" id=""  type="password" name="newpass" minlength="8">
 				</div>
 				<div class="inputcomp">
-					<label id="left">Verfiy Password</label>
-					<input class="inputout" id="right" type="password" name="renewpass" minlength="8">
+					<label id="">Verfiy Password</label>
+					<input class="inputout" id="" type="password" name="renewpass" minlength="8">
 				</div>
 				<button class="signup" type="submit">Sign Up</button>
 			</form>

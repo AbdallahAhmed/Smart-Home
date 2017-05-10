@@ -296,6 +296,18 @@ img {
 .view:hover:before{
   content: "View "; 
 }
+
+.notif {
+	position:absolute;
+	right:20px;
+	top: 2px;
+	text-align:center;
+	width: 30px;
+	height: 30px;
+	color:#165258;
+	background-color: #00ddf2;
+	border-radius: 15px;
+}
 @keyframes fontbulger {
   0% {
     font-size: 10px;

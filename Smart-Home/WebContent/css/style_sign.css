@@ -28,7 +28,8 @@ html,body {
   position: relative;
   width: inherit;
   background-color: #165258;
-  height: 450px;
+  height: 500px;
+  
 }
 button { 
   font-family: 'Righteous',cursive;
@@ -51,35 +52,39 @@ button {
 .inputout {
   border: 4px #00ddf2 solid;
   border-radius: 10px; 
-  float: left;
+  float: right;
   background-color: #165258;
-  margin: 10px;
+  margin-bottom: 20px;
   color: #e6e6e6;
-  width: 250px;
+  width: 300px;
   height: 45px;
   border-radius: 20px;
   font-size: 15px;
   cursor: pointer;    
 
 }
+.inputcomp {
+	background-color: black;
+	z-index: 100;
+	position: relative;
+}
 .inter form {
   position: absolute;
-  width: auto;
-  height: auto;
-  margin: 50px 0px;
-  background-color: none;
+  width: 600px;
+  height: 450px;
+  background-color: red;
   bottom: 0;
   right: 0;
 
 }
-.inputcomp {
-  //float: right;
-}
 .inputcomp label{
-  margin: 18px 0px;
+	
   font-family: 'Righteous',cursive;
   font-size: 30px;
   color: #00ddf2;
+  float: left;
+  margin-bottom: 0px;
+	
 }
 .inputcomp span {
   margin: -30px 0px;
@@ -107,6 +112,7 @@ button {
 }
 
 .signup {
+	position: absolute;
   border: 4px #00ddf2 solid;
   border-radius: 10px; 
   float: left;
@@ -114,6 +120,7 @@ button {
   margin: 0;
   color: #165258;
   width: 250px;
+  bottom: -10px;
   height: 45px;
   border-radius: 20px;
   font-size: 38px;

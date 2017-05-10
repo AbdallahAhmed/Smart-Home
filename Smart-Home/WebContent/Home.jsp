@@ -38,7 +38,8 @@ org.glassfish.jersey.client.ClientConfig ,org.json.simple.parser.*,org.json.simp
 			<img src="http://i.imgur.com/WpmTCcz.png" id="left">
 		</a>
 		</div>
-		<span class="fa fa-cog dropbtn" style="font-size: 35px; color: #165258; padding: 15px;"  id="right">
+		<div class="notif" >2</div>
+		<span class="fa fa-bell dropbtn" style="font-size: 35px; color: #165258; padding: 15px;"  id="right">
 			<div class="dropdown">
  		 		<div class="dropdown-content">
     				<a href="#">Link 1</a>	
@@ -47,7 +48,6 @@ org.glassfish.jersey.client.ClientConfig ,org.json.simple.parser.*,org.json.simp
   				</div>
 			</div>
 		</span>
-		<span class="fa fa-bell" style="font-size: 35px; color: #165258; padding: 15px; cursor: pointer;" id="right"></span>
 		<button class="profile" style="background-color: #165258; margin-left: 50px; color: #00ddf2" id="right"> Profile</button>
 		<label class="" id="right"><% out.print(obj.get("name")); %></label>
 	</div>
