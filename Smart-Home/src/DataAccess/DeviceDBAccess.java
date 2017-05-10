@@ -234,8 +234,9 @@ public class DeviceDBAccess {
 				dev.name = rs.getString("DeviceName");
 				dev.model = rs.getString("DeviceModel");
 				dev.status = rs.getString("DeviceStatus");
+				dev.port = rs.getInt("PortNumber");
 				dev.Id = rs.getInt("ID");
-				dev.operations = (ArrayList<Operation>) getOperations(rs.getInt("DeviceID")).clone();
+				//dev.operations = (ArrayList<Operation>) getOperations(rs.getInt("DeviceID")).clone();
 				d.add(dev);
 			}
 
@@ -286,7 +287,7 @@ public class DeviceDBAccess {
 		return d;
 	}
 
-	public ArrayList<Operation> getOperations(int deviceID) {
+	/*public ArrayList<Operation> getOperations(int deviceID) {
 		ResultSet rs = null;
 		Statement stmt = null;
 		String Query = "select * from Operations where DeviceID = " + deviceID;
@@ -332,7 +333,7 @@ public class DeviceDBAccess {
 		return ops;
 
 	}
-
+*/
 	public ArrayList<String> getValues(int opID) {
 		ResultSet rs = null;
 		Statement stmt = null;
