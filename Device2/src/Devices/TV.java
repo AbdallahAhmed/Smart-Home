@@ -49,7 +49,7 @@ public class TV {
 		rc.addParamPost("Username","admin");
 		rc.addParamPost("port", "4444");
 		System.out.println(rc.getJSONObject());
-		Connectors.SocketConnector sc = new Connectors.SocketConnector(5555);
+		Connectors.SocketConnector sc = new Connectors.SocketConnector(4444);
 		while(true){
 			String msg = sc.recv();
 			msg = "Controller." + msg;

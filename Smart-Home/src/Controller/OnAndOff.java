@@ -10,7 +10,7 @@ public class OnAndOff implements UILoader {
 		 "value=\""
 		 + status +"\"" +">"+
 			"<button id=\"lamp\"></button></div></form>";
-		System.out.println(s);
+		//System.out.println(s);
 		return s;
 	}
 

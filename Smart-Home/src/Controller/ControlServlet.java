@@ -7,7 +7,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.json.simple.parser.ParseException;
+
 import Connectors.SocketConnector;
+import RestServices.RestConnector;
 
 /**
  * Servlet implementation class ControlServlet
@@ -23,15 +26,17 @@ public class ControlServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		  String name=null;
 		  name = request.getParameter("user");
-		  String msg = "";
-		  System.out.println("jjceb");
-		  /*if(name.equals("+")){
-			  msg = "volume up";
-		  }else if(name.equals("-")){
-			  msg = "volume down";
-		  }*/
-		  SocketConnector sc = new SocketConnector(5555);
-		  sc.send(name);
+		  String port = (request.getParameter("passPort"));
+		  RestConnector rc = new RestConnector("ControlDevice","GET");
+		  String[] param = {port, name};
+		  rc.addParamGet(param);
+		  try {
+			rc.getJSONObject();
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		  
 		  if(request.getParameter("user").toString().equals("")){
 		   name="Hello User";
 		  }

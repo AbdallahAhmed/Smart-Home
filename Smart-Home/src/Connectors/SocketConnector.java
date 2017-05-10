@@ -7,25 +7,15 @@ import java.net.UnknownHostException;
 
 public class SocketConnector {
 	private static String host = "0.0.0.0";
-	private static int port = 5555;
+	private static int port ;
 	private static Socket soc ;
-	static{
-		try {
-			soc = new Socket(host, port);
-		} catch (UnknownHostException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
 	private DataOutputStream dout;
 	
 	public SocketConnector(int port) throws UnknownHostException, IOException{
-/*		host = "0.0.0.0";
-		port = 5555;*/
-		/*soc = new Socket(host, port);*/
+		if(SocketConnector.port != port){
+			SocketConnector.port = port;
+			SocketConnector.soc = new Socket(host, SocketConnector.port);
+		}
 		dout = new DataOutputStream(soc.getOutputStream());
 	}
 	

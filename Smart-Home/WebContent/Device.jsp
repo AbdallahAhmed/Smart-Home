@@ -45,7 +45,7 @@ org.glassfish.jersey.client.ClientConfig ,org.json.simple.parser.*,org.json.simp
 			<%
 				RestConnector rc = new RestConnector("ViewDevice", "GET");
 				String deviceId = request.getParameter("deviceId");
-				System.out.println("port : " + request.getParameter("port"));
+				int port = Integer.parseInt(request.getParameter("port"));				
 				String[] x = { deviceId };
 				rc.addParamGet(x);
 				JSONObject obj1 = rc.getJSONObject();
@@ -56,23 +56,27 @@ org.glassfish.jersey.client.ClientConfig ,org.json.simple.parser.*,org.json.simp
 					System.out.print(arr.get(i));
 				}				
 			%>
+			<input type="hidden" id="Port" value="<% out.print(port); %>">
 			<script>
             $(document).ready(function() {                        
                 $('#statusbtn').click(function(event) {  
                     var username=$('#statusbtn').val();
-                 $.get('ActionServlet',{user:username},function(responseText) { 
+                    var port=$('#Port').val();
+                 $.get('ActionServlet',{user:username,passPort:port},function(responseText) { 
                                  
                     });
                 });
                 $('#sub').click(function(event) {  
                     var username=$('#sub').val();
-                 $.get('ActionServlet',{user:username},function(responseText) { 
+                    var port=$('#Port').val();
+                 $.get('ActionServlet',{user:username,passPort:port},function(responseText) { 
                                  
                     });
                 });
                 $('#sub2').click(function(event) {  
                     var username=$('#sub2').val();
-                 $.get('ActionServlet',{user:username},function(responseText) { 
+                    var port=$('#Port').val();
+                 $.get('ActionServlet',{user:username,passPort:port},function(responseText) { 
                                  
                     });
                 });
