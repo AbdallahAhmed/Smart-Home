@@ -33,7 +33,7 @@ public class Try2 {
 //		dev.model = "2014";
 //		dev.Id = 5;
 //		d.RegisterDevice(dev, 2, "admin");
-		Operation o = new Operation();
+/*		Operation o = new Operation();
 		o.name = "Power";
 		o.values = new ArrayList<String>();
 		o.values.add("On");
@@ -43,9 +43,27 @@ public class Try2 {
 		d.Id = 12;
 		d.operations.add(o);
 		DeviceDBAccess db = new DeviceDBAccess();
-		db.RegisterDevice(d,4444,"admin");
+		db.RegisterDevice(d,4444,"admin");*/
 		/*db.AddDevice("Admin", "Board2", d);*/
 		/*UserDBAccess d = new UserDBAccess();
 		System.out.println(d.getUser("Admin", "Admin").toJson());*/
+		
+		String Query = "insert into Notifications (Details, UserID) Values (\"" + "dnsjdfhd" + "\", " + 5 + ")";
+		System.out.println(Query);
+		
+		NotificationDBAccess n = new NotificationDBAccess();
+		boolean a = n.AddNotification("awel Notiii", "Admin");
+		System.out.println(a);
+		
+		a = n.AddNotification("Tany Notiii", "Admin");
+		System.out.println(a);
+		
+		a = n.AddNotification("awel Notiii", "7amada");
+		System.out.println(a);
+		
+		ArrayList<String> ns = n.GetNotifications("Admin");
+		for (String string : ns) {
+			System.out.println(string);
+		}
 	}
 }
