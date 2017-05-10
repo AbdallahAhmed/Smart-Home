@@ -45,6 +45,7 @@ org.glassfish.jersey.client.ClientConfig ,org.json.simple.parser.*,org.json.simp
 			<%
 				RestConnector rc = new RestConnector("ViewDevice", "GET");
 				String deviceId = request.getParameter("deviceId");
+				System.out.println("port : " + request.getParameter("port"));
 				String[] x = { deviceId };
 				rc.addParamGet(x);
 				JSONObject obj1 = rc.getJSONObject();
@@ -59,6 +60,12 @@ org.glassfish.jersey.client.ClientConfig ,org.json.simple.parser.*,org.json.simp
             $(document).ready(function() {                        
                 $('#statusbtn').click(function(event) {  
                     var username=$('#statusbtn').val();
+                 $.get('ActionServlet',{user:username},function(responseText) { 
+                                 
+                    });
+                });
+                $('#sub').click(function(event) {  
+                    var username=$('#sub').val();
                  $.get('ActionServlet',{user:username},function(responseText) { 
                                  
                     });

@@ -14,7 +14,7 @@ public class Light {
 	public static void main(String[] args) throws ParseException, IOException, InstantiationException, IllegalAccessException, ClassNotFoundException{
 		RestConnector rc = new RestConnector("RegisterDevice", "POST");
 		Device d = new Device();
-		d.Id = 78;
+		d.Id = 79;
 		d.model = "ABC";
 		d.name = "Room Light";
 		Operation o = new Operation();

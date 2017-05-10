@@ -11,6 +11,7 @@ public class Device {
 	public String status;
 	public ArrayList<Operation> operations = new ArrayList<Operation>();
 	public int Id;
+	public int port;
 	
 	public JSONObject toJson(){
 		JSONObject obj = new JSONObject();
@@ -18,6 +19,7 @@ public class Device {
 		obj.put("name", name);
 		obj.put("status", status);
 		obj.put("id", Id);
+		obj.put("port", port);
 		JSONArray ops = new JSONArray();
 		for(int i = 0; i < operations.size(); i++){
 			ops.add(operations.get(i).toJson());

@@ -101,6 +101,7 @@ org.glassfish.jersey.client.ClientConfig ,org.json.simple.parser.*,org.json.simp
 					<span class="fa fa-close"></span>
 				</button>
 				<input type="hidden" class="fill" value="<% out.print(((JSONObject) devs.get(i)).get("id")); %>" name="deviceId">
+				<input type="hidden" class="fill" value="<% out.print(((JSONObject) devs.get(i)).get("port")); %>" name="port">
 				<label id="left" style="max-width: 200px;">Device Name : <%
 					out.print(((JSONObject) devs.get(i)).get("name"));
 				%>
