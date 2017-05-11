@@ -14,7 +14,7 @@ public class Light {
 	public static void main(String[] args) throws ParseException, IOException, InstantiationException, IllegalAccessException, ClassNotFoundException{
 		RestConnector rc = new RestConnector("RegisterDevice", "POST");
 		Device d = new Device();
-		d.Id = 78;
+		d.Id = 111;
 		d.model = "ABC";
 		d.name = "Room Light";
 		Operation o = new Operation();
@@ -30,7 +30,7 @@ public class Light {
 		d.operations.add(o);
 		d.status = "OFF";
 		rc.addParamPost("Device", d.toJson().toJSONString());
-		rc.addParamPost("Username","admin");
+		rc.addParamPost("Username","test");
 		rc.addParamPost("port", "4444");
 		System.out.println(rc.getJSONObject());
 		Connectors.SocketConnector sc = new Connectors.SocketConnector(4444);

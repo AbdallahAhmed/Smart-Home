@@ -20,7 +20,7 @@ public class ControlDevice {
 	@Produces(MediaType.TEXT_PLAIN)
 	public String ControlDevice(@PathParam("port") String port, @PathParam("message")String msg) throws NumberFormatException, UnknownHostException, IOException
 	{
-		System.out.println(port + " Port Service");
+		System.out.println(port + " Port Service" + "  " + msg);
 		SocketConnector sc = new SocketConnector(Integer.parseInt(port));
 		sc.send(msg);
 		JSONObject obj = new JSONObject();

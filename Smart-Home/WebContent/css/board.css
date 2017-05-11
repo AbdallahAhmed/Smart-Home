@@ -4,7 +4,7 @@ html,body {
   width: 100%;
   height: 100%;
   font-family: 'Righteous', cursive;
-  background-color: none;
+  background-color: #cccccc;
 }
 #upper label {
   padding: 0px;
@@ -290,7 +290,7 @@ img {
   border-radius: 10px;
   transition: 0.7s;
   color: #00ddf2;
-  background-color: #0000ff;
+  background-color: #165258;
 }
 .view:hover span{
   display: none;

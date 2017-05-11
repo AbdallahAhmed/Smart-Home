@@ -1,6 +1,5 @@
 <%@page import="javax.ws.rs.client.Entity"%>
 <%@page import="javax.ws.rs.core.Form"%>
-<%@ page import="RestServices.RestConnector" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -9,6 +8,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Loading...</title>
 </head>
+<%@ page import="RestServices.RestConnector" %>
 <%@ page import="java.net.URI, 
 javax.ws.rs.client.Client , 
 javax.ws.rs.client.ClientBuilder , 

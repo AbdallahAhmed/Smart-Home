@@ -21,4 +21,7 @@ public class SocketConnector {
 		return din.readUTF();
 	}
 	
+	public void closeSoc() throws IOException{
+		soc.close();
+	}
 }

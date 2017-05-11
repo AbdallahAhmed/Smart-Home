@@ -31,6 +31,7 @@ public class SignIn {
 		  boolean valid = um.SignIn(user);
 		  object.put("signin", valid);
 		  user = um.getUser(user.name, user.password);
+		  System.out.println(user.toJson());
 		  if(valid == true){
 			  object.put("user", user.toJson());
 		  }

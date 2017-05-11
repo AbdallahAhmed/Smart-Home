@@ -85,12 +85,6 @@ org.glassfish.jersey.client.ClientConfig ,org.json.simple.parser.*,org.json.simp
 			%>
 		</label>
 	</div>
-<form action="RemoveBoard.jsp" method="post">
-			<button id="right" name = "boardname" 
-			value="<%out.print(boardName);%>">
-			Delete Board</button>
-			<input type="hidden" name="username" value="<%out.print((String)(obj.get("name")));%>"></input>
-			</form>
 	<div class="inter">
 		<%
 			for (int i = 0; i < devs.size(); i++) {
