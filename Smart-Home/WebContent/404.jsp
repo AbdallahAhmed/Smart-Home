@@ -3,14 +3,21 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<link rel="stylesheet" type="text/css" href="css/404.css">
-<link href="https://fonts.googleapis.com/css?family=Droid+Sans" rel="stylesheet">
-	<title>404</title>
+	<title>Moon</title>
+	<link rel="stylesheet" type="text/css" href="css/404.css">
+	<link href="https://fonts.googleapis.com/css?family=Berkshire+Swash" rel="stylesheet">
 </head>
 <body>
-	<div id="errorMsg">
-		<label>We are fixing the System <br><a href="Sign_In.jsp">Go Back</a> and Try to Sign in Again</label>
+	<div id="cloud">
+		<label id="msg">Username or Password <br> is incorrect Try to Sign in Again</label>
+		<button id="bkbtn"><a style="color: #165258;" href="Sign_In.jsp">Go Back</a></button>
+		<div id="box"></div>
+		<div id="circleCloud1"></div>
+		<div id="circleCloud1"></div>
+		<div id="circleCloud2"></div>
+		<div id="circleCloud3"></div>
+		<div id="circleCloud4"></div>
+		<div id="circleCloud5"></div>
 	</div>
 	<div id="ground">
 		<div id="floor"></div>

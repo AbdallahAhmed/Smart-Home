@@ -145,3 +145,7 @@ img {
   50% { width: 300px; }
 }
 
+#sAll {
+  margin : 0;
+  padding : 0;
+}
